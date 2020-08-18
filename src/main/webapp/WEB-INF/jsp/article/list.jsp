@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../part/head.jspf" %>
-<h1>${pageTitle}</h1>
 <table>
 	<colgroup>
 		<col width="200" />

@@ -2,10 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sbs.lyb.pp.dao.MemberDao">
-	<select id="getForPrintArticles" resultType="Article">
-		SELECT *
-		FROM article
-		WHERE displayStatus = 1
-		ORDER BY id DESC
+	<insert id="join" useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO member
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		authStatus = 0,
+		loginId = #{loginId},
+		loginPw = #{loginPw},
+		`name` = #{name},
+		nickname = #{nickname},
+		email = #{email},
+		phoneNo = #{phoneNo},
+		division = 'n'
+	</insert>
+	
+	<select id="getLoginIdDupCount" resultType="int">
+		SELECT COUNT(*) AS
+		cnt
+		FROM member
+		WHERE loginId = #{loginId}
 	</select>
 </mapper>

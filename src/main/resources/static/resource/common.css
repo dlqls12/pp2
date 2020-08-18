@@ -1,0 +1,141 @@
+/* 노말라이즈 */
+body, ul, li, h1 {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	color: inherit;
+}
+
+label[for] {
+	cursor: pointer;
+	user-select: none;
+}
+
+/* 라이브러리 */
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.img-box>img, .img-box>svg {
+	width: 100%;
+	display: block;
+}
+
+.video-box>video {
+	width: 100%;
+	display: block;
+}
+
+.con {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.border-red {
+	border: 10px solid red;
+}
+
+html>head+body:nth-child(2) .height-300 {
+	min-height: 100px;
+}
+
+.bg-white {
+	background-color: white;
+}
+
+.padding-10 {
+	padding: 10px;
+}
+
+/* flex 관련 */
+.flex {
+	display: flex;
+}
+
+.flex-ai-c {
+	align-items: center;
+}
+
+.flex-jc-c {
+	justify-content: center;
+}
+
+/* 테이블 관련 */
+.table-box>table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table-box>table th, .table-box>table td {
+	border: 1px solid black;
+	padding: 10px;
+	text-align: left;
+}
+
+/* 폼 관련 */
+.form1 .form-control-box>input, .form1 .form-control-box>textarea {
+	width: 100%;
+	padding: 0;
+	display: block;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.form1 .form-control-box>textarea {
+	min-height: 300px;
+	resize: none;
+}
+
+.form1 .form-row {
+	display: flex;
+}
+
+.form1 .form-row>.form-control-label {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.form1 .form-row>.form-control-box {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.form1 th {
+	/* `로그인 아이디` 문구가 줄 바꿈 될 때 공백기준으로 줄바꿈 되도록 */
+	word-break:keep-all;
+}
+
+/* 버튼관련 */
+.btn {
+    padding:5px 15px;
+    display: inline-flex;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: #3D94F6;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 20px #000000;
+}
+
+.btn:hover {
+    background-color: #1E62D0;
+}
+
+.btn-success {
+    background-color: green;
+}
+
+.btn-danger {
+    background-color: red;
+}
