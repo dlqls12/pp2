@@ -1,6 +1,8 @@
 package com.sbs.lyb.pp.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 
-public class MemberDao {
+@Mapper
+public interface MemberDao {
 	
 }
