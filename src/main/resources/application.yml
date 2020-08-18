@@ -12,3 +12,5 @@ spring:
     password: 
 mybatis:
   type-aliases-package: com.sbs.lyb.pp.dto
+custom:
+  logoText: 대학중고장터 

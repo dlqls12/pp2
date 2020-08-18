@@ -5,6 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${pageTitle}</title>
+<title>${logoText}- ${pageTitle}</title>
 </head>
 <body>
