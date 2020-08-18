@@ -11,8 +11,9 @@ public class Member {
 	private int id;
 	private String regDate;
 	private String updateDate;
-	private int delStatus;
 	private String delDate;
+	private int delStatus;
+	private int authStatus;
 	private String loginId;
 	private String loginPw;
 	private String name;

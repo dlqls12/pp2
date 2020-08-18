@@ -11,8 +11,8 @@ public class Article {
 	private int id;
 	private String regDate;
 	private String updateDate;
-	private int delStatus;
 	private String delDate;
+	private int delStatus;
 	private int displayStatus;
 	private String title;
 	private String body;
