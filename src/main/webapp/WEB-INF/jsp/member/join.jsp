@@ -93,86 +93,86 @@
 		MemberJoinForm__submitDone = true;
 	}
 </script>
-
-<form method="POST" class="table-box con form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
-	<input type="hidden" name="redirectUrl" value="/member/login">
-	<input type="hidden" name="loginPwReal">
-	<table>
-		<colgroup>
-			<col width="100">
-		</colgroup>
-		<tbody>
-			<tr>
-				<th>로그인 아이디</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId"
-							maxlength="30" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>로그인 비번</th>
-				<td>
-					<div class="form-control-box">
-						<input type="password" placeholder="로그인 비밀번호를 입력해주세요."
-							name="loginPw" maxlength="30" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>로그인 비번 확인</th>
-				<td>
-					<div class="form-control-box">
-						<input type="password" placeholder="로그인 비밀번호 확인을 입력해주세요."
-							name="loginPwConfirm" maxlength="30" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" placeholder="이름을 입력해주세요." name="name"
-							maxlength="20" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>활동명</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" placeholder="활동명 입력해주세요." name="nickname"
-							maxlength="20" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>
-					<div class="form-control-box">
-						<input type="email" placeholder="이메일 입력해주세요." name="email"
-							maxlength="50" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>휴대폰</th>
-				<td>
-					<div class="form-control-box">
-						<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="phoneNo"
-							maxlength="12" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>가입</th>
-				<td>
-					<button type="submit">가입</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-
+<div class="con">
+	<form method="POST" class="table-box con form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+		<input type="hidden" name="redirectUrl" value="/member/login">
+		<input type="hidden" name="loginPwReal">
+		<table>
+			<colgroup>
+				<col width="100">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>로그인 아이디</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId"
+								maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>로그인 비번</th>
+					<td>
+						<div class="form-control-box">
+							<input type="password" placeholder="로그인 비밀번호를 입력해주세요."
+								name="loginPw" maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>로그인 비번 확인</th>
+					<td>
+						<div class="form-control-box">
+							<input type="password" placeholder="로그인 비밀번호 확인을 입력해주세요."
+								name="loginPwConfirm" maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="이름을 입력해주세요." name="name"
+								maxlength="20" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>활동명</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="활동명 입력해주세요." name="nickname"
+								maxlength="20" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td>
+						<div class="form-control-box">
+							<input type="email" placeholder="이메일 입력해주세요." name="email"
+								maxlength="50" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>휴대폰</th>
+					<td>
+						<div class="form-control-box">
+							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="phoneNo"
+								maxlength="12" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>가입</th>
+					<td>
+						<button type="submit">가입</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
 <%@ include file="../part/foot.jspf"%> 

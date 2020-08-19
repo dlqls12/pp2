@@ -3,6 +3,7 @@ package com.sbs.lyb.pp.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbs.lyb.pp.dao.MemberDao;
@@ -14,6 +15,12 @@ import com.sbs.lyb.pp.util.Util;
 public class MemberService {
 	@Autowired
 	MemberDao memberDao;
+	@Autowired
+	private MailService mailService;
+	@Value("${custom.siteMainUrl}")
+	private String siteMainUrl;
+	@Value("${custom.siteName}")
+	private String siteName;
 	
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
@@ -25,10 +32,21 @@ public class MemberService {
 	
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
-
+		
+		sendJoinCompleteMail((String) param.get("email"));
+		
 		return Util.getAsInt(param.get("id"));
 	}
+	
+	private void sendJoinCompleteMail(String email) {
+		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
 
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
+
+		mailService.send(email, mailTitle, mailBodySb.toString());
+	}
+	
 	public ResultData checkLoginIdJoinable(String loginId) {
 		int count = memberDao.getLoginIdDupCount(loginId);
 

@@ -45,36 +45,36 @@
 		MemberLoginForm__submitDone = true;
 	}
 </script>
-
-<form method="POST" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
-	<input type="hidden" name="redirectUrl" value="/home/main">
-	<input type="hidden" name="loginPwReal">
-	<table>
-		<tbody>
-			<tr>
-				<th>로그인 아이디</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId" maxlength="30" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>로그인 비번</th>
-				<td>
-					<div class="form-control-box">
-						<input type="password" placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="30" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>로그인</th>
-				<td>
-					<button type="submit">로그인</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-
+<div class="con">
+	<form method="POST" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
+		<input type="hidden" name="redirectUrl" value="/home/main">
+		<input type="hidden" name="loginPwReal">
+		<table>
+			<tbody>
+				<tr>
+					<th>로그인 아이디</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId" maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>로그인 비번</th>
+					<td>
+						<div class="form-control-box">
+							<input type="password" placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>로그인</th>
+					<td>
+						<button type="submit">로그인</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
 <%@ include file="../part/foot.jspf"%> 
