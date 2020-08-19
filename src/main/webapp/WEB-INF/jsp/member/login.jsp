@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:set var="pageTitle" value="로그인" />
@@ -14,26 +13,18 @@
 		}
 		form.loginId.value = form.loginId.value.trim();
 		form.loginId.value = form.loginId.value.replaceAll('-', '');
-
+		form.loginId.value = form.loginId.value.replaceAll('_', '');
+		form.loginId.value = form.loginId.value.replaceAll(' ', '');
 		if (form.loginId.value.length == 0) {
 			form.loginId.focus();
 			alert('로그인 아이디를 입력해주세요.');
 			return;
 		}
-		if (form.loginId.value.length < 4) {
-			form.loginId.focus();
-			alert('로그인 아이디 4자 이상 입력해주세요.');
-			return;
-		}
+		
 		form.loginPw.value = form.loginPw.value.trim();
 		if (form.loginPw.value.length == 0) {
 			form.loginPw.focus();
 			alert('로그인 비밀번호를 입력해주세요.');
-			return;
-		}
-		if (form.loginPw.value.length < 5) {
-			form.loginPw.focus();
-			alert('로그인 비밀번호를 5자 이상 입력해주세요.');
 			return;
 		}
 

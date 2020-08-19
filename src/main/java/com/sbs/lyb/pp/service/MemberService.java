@@ -56,4 +56,8 @@ public class MemberService {
 
 		return new ResultData("F-1", "이미 사용중인 로그인 아이디 입니다.", "loginId", loginId);
 	}
+
+	public void modifyMemberInfo(Map<String, Object> param) {
+		memberDao.modifyMemberInfo(param);
+	}
 }

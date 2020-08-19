@@ -9,12 +9,12 @@
 		updateDate = NOW(),
 		authStatus = 0,
 		loginId = #{loginId},
-		loginPw = #{loginPw},
+		loginPw = #{loginPwReal},
 		`name` = #{name},
 		nickname = #{nickname},
 		email = #{email},
 		phoneNo = #{phoneNo},
-		division = 'n'
+		division = 'N'
 	</insert>
 	
 	<select id="getLoginIdDupCount" resultType="int">
@@ -36,4 +36,14 @@
 		WHERE
 		id = #{id}
 	</select>
+	
+	<update id="modifyMemberInfo">
+		UPDATE member SET
+		updateDate = NOW(),
+		`name` = #{name},
+		nickname = #{nickname},
+		email = #{email},
+		phoneNo = #{phoneNo}
+		WHERE id = #{id}
+	</update>
 </mapper>

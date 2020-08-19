@@ -21,14 +21,14 @@ public class MemberController {
 	MemberService memberService;
 	
 	@RequestMapping("/member/join")
-	public String showJoin() {
+	public String join() {
 		return "member/join";
 	}
 	
 	@RequestMapping("/member/doJoin")
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
 		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
-
+		
 		if (checkLoginIdJoinableResultData.isFail()) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", checkLoginIdJoinableResultData.getMsg());
@@ -47,7 +47,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/login")
-	public String showLogin() {
+	public String login() {
 		return "member/login";
 	}
 	
@@ -83,6 +83,24 @@ public class MemberController {
 			redirectUrl = "/home/main";
 		}
 
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/member/modifyMemberInfo")
+	public String modifyMemberInfo(Model model, HttpSession session) {
+		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
+		
+		Member loginedMember = memberService.getMemberById(loginedMemberId); 
+		model.addAttribute("loginedMember", loginedMember);
+		return "member/modifyMemberInfo";
+	}
+	
+	@RequestMapping("/member/doModifyMemberInfo")
+	public String doModifyMemberInfo(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUrl) {
+		memberService.modifyMemberInfo(param);
+		
+		model.addAttribute("alertMsg", String.format("회원 정보가 수정되었습니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}

@@ -17,4 +17,6 @@ public interface MemberDao {
 	Member getMemberByLoginId(String loginId);
 
 	Member getMemberById(int id);
+
+	void modifyMemberInfo(Map<String, Object> param);
 }
