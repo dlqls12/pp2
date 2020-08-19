@@ -5,6 +5,8 @@
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../part/head.jspf"%>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
 <script>
 	var MemberJoinForm__submitDone = false;
 	function MemberJoinForm__submit(form) {
@@ -82,14 +84,19 @@
 			form.phoneNo.focus();
 			alert('휴대전화번호를 정확히 입력해주세요.');
 		}
+
+		form.loginPwReal.value = sha256(form.loginPw.value);
+		form.loginPw.value = '';
+		form.loginPwConfirm.value = '';
+		
 		form.submit();
 		MemberJoinForm__submitDone = true;
 	}
 </script>
 
 <form method="POST" class="table-box con form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
-	<input type="hidden" name="redirectUrl" value="/usr/member/login">
-
+	<input type="hidden" name="redirectUrl" value="/member/login">
+	<input type="hidden" name="loginPwReal">
 	<table>
 		<colgroup>
 			<col width="100">
@@ -161,7 +168,7 @@
 			<tr>
 				<th>가입</th>
 				<td>
-					<button class="btn btn-primary" type="submit">가입</button>
+					<button type="submit">가입</button>
 				</td>
 			</tr>
 		</tbody>

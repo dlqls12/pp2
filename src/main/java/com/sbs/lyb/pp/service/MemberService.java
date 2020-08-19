@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sbs.lyb.pp.dao.MemberDao;
+import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.dto.ResultData;
 import com.sbs.lyb.pp.util.Util;
 
@@ -28,5 +29,13 @@ public class MemberService {
 		}
 
 		return new ResultData("F-1", "이미 사용중인 로그인 아이디 입니다.", "loginId", loginId);
+	}
+
+	public Member getMemberByLoginId(String loginId) {
+		return memberDao.getMemberByLoginId(loginId);
+	}
+
+	public Member getMemberById(int id) {
+		return memberDao.getMemberById(id);
 	}
 }
