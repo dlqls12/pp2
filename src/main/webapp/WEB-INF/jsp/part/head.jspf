@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +10,13 @@
 
 <!-- 구글 폰트 불러오기 -->
 <!-- rotobo(400/700/900), notosanskr(400/600/900) -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 
 <!-- 폰트어썸 불러오기 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 
 <!-- 제이쿼리 불러오기 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- 공통(라이브러리) CSS -->
 <link rel="stylesheet" href="/resource/common.css" />
@@ -38,7 +33,9 @@
 </head>
 <body>
 	<div class="top-bar con">
+		<c:if test="${isLogined == false}"><a href="/member/login">[로그인]</a></c:if>
 		<c:if test="${isLogined}">${loginedMember.nickname}님 환영합니다.</c:if>
-		<c:if test="${isLogined}"><a href="/usr/member/doLogout">[로그아웃]</a></c:if>
+		<c:if test="${isLogined}"><a href="/member/doLogout">[로그아웃]</a></c:if>
+		<a href="/article/list">[게시판이동]</a>
 	</div>
 	<h1 class="page-title-box con">${pageTitle}</h1>

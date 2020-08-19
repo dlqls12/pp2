@@ -15,6 +15,14 @@ public class MemberService {
 	@Autowired
 	MemberDao memberDao;
 	
+	public Member getMemberByLoginId(String loginId) {
+		return memberDao.getMemberByLoginId(loginId);
+	}
+
+	public Member getMemberById(int id) {
+		return memberDao.getMemberById(id);
+	}
+	
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
 
@@ -29,13 +37,5 @@ public class MemberService {
 		}
 
 		return new ResultData("F-1", "이미 사용중인 로그인 아이디 입니다.", "loginId", loginId);
-	}
-
-	public Member getMemberByLoginId(String loginId) {
-		return memberDao.getMemberByLoginId(loginId);
-	}
-
-	public Member getMemberById(int id) {
-		return memberDao.getMemberById(id);
 	}
 }

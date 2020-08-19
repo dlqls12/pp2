@@ -74,4 +74,16 @@ public class MemberController {
 
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/member/doLogout")
+	public String doLogout(HttpSession session, Model model, String redirectUrl) {
+		session.removeAttribute("loginedMemberId");
+
+		if (redirectUrl == null || redirectUrl.length() == 0) {
+			redirectUrl = "/home/main";
+		}
+
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
 }
