@@ -16,4 +16,8 @@ public class ArticleService {
 	public List<Article> getForPrintArticles() {
 		return articleDao.getForPrintArticles();
 	}
+
+	public Article getForPrintArticleById(int id) {
+		return articleDao.getForPrintArticleById(id);
+	}
 }

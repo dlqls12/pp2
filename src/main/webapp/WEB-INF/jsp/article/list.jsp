@@ -21,7 +21,7 @@
 				<tr>
 					<td>${article.id}</td>
 					<td>${article.regDate}</td>
-					<td><a href="">${article.title}</a></td>
+					<td><a href="/article/detail?id=${article.id}">${article.title}</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

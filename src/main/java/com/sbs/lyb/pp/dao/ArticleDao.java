@@ -10,4 +10,6 @@ import com.sbs.lyb.pp.dto.Article;
 public interface ArticleDao {
 
 	List<Article> getForPrintArticles();
+
+	Article getForPrintArticleById(int id);
 }

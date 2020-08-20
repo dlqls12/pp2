@@ -8,4 +8,10 @@
 		WHERE displayStatus = 1
 		ORDER BY id DESC
 	</select>
+	
+	<select id="getForPrintArticleById" parameterType="int" resultType="Article">
+		SELECT *
+		FROM article
+		WHERE id = #{id}
+	</select>
 </mapper>

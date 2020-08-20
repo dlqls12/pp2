@@ -14,7 +14,6 @@
 			return;
 		}
 		
-		
 		form.name.value = form.name.value.trim();
 		if (form.name.value.length == 0) {
 			form.name.focus();

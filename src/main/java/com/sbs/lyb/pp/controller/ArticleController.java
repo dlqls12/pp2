@@ -24,4 +24,17 @@ public class ArticleController {
 		model.addAttribute("articles", articles);
 		return "article/list";
 	}
+	
+	@RequestMapping("/article/detail")
+	public String detail(Model model, int id) {
+		Article article = articleService.getForPrintArticleById(id);
+		
+		model.addAttribute("article", article);
+		return "article/detail";
+	}
+	
+	@RequestMapping("/article/write")
+	public String write() {
+		return "article/write";
+	}
 }
