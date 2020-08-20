@@ -170,4 +170,37 @@ public class MemberController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/member/seekLoginPw")
+	public String seekLoginPw() {
+		return "member/seekLoginPw";
+	}
+	
+	@RequestMapping("/member/doSeekLoginPw")
+	public String doSeekLoginPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
+		String loginId = Util.getAsStr(param.get("loginId"));
+		String email = Util.getAsStr(param.get("email"));
+		Member member = memberService.getMemberByEmail(email);
+		
+		if ( member == null ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "일치하는 회원을 찾을 수 없습니다.");
+			return "common/redirect";
+		}
+		
+		if ( member.getLoginId().equals(loginId) == false ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "일치하는 회원을 찾을 수 없습니다.");
+			return "common/redirect";
+		}
+		String tmpPw = Util.numberGen(6, 2);
+		System.out.println(tmpPw);
+		memberService.modifyMemberPwTemp(tmpPw, member.getId());
+		String title = "비밀번호 찾기 결과입니다.";
+		String body = String.format("임시 비밀번호를 발급합니다.\n 임시 비밀번호는 [%s] 입니다.", tmpPw);
+		memberService.sendMail(email, title, body);
+		model.addAttribute("alertMsg", String.format("해당 이메일로 아이디를 발송합니다."));
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
 }

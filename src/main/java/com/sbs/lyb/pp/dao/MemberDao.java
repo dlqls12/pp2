@@ -23,4 +23,6 @@ public interface MemberDao {
 	void modifyMemberPw(Map<String, Object> param);
 
 	Member getMemberByEmail(String email);
+
+	void modifyMemberPwTemp(String tmpPw, int id);
 }

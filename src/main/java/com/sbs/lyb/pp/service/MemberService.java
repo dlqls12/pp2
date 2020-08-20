@@ -72,4 +72,8 @@ public class MemberService {
 	public void sendMail(String email, String title, String body) {
 		mailService.send(email, title, body);
 	}
+
+	public void modifyMemberPwTemp(String tmpPw, int id) {
+		memberDao.modifyMemberPwTemp(tmpPw, id);
+	}
 }

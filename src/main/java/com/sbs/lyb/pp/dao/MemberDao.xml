@@ -59,4 +59,11 @@
 		FROM member
 		WHERE email = #{email}
 	</select>
+	
+	<update id="modifyMemberPwTemp">
+		UPDATE member SET
+		updateDate = NOW(),
+		loginPw = SHA2(#{tmpPw}, 256)
+		WHERE id = #{id}
+	</update>
 </mapper>
