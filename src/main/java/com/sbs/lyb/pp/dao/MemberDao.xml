@@ -46,4 +46,11 @@
 		phoneNo = #{phoneNo}
 		WHERE id = #{id}
 	</update>
+	
+	<update id="modifyMemberPw">
+		UPDATE member SET
+		updateDate = NOW(),
+		loginPw = #{loginPwReal}
+		WHERE id = #{id}
+	</update>
 </mapper>

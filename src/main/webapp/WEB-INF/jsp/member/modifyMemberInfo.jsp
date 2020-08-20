@@ -101,6 +101,7 @@
 					<th>회원 정보 수정</th>
 					<td>
 						<button type="button" onclick="MemberModifyInfo__showModifyForm(this);">회원 정보 수정</button>
+						<a href="/member/modifyPw">[비밀번호변경하기]</a>
 					</td>
 				</tr>
 			</tbody>

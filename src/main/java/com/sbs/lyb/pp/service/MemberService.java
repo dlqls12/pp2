@@ -60,4 +60,8 @@ public class MemberService {
 	public void modifyMemberInfo(Map<String, Object> param) {
 		memberDao.modifyMemberInfo(param);
 	}
+
+	public void modifyMemberPw(Map<String, Object> param) {
+		memberDao.modifyMemberPw(param);
+	}
 }

@@ -36,8 +36,9 @@
 		<c:if test="${isLogined == false}"><a href="/member/login">[로그인]</a></c:if>
 		<c:if test="${isLogined == false}"><a href="/member/join">[회원가입]</a></c:if>
 		<c:if test="${isLogined}">${loginedMember.nickname}님 환영합니다.</c:if>
+		<a href="/home/main">[메인페이지]</a>
 		<c:if test="${isLogined}"><a href="/member/doLogout">[로그아웃]</a></c:if>
-		<c:if test="${isLogined}"><a href="/member/modifyMemberInfo">[마이페이지]</a></c:if>
+		<c:if test="${isLogined}"><a href="/member/checkPw">[마이페이지]</a></c:if>
 		<a href="/article/list">[게시판이동]</a>
 	</div>
 	<h1 class="page-title-box con">${pageTitle}</h1>

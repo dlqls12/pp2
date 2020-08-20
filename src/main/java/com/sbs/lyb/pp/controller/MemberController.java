@@ -97,10 +97,49 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/doModifyMemberInfo")
-	public String doModifyMemberInfo(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUrl) {
+	public String doModifyMemberInfo(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		memberService.modifyMemberInfo(param);
 		
 		model.addAttribute("alertMsg", String.format("회원 정보가 수정되었습니다."));
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/member/modifyPw")
+	public String modifyPw() {
+		return "member/modifyPw";
+	}
+	
+	@RequestMapping("/member/doModifyPw")
+	public String doModifyPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
+		memberService.modifyMemberPw(param);
+		
+		model.addAttribute("alertMsg", String.format("비밀번호가 변경되었습니다."));
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/member/checkPw")
+	public String checkPw() {
+		return "member/checkPw";
+	}
+	
+	@RequestMapping("/member/doCheckPw")
+	public String doCheckPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUrl) {
+		int id = Util.getAsInt(param.get("id"));
+		String loginPw = Util.getAsStr(param.get("loginPwReal"));
+		
+		Member member = memberService.getMemberById(id);
+		System.out.println("loginPw : " + loginPw);
+		System.out.println("memberPw : " + member.getLoginPw());
+
+		if ( member.getLoginPw().equals(loginPw) == false ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
+			return "common/redirect";
+		}
+		
+		model.addAttribute("alertMsg", String.format("마이페이지로 이동합니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
