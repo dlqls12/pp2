@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="게시물 리스트" />
+<c:set var="pageTitle" value="${board.name} 게시판" />
 <%@ include file="../part/head.jspf"%>
 <div class="con">
 	<table>
@@ -21,7 +21,7 @@
 				<tr>
 					<td>${article.id}</td>
 					<td>${article.regDate}</td>
-					<td><a href="/article/detail?id=${article.id}">${article.title}</a></td>
+					<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

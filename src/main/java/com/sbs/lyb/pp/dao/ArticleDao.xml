@@ -14,4 +14,24 @@
 		FROM article
 		WHERE id = #{id}
 	</select>
+	
+	<select id="getBoardByCode" resultType="Board">
+		SELECT *
+		FROM
+		board
+		WHERE
+		`code` = #{boardCode}
+	</select>
+	
+	<insert id="write" useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO article
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		title = #{title},
+		body = #{body},
+		memberId = #{memberId},
+		boardId = #{boardId},
+		displayStatus = 1
+	</insert>
 </mapper>

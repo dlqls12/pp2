@@ -28,7 +28,7 @@ CREATE TABLE `member` (
 	loginPw CHAR(100) NOT NULL,
 	`name` CHAR(20) NOT NULL,
 	`nickname` CHAR(20) NOT NULL UNIQUE,
-	`email` CHAR(100) NOT NULL,
+	`email` CHAR(100) NOT NULL UNIQUE,
 	`phoneNo` CHAR(20) NOT NULL,
 	`division` CHAR(100) NOT NULL
 );
@@ -59,3 +59,32 @@ updateDate = NOW(),
 title = '제목2',
 `body` = '내용2',
 memberId = 1;
+
+CREATE TABLE `board` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME,
+    updateDate DATETIME,
+    delDate DATETIME,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+    `code` CHAR(20) NOT NULL UNIQUE,
+	`name` CHAR(20) NOT NULL UNIQUE
+);
+
+INSERT INTO `board`
+SET regDate = NOW(),
+updateDAte = NOW(),
+`code` = 'free',
+`name` = '자유';
+
+INSERT INTO `board`
+SET regDate = NOW(),
+updateDAte = NOW(),
+`code` = 'notice',
+`name` = '공지사항';
+
+SELECT * FROM `board`
+
+# article 테이블에 boardId 컬럼 추가
+ALTER TABLE article ADD boardId INT(10) NOT NULL DEFAULT 1;
+
+SELECT * FROM article

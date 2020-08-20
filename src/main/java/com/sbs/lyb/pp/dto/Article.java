@@ -1,5 +1,7 @@
 package com.sbs.lyb.pp.dto;
 
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +19,10 @@ public class Article {
 	private String title;
 	private String body;
 	private int memberId;
+	private int boardId;
+	private Map<String, Object> extra;
+	
+	public String getDetailLink(String boardCode) {
+		return "/article/" + boardCode + "-detail?id=" + id;
+	}
 }
