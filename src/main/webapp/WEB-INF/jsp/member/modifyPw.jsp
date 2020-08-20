@@ -5,9 +5,9 @@
 <%@ include file="../part/head.jspf"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <script>
-	var MemberLoginForm__submitDone = false;
-	function MemberLoginForm__submit(form) {
-		if (MemberLoginForm__submitDone) {
+	var MemberModifyPwForm__submitDone = false;
+	function MemberModifyPwForm__submit(form) {
+		if (MemberModifyPwForm__submitDone) {
 			alert('처리중입니다.');
 			return;
 		}
@@ -36,11 +36,11 @@
 		form.loginPwConfirm.value = '';
 		
 		form.submit();
-		MemberLoginForm__submitDone = true;
+		MemberModifyPwForm__submitDone = true;
 	}
 </script>
 <div class="con">
-	<form method="POST" action="doModifyPw" onsubmit="MemberLoginForm__submit(this); return false;">
+	<form method="POST" action="doModifyPw" onsubmit="MemberModifyPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/member/modifyMemberInfo">
 		<input type="hidden" name="loginPwReal">
 		<input type="hidden" name="id" value="${loginedMember.id}">

@@ -125,13 +125,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/doCheckPw")
-	public String doCheckPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUrl) {
+	public String doCheckPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		int id = Util.getAsInt(param.get("id"));
-		String loginPw = Util.getAsStr(param.get("loginPwReal"));
-		
+		String loginPw = Util.getAsStr(param.get("loginPwReal"));		
 		Member member = memberService.getMemberById(id);
-		System.out.println("loginPw : " + loginPw);
-		System.out.println("memberPw : " + member.getLoginPw());
 
 		if ( member.getLoginPw().equals(loginPw) == false ) {
 			model.addAttribute("historyBack", true);
@@ -140,6 +137,36 @@ public class MemberController {
 		}
 		
 		model.addAttribute("alertMsg", String.format("마이페이지로 이동합니다."));
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/member/seekLoginId")
+	public String seekLoginId() {
+		return "member/seekLoginId";
+	}
+	
+	@RequestMapping("/member/doSeekLoginId")
+	public String doSeekLoginId(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
+		String name = Util.getAsStr(param.get("name"));
+		String email = Util.getAsStr(param.get("email"));
+		Member member = memberService.getMemberByEmail(email);
+		
+		if ( member == null ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
+			return "common/redirect";
+		}
+		
+		if ( member.getName().equals(name) == false ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "일치하는 회원을 찾을 수 없습니다.");
+			return "common/redirect";
+		}
+		String title = "아이디 찾기 결과입니다.";
+		String body = String.format("아이디는 [%s] 입니다.", member.getLoginId());
+		memberService.sendMail(email, title, body);
+		model.addAttribute("alertMsg", String.format("해당 이메일로 아이디를 발송합니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}

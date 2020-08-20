@@ -64,4 +64,12 @@ public class MemberService {
 	public void modifyMemberPw(Map<String, Object> param) {
 		memberDao.modifyMemberPw(param);
 	}
+
+	public Member getMemberByEmail(String email) {
+		return memberDao.getMemberByEmail(email);
+	}
+
+	public void sendMail(String email, String title, String body) {
+		mailService.send(email, title, body);
+	}
 }

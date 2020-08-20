@@ -53,4 +53,10 @@
 		loginPw = #{loginPwReal}
 		WHERE id = #{id}
 	</update>
+	
+	<select id="getMemberByEmail" resultType="Member">
+		SELECT *
+		FROM member
+		WHERE email = #{email}
+	</select>
 </mapper>

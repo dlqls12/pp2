@@ -67,5 +67,6 @@
 			</tbody>
 		</table>
 	</form>
+	<div><a href="/member/seekLoginId">[아이디찾기]</a><a href="">[비밀번호찾기]</a></div>
 </div>
 <%@ include file="../part/foot.jspf"%> 
