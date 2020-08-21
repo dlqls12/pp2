@@ -1,6 +1,7 @@
 package com.sbs.lyb.pp.service;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -75,5 +76,10 @@ public class MemberService {
 
 	public void modifyMemberPwTemp(String tmpPw, int id) {
 		memberDao.modifyMemberPwTemp(tmpPw, id);
+	}
+	
+	public UUID createUUID() {
+		UUID uuid = UUID.randomUUID();
+		return uuid;
 	}
 }

@@ -1,6 +1,7 @@
 package com.sbs.lyb.pp.controller;
 
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -136,6 +137,10 @@ public class MemberController {
 			return "common/redirect";
 		}
 		
+		//UUID uuid = memberService.createUUID();
+		//System.out.println("UUID: " + uuid);
+		
+		//redirectUrl = redirectUrl.replace("#uuid", uuid + "");
 		model.addAttribute("alertMsg", String.format("마이페이지로 이동합니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";

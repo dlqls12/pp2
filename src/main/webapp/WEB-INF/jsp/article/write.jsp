@@ -30,8 +30,7 @@
 </script>
 <div class="con">
 	<form method="POST" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
-		<!-- <input type="hidden" name="redirectUrl" value="/article/${board.code}-detail?id=#id"> -->
-		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-list">
+		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id">
 		<table>
 			<tbody>
 				<tr>

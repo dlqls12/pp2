@@ -3,7 +3,7 @@ package com.sbs.lyb.pp.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,13 +66,13 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/{boardCode}-doWrite")
-	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl, HttpSession session) {
+	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl, HttpServletRequest req) {
 		Board board = articleService.getBoardByCode(boardCode);
 		int boardId = board.getId();
-		Member member = (Member) session.getAttribute("loginedMember");
+		Member member = (Member) req.getAttribute("loginedMember");
 		if ( member == null ) {
 			model.addAttribute("historyBack", true);
-			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다."));
+			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다.12323231131"));
 			return "common/redirect";
 		}
 		int memberId = member.getId(); 
@@ -81,6 +81,7 @@ public class ArticleController {
 		System.out.println(param);
 		int newArticleId = articleService.write(param);
 		
+		redirectUrl = redirectUrl.replace("#id", newArticleId + "");
 		model.addAttribute("alertMsg", String.format("%d번 글 작성 완료.", newArticleId));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
