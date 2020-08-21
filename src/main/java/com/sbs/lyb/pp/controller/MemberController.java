@@ -80,7 +80,7 @@ public class MemberController {
 		session.removeAttribute("loginedMemberId");
 
 		if (redirectUrl == null || redirectUrl.length() == 0) {
-			redirectUrl = "/home/main";
+			redirectUrl = "/usr/home/main";
 		}
 
 		model.addAttribute("redirectUrl", redirectUrl);
