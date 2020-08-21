@@ -20,12 +20,12 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping("/member/join")
+	@RequestMapping("/usr/member/join")
 	public String join() {
-		return "member/join";
+		return "/member/join";
 	}
 	
-	@RequestMapping("/member/doJoin")
+	@RequestMapping("/usr/member/doJoin")
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
 		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
 		
@@ -46,12 +46,12 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/login")
+	@RequestMapping("/usr/member/login")
 	public String login() {
-		return "member/login";
+		return "/member/login";
 	}
 	
-	@RequestMapping("/member/doLogin")
+	@RequestMapping("/usr/member/doLogin")
 	public String doLogin(String loginId, String loginPwReal, String redirectUrl, Model model, HttpSession session) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
@@ -75,7 +75,7 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/doLogout")
+	@RequestMapping("/usr/member/doLogout")
 	public String doLogout(HttpSession session, Model model, String redirectUrl) {
 		session.removeAttribute("loginedMemberId");
 
@@ -87,16 +87,16 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/modifyMemberInfo")
+	@RequestMapping("/usr/member/modifyMemberInfo")
 	public String modifyMemberInfo(Model model, HttpSession session) {
 		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
 		
 		Member loginedMember = memberService.getMemberById(loginedMemberId); 
 		model.addAttribute("loginedMember", loginedMember);
-		return "member/modifyMemberInfo";
+		return "/member/modifyMemberInfo";
 	}
 	
-	@RequestMapping("/member/doModifyMemberInfo")
+	@RequestMapping("/usr/member/doModifyMemberInfo")
 	public String doModifyMemberInfo(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		memberService.modifyMemberInfo(param);
 		
@@ -105,12 +105,12 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/modifyPw")
+	@RequestMapping("/usr/member/modifyPw")
 	public String modifyPw() {
-		return "member/modifyPw";
+		return "/member/modifyPw";
 	}
 	
-	@RequestMapping("/member/doModifyPw")
+	@RequestMapping("/usr/member/doModifyPw")
 	public String doModifyPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		memberService.modifyMemberPw(param);
 		
@@ -119,12 +119,12 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/checkPw")
+	@RequestMapping("/usr/member/checkPw")
 	public String checkPw() {
-		return "member/checkPw";
+		return "/member/checkPw";
 	}
 	
-	@RequestMapping("/member/doCheckPw")
+	@RequestMapping("/usr/member/doCheckPw")
 	public String doCheckPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		int id = Util.getAsInt(param.get("id"));
 		String loginPw = Util.getAsStr(param.get("loginPwReal"));		
@@ -141,12 +141,12 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/seekLoginId")
+	@RequestMapping("/usr/member/seekLoginId")
 	public String seekLoginId() {
-		return "member/seekLoginId";
+		return "/member/seekLoginId";
 	}
 	
-	@RequestMapping("/member/doSeekLoginId")
+	@RequestMapping("/usr/member/doSeekLoginId")
 	public String doSeekLoginId(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		String name = Util.getAsStr(param.get("name"));
 		String email = Util.getAsStr(param.get("email"));
@@ -171,12 +171,12 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/member/seekLoginPw")
+	@RequestMapping("/usr/member/seekLoginPw")
 	public String seekLoginPw() {
-		return "member/seekLoginPw";
+		return "/member/seekLoginPw";
 	}
 	
-	@RequestMapping("/member/doSeekLoginPw")
+	@RequestMapping("/usr/member/doSeekLoginPw")
 	public String doSeekLoginPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		String loginId = Util.getAsStr(param.get("loginId"));
 		String email = Util.getAsStr(param.get("email"));

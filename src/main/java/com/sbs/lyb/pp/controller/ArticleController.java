@@ -22,7 +22,7 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping("/article/{boardCode}-list")
+	@RequestMapping("/usr/article/{boardCode}-list")
 	public String showList(Model model, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
@@ -31,10 +31,10 @@ public class ArticleController {
 
 		model.addAttribute("articles", articles);
 
-		return "article/list";
+		return "/article/list";
 	}
 	
-	@RequestMapping("/article/{boardCode}-detail")
+	@RequestMapping("/usr/article/{boardCode}-detail")
 	public String showDetail(Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, String listUrl) {
 		if ( listUrl == null ) {
 			listUrl = "./" + boardCode + "-list";
@@ -50,10 +50,10 @@ public class ArticleController {
 
 		model.addAttribute("article", article);
 
-		return "article/detail";
+		return "/article/detail";
 	}
 	
-	@RequestMapping("/article/{boardCode}-write")
+	@RequestMapping("/usr/article/{boardCode}-write")
 	public String write(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
 		if ( listUrl == null ) {
 			listUrl = "./" + boardCode + "-list";
@@ -62,10 +62,10 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 		
-		return "article/write";
+		return "/article/write";
 	}
 	
-	@RequestMapping("/article/{boardCode}-doWrite")
+	@RequestMapping("/usr/article/{boardCode}-doWrite")
 	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl, HttpSession session) {
 		Board board = articleService.getBoardByCode(boardCode);
 		int boardId = board.getId();

@@ -100,7 +100,7 @@
 					<th>회원 정보 수정</th>
 					<td>
 						<button type="button" onclick="MemberModifyInfo__showModifyForm(this);">회원 정보 수정</button>
-						<a href="/member/modifyPw">[비밀번호변경하기]</a>
+						<a href="/usr/member/modifyPw">[비밀번호변경하기]</a>
 					</td>
 				</tr>
 			</tbody>
@@ -108,7 +108,7 @@
 	</div>
 	<div class="modify-mode-on">
 		<form method="POST" action="doModifyMemberInfo" onsubmit="MemberModifyInfoForm__submit(this); return false;">
-			<input type="hidden" name="redirectUrl" value="/home/main">
+			<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo">
 			<input type="hidden" name="id" value="${loginedMember.id}">
 			<table>
 				<colgroup>

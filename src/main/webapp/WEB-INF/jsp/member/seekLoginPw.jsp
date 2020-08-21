@@ -32,7 +32,7 @@
 </script>
 <div class="con">
 	<form method="POST" action="doSeekLoginPw" onsubmit="MemberSeekLoginPwForm__submit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/member/login">
+		<input type="hidden" name="redirectUrl" value="/usr/member/login">
 		<table>
 			<tbody>
 				<tr>

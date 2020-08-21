@@ -38,7 +38,7 @@
 </script>
 <div class="con">
 	<form method="POST" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/home/main">
+		<input type="hidden" name="redirectUrl" value="/usr/home/main">
 		<input type="hidden" name="loginPwReal">
 		<table>
 			<tbody>
