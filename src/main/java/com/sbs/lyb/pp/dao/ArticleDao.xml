@@ -9,6 +9,14 @@
 		ORDER BY id DESC
 	</select>
 	
+	<select id="getArticlesSortByBoard" resultType="Article">
+		SELECT *
+		FROM article
+		WHERE displayStatus = 1
+		AND boardId = #{id}
+		ORDER BY id DESC
+	</select>
+	
 	<select id="getForPrintArticleById" parameterType="int" resultType="Article">
 		SELECT *
 		FROM article
@@ -29,7 +37,7 @@
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		title = #{title},
-		body = #{body},
+		`body` = #{body},
 		memberId = #{memberId},
 		boardId = #{boardId},
 		displayStatus = 1

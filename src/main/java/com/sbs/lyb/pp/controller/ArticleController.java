@@ -3,7 +3,7 @@ package com.sbs.lyb.pp.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
+import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.service.ArticleService;
-import com.sbs.lyb.pp.util.Util;
 
 @Controller
 public class ArticleController {
@@ -27,7 +27,7 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 		
-		List<Article> articles = articleService.getForPrintArticles();
+		List<Article> articles = articleService.getArticlesSortByBoard(board.getId());
 
 		model.addAttribute("articles", articles);
 
@@ -66,15 +66,22 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/article/{boardCode}-doWrite")
-	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl) {
+	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl, HttpSession session) {
 		Board board = articleService.getBoardByCode(boardCode);
 		int boardId = board.getId();
-		String title = Util.getAsStr(param.get("title"));
-		String body = Util.getAsStr(param.get("body"));
-		int memberId = Util.getAsInt(param.get("id"));
-		articleService.write(title, body, memberId, boardId);
+		Member member = (Member) session.getAttribute("loginedMember");
+		if ( member == null ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다."));
+			return "common/redirect";
+		}
+		int memberId = member.getId(); 
+		param.put("boardId", boardId);
+		param.put("memberId", memberId);
+		System.out.println(param);
+		int newArticleId = articleService.write(param);
 		
-		model.addAttribute("alertMsg", String.format("글 작성 완료."));
+		model.addAttribute("alertMsg", String.format("%d번 글 작성 완료.", newArticleId));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}

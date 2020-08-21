@@ -32,7 +32,6 @@
 	<form method="POST" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 		<!-- <input type="hidden" name="redirectUrl" value="/article/${board.code}-detail?id=#id"> -->
 		<input type="hidden" name="redirectUrl" value="/article/${board.code}-list">
-		<input type="hidden" name="memberId" value="${loginedMemberId}">
 		<table>
 			<tbody>
 				<tr>
@@ -55,7 +54,7 @@
 					<th>작성</th>
 					<td>
 						<button type="submit">작성</button> 
-						<a class="btn btn-info" href="${listUrl}">리스트</a> 
+						<a href="${listUrl}">리스트</a> 
 					</td>
 				</tr>
 			</tbody>

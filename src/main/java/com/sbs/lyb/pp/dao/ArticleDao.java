@@ -1,9 +1,9 @@
 package com.sbs.lyb.pp.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
@@ -17,5 +17,7 @@ public interface ArticleDao {
 
 	Board getBoardByCode(String code);
 
-	void write(@Param("id") String title, String body, int memberId , int boardId);
+	void write(Map<String, Object> param);
+
+	List<Article> getArticlesSortByBoard(int id);
 }
