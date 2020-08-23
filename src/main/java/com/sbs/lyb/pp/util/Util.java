@@ -1,6 +1,7 @@
 package com.sbs.lyb.pp.util;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 public class Util {
@@ -52,5 +53,13 @@ public class Util {
 			}
 		}
 		return numStr;
+	}
+	
+	public static String getDateStrLater(int seconds) {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String dateStr = format1.format(System.currentTimeMillis() + seconds * 1000);
+
+		return dateStr;
 	}
 }

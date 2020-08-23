@@ -29,7 +29,7 @@
 <div class="con">
 	<form method="POST" action="doCheckPw" onsubmit="MemberCheckPwForm__submit(this); return false;">
 		<!-- <input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo?uuid=#uuid"> -->
-		<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo">
+		<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo?uuid=#uuid">
 		<input type="hidden" name="loginPwReal">
 		<input type="hidden" name="id" value="${loginedMember.id}">
 		<table>

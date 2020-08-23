@@ -22,6 +22,8 @@ public class MemberService {
 	private String siteMainUrl;
 	@Value("${custom.siteName}")
 	private String siteName;
+	@Autowired
+	private AttrService attrService;
 	
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
@@ -78,8 +80,18 @@ public class MemberService {
 		memberDao.modifyMemberPwTemp(tmpPw, id);
 	}
 	
-	public UUID createUUID() {
-		UUID uuid = UUID.randomUUID();
-		return uuid;
+	public String genCheckPasswordAuthCode(int actorId) {
+		String authCode = UUID.randomUUID().toString();
+		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60 * 60));
+
+		return authCode;
+	}
+
+	public String checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
+		if (attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode").equals(checkPasswordAuthCode)) {
+			return "S";
+		}
+
+		return "F";
 	}
 }

@@ -89,8 +89,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/modifyMemberInfo")
-	public String modifyMemberInfo(Model model, HttpSession session) {
+	public String modifyMemberInfo(Model model, HttpSession session, String uuid) {
 		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
+		String checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
+		
+		if (uuid == null || uuid.length() == 0) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("msg", "비밀번호 체크 인증코드가 없습니다.");
+			return "common/redirect";
+		}
+		
+		if (checkValidCheckPasswordAuthCodeResultData.equals("F")) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("msg", "비밀번호를 체크해주세요.");
+			return "common/redirect";
+		}
 		
 		Member loginedMember = memberService.getMemberById(loginedMemberId); 
 		model.addAttribute("loginedMember", loginedMember);
@@ -137,10 +150,11 @@ public class MemberController {
 			return "common/redirect";
 		}
 		
-		//UUID uuid = memberService.createUUID();
-		//System.out.println("UUID: " + uuid);
+		String uuid = memberService.genCheckPasswordAuthCode(member.getId());
+		System.out.println("UUID: " + uuid);
 		
-		//redirectUrl = redirectUrl.replace("#uuid", uuid + "");
+		redirectUrl = redirectUrl.replace("#uuid", uuid + "");
+		System.out.println("uuid:"+uuid);
 		model.addAttribute("alertMsg", String.format("마이페이지로 이동합니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";

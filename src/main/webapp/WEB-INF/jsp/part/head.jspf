@@ -25,10 +25,6 @@
 
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="/resource/app.css" />
-<!-- 공통 JS -->
-<script src="/resource/app.js"></script>
-
-
 
 </head>
 <body>
