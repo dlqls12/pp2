@@ -29,4 +29,8 @@ public class Article {
 	public String getDeleteLink(String boardCode) {
 		return "/usr/article/" + boardCode + "-delete?id=" + id;
 	}
+	
+	public String getModifyLink(String boardCode) {
+		return "/usr/article/" + boardCode + "-modify?id=" + id;
+	}
 }

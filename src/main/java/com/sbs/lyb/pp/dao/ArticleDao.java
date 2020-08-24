@@ -22,4 +22,6 @@ public interface ArticleDao {
 	List<Article> getArticlesSortByBoard(int id, int itemsInAPage, int limitFrom);
 
 	void delete(int id);
+
+	void modify(Map<String, Object> param);
 }

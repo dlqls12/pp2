@@ -12,7 +12,7 @@
 		<li>작성자:${article.extra.writer}</li>
 	</ul>
 	<div>
-		<a href="">[수정하기]</a>
+		<a href="${article.getModifyLink(board.code)}">[수정하기]</a>
 		<a href="${article.getDeleteLink(board.code)}">[삭제하기]</a>
 	</div>
 </div>

@@ -16,6 +16,7 @@ import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
 import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.service.ArticleService;
+import com.sbs.lyb.pp.util.Util;
 
 @Controller
 public class ArticleController {
@@ -71,7 +72,7 @@ public class ArticleController {
 	@RequestMapping("/usr/article/{boardCode}-write")
 	public String write(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
 		if (listUrl == null) {
-			listUrl = "./" + boardCode + "-list";
+			listUrl = "./" + boardCode + "-list?page=1";
 		}
 		model.addAttribute("listUrl", listUrl);
 		Board board = articleService.getBoardByCode(boardCode);
@@ -89,7 +90,7 @@ public class ArticleController {
 		
 		if (member == null) {
 			model.addAttribute("historyBack", true);
-			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다.12323231131"));
+			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다."));
 			return "common/redirect";
 		}
 		
@@ -112,6 +113,37 @@ public class ArticleController {
 		articleService.delete(id);
 		
 		model.addAttribute("alertMsg", String.format("%d번 글이 삭제되었습니다.", id));
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/article/{boardCode}-modify")
+	public String modify(@PathVariable("boardCode") String boardCode, Model model, int id, String listUrl) {
+		if (listUrl == null) {
+			listUrl = "./" + boardCode + "-list?page=1";
+		}
+		Article article = articleService.getForPrintArticleById(id);
+		model.addAttribute("listUrl", listUrl);
+		model.addAttribute("article", article);
+		
+		return "article/modify";
+	}
+	
+	@RequestMapping("/usr/article/{boardCode}-doModify")
+	public String doModify(@RequestParam Map<String, Object> param, Model model, String redirectUrl, HttpServletRequest req) {
+		
+		Member member = (Member) req.getAttribute("loginedMember");
+		
+		if (member == null) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다."));
+			return "common/redirect";
+		}
+		
+		int id = Util.getAsInt(param.get("id"));
+		articleService.modify(param);
+
+		model.addAttribute("alertMsg", String.format("%d번 글 수정 완료.", id));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}

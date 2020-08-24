@@ -59,6 +59,16 @@
 		</set>
 		WHERE id=#{id}
 	</update>
+	
+	<update id="modify">
+		UPDATE article
+		<set>
+			updateDate=NOW(),
+			title=#{title},
+			body=#{body},
+		</set>
+		WHERE id=#{id}
+	</update>
 
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />

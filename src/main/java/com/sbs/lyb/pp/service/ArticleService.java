@@ -41,4 +41,8 @@ public class ArticleService {
 	public void delete(int id) {
 		articleDao.delete(id);
 	}
+
+	public void modify(Map<String, Object> param) {
+		articleDao.modify(param);
+	}
 }
