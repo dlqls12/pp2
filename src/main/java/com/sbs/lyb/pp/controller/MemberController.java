@@ -20,16 +20,17 @@ import com.sbs.lyb.pp.util.Util;
 public class MemberController {
 	@Autowired
 	MemberService memberService;
-	
+
 	@RequestMapping("/usr/member/join")
 	public String join() {
 		return "/member/join";
 	}
-	
+
 	@RequestMapping("/usr/member/doJoin")
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
-		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
-		
+		ResultData checkLoginIdJoinableResultData = memberService
+				.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
+
 		if (checkLoginIdJoinableResultData.isFail()) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", checkLoginIdJoinableResultData.getMsg());
@@ -37,33 +38,33 @@ public class MemberController {
 		}
 
 		int newMemberId = memberService.join(param);
-		
+
 		String newMemberNickname = Util.getAsStr(param.get("nickname"));
-		String msg = newMemberId + "." +newMemberNickname + "님 환영합니다.";
+		String msg = newMemberId + "." + newMemberNickname + "님 환영합니다.";
 		String redirectUrl = (String) param.get("redirectUrl");
 		model.addAttribute("alertMsg", msg);
 		model.addAttribute("redirectUrl", redirectUrl);
 
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/login")
 	public String login() {
 		return "/member/login";
 	}
-	
+
 	@RequestMapping("/usr/member/doLogin")
 	public String doLogin(String loginId, String loginPwReal, String redirectUrl, Model model, HttpSession session) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
 
-		if ( member == null ) {
+		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
 			return "common/redirect";
 		}
 
-		if ( member.getLoginPw().equals(loginPw) == false ) {
+		if (member.getLoginPw().equals(loginPw) == false) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
 			return "common/redirect";
@@ -75,7 +76,7 @@ public class MemberController {
 
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/doLogout")
 	public String doLogout(HttpSession session, Model model, String redirectUrl) {
 		session.removeAttribute("loginedMemberId");
@@ -87,97 +88,99 @@ public class MemberController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/modifyMemberInfo")
 	public String modifyMemberInfo(Model model, HttpSession session, String uuid) {
-		int loginedMemberId = (int)session.getAttribute("loginedMemberId");
-		String checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
-		
+		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+				.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
+
 		if (uuid == null || uuid.length() == 0) {
 			model.addAttribute("historyBack", true);
-			model.addAttribute("msg", "비밀번호 체크 인증코드가 없습니다.");
+			model.addAttribute("alertMsg", "비밀번호 체크 인증코드가 없습니다.");
 			return "common/redirect";
 		}
-		
-		if (checkValidCheckPasswordAuthCodeResultData.equals("F")) {
-			model.addAttribute("historyBack", true);
-			model.addAttribute("msg", "비밀번호를 체크해주세요.");
+
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			model.addAttribute("redirectUrl", "/usr/member/checkPw");
+			model.addAttribute("alertMsg", checkValidCheckPasswordAuthCodeResultData.getMsg());
 			return "common/redirect";
 		}
-		
-		Member loginedMember = memberService.getMemberById(loginedMemberId); 
+
+		Member loginedMember = memberService.getMemberById(loginedMemberId);
 		model.addAttribute("loginedMember", loginedMember);
 		return "/member/modifyMemberInfo";
 	}
-	
+
 	@RequestMapping("/usr/member/doModifyMemberInfo")
 	public String doModifyMemberInfo(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		memberService.modifyMemberInfo(param);
-		
+
 		model.addAttribute("alertMsg", String.format("회원 정보가 수정되었습니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/modifyPw")
 	public String modifyPw() {
 		return "/member/modifyPw";
 	}
-	
+
 	@RequestMapping("/usr/member/doModifyPw")
 	public String doModifyPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		memberService.modifyMemberPw(param);
-		
+
 		model.addAttribute("alertMsg", String.format("비밀번호가 변경되었습니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/checkPw")
 	public String checkPw() {
 		return "/member/checkPw";
 	}
-	
+
 	@RequestMapping("/usr/member/doCheckPw")
 	public String doCheckPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		int id = Util.getAsInt(param.get("id"));
-		String loginPw = Util.getAsStr(param.get("loginPwReal"));		
+		String loginPw = Util.getAsStr(param.get("loginPwReal"));
 		Member member = memberService.getMemberById(id);
 
-		if ( member.getLoginPw().equals(loginPw) == false ) {
+		if (member.getLoginPw().equals(loginPw) == false) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
 			return "common/redirect";
 		}
-		
+
 		String uuid = memberService.genCheckPasswordAuthCode(member.getId());
 		System.out.println("UUID: " + uuid);
-		
+
 		redirectUrl = redirectUrl.replace("#uuid", uuid + "");
-		System.out.println("uuid:"+uuid);
+		System.out.println("uuid:" + uuid);
 		model.addAttribute("alertMsg", String.format("마이페이지로 이동합니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/seekLoginId")
 	public String seekLoginId() {
 		return "/member/seekLoginId";
 	}
-	
+
 	@RequestMapping("/usr/member/doSeekLoginId")
 	public String doSeekLoginId(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		String name = Util.getAsStr(param.get("name"));
 		String email = Util.getAsStr(param.get("email"));
 		Member member = memberService.getMemberByEmail(email);
-		
-		if ( member == null ) {
+
+		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
 			return "common/redirect";
 		}
-		
-		if ( member.getName().equals(name) == false ) {
+
+		if (member.getName().equals(name) == false) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "일치하는 회원을 찾을 수 없습니다.");
 			return "common/redirect";
@@ -189,25 +192,25 @@ public class MemberController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
-	
+
 	@RequestMapping("/usr/member/seekLoginPw")
 	public String seekLoginPw() {
 		return "/member/seekLoginPw";
 	}
-	
+
 	@RequestMapping("/usr/member/doSeekLoginPw")
 	public String doSeekLoginPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		String loginId = Util.getAsStr(param.get("loginId"));
 		String email = Util.getAsStr(param.get("email"));
 		Member member = memberService.getMemberByEmail(email);
-		
-		if ( member == null ) {
+
+		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "일치하는 회원을 찾을 수 없습니다.");
 			return "common/redirect";
 		}
-		
-		if ( member.getLoginId().equals(loginId) == false ) {
+
+		if (member.getLoginId().equals(loginId) == false) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "일치하는 회원을 찾을 수 없습니다.");
 			return "common/redirect";

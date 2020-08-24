@@ -16,8 +16,8 @@ public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 		
-	public List<Article> getForPrintArticles() {
-		return articleDao.getForPrintArticles();
+	public List<Article> getForPrintArticles(int boardId) {
+		return articleDao.getForPrintArticles(boardId);
 	}
 
 	public Article getForPrintArticleById(int id) {
@@ -34,7 +34,11 @@ public class ArticleService {
 		return id;
 	}
 
-	public List<Article> getArticlesSortByBoard(int id) {
-		return articleDao.getArticlesSortByBoard(id);
+	public List<Article> getArticlesSortByBoard(int id, int itemsInAPage, int limitFrom) {
+		return articleDao.getArticlesSortByBoard(id, itemsInAPage, limitFrom);
+	}
+
+	public void delete(int id) {
+		articleDao.delete(id);
 	}
 }

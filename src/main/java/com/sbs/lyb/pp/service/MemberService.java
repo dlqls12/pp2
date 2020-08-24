@@ -82,16 +82,17 @@ public class MemberService {
 	
 	public String genCheckPasswordAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();
-		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60 * 60));
+		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60));
 
 		return authCode;
 	}
 
-	public String checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
+	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
 		if (attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode").equals(checkPasswordAuthCode)) {
-			return "S";
+			return new ResultData("S-1", "유효한 키 입니다.");
 		}
 
-		return "F";
+		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
+
 }

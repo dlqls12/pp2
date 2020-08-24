@@ -11,7 +11,7 @@ import com.sbs.lyb.pp.dto.Board;
 @Mapper
 public interface ArticleDao {
 
-	List<Article> getForPrintArticles();
+	List<Article> getForPrintArticles(int boardId);
 
 	Article getForPrintArticleById(int id);
 
@@ -19,5 +19,7 @@ public interface ArticleDao {
 
 	void write(Map<String, Object> param);
 
-	List<Article> getArticlesSortByBoard(int id);
+	List<Article> getArticlesSortByBoard(int id, int itemsInAPage, int limitFrom);
+
+	void delete(int id);
 }

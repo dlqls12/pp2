@@ -82,3 +82,39 @@ html>head+body:nth-child(2) .height-300 {
 	padding: 10px;
 	text-align: left;
 }
+
+.paging-box {
+	display:flex;
+	justify-content:center;
+}
+
+.paging-box .current {
+	color:red;
+}
+
+.paging-box > li {
+	margin: 0 5px;
+}
+
+.logo {
+	display:flex;
+	justify-content:center;	
+}
+
+.menu-box-1 {
+	display:flex;
+	justify-content:flex-end;
+}
+
+.menu-box-2 {
+	display:flex;
+	justify-content:space-around;
+	font-size:1.4rem;
+}
+
+.article-list {
+	margin:10px;
+	border-collapse:collapse;
+	width:100%;
+	text-align:center;
+}

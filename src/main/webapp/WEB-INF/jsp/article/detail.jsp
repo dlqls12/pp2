@@ -9,6 +9,11 @@
 		<li>날짜:${article.regDate}</li>
 		<li>제목:${article.title}</li>
 		<li>내용:${article.body}</li>
+		<li>작성자:${article.extra.writer}</li>
 	</ul>
+	<div>
+		<a href="">[수정하기]</a>
+		<a href="${article.getDeleteLink(board.code)}">[삭제하기]</a>
+	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

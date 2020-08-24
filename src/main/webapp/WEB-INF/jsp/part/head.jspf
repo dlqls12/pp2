@@ -29,18 +29,25 @@
 </head>
 <body>
 	<div class="top-bar con">
-		<a href="/usr/home/main">[메인페이지]</a>
-		<c:if test="${isLogined == false}">
-			<a href="/usr/member/login">[로그인]</a>
-			<a href="/usr/member/join">[회원가입]</a>
-		</c:if>
-		<c:if test="${isLogined}">
-			${loginedMember.nickname}님 환영합니다.^^
-			<a href="/usr/member/doLogout">[로그아웃]</a>
-			<a href="/usr/member/checkPw">[마이페이지]</a>
-			<a href="/usr/article/free-write">[자유게시판 글 작성하기]</a>
-			<a href="/usr/article/notice-write">[공지사항 게시판 글 작성하기]</a>
-		</c:if>
-		<a href="/usr/article/free-list">[자유게시판이동]</a>
+		<div class="logo">
+			<a href="/usr/home/main">[Main]</a>
+		</div>
+		<div class="menu-box-1">
+			<c:if test="${isLogined == false}">
+				<a href="/usr/member/login">[Login]</a>
+				<a href="/usr/member/join">[Join]</a>
+			</c:if>
+			<c:if test="${isLogined}">
+				${loginedMember.nickname}님 환영합니다.^^
+				<a href="/usr/member/doLogout">[Logout]</a>
+				<a href="/usr/member/checkPw">[My Page]</a>
+			</c:if>
+		</div>
+		<div class="menu-box-2">
+			<a href="/usr/article/free-write">[free-write]</a>
+			<a href="/usr/article/notice-write">[notice-write]</a>
+			<a href="/usr/article/free-list?page=1">[free-list]</a>
+			<a href="/usr/article/notice-list?page=1">[notice-list]</a>
+		</div>
 	</div>
 	<h1 class="page-title-box con">${pageTitle}</h1>

@@ -25,4 +25,8 @@ public class Article {
 	public String getDetailLink(String boardCode) {
 		return "/usr/article/" + boardCode + "-detail?id=" + id;
 	}
+	
+	public String getDeleteLink(String boardCode) {
+		return "/usr/article/" + boardCode + "-delete?id=" + id;
+	}
 }
