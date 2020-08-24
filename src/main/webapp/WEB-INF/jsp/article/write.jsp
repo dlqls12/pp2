@@ -29,9 +29,9 @@
 	}
 </script>
 <div class="con">
-	<form method="POST" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
+	<form method="POST" class="form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id">
-		<table>
+		<table border="1">
 			<tbody>
 				<tr>
 					<th>제목</th>

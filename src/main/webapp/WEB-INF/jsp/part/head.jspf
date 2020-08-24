@@ -30,7 +30,7 @@
 <body>
 	<div class="top-bar con">
 		<div class="logo">
-			<a href="/usr/home/main">[Main]</a>
+			<a href="/usr/home/main">[Logo]</a>
 		</div>
 		<div class="menu-box-1">
 			<c:if test="${isLogined == false}">
@@ -44,6 +44,7 @@
 			</c:if>
 		</div>
 		<div class="menu-box-2">
+			<a href="/usr/home/main">[Main]</a>
 			<a href="/usr/article/free-write">[free-write]</a>
 			<a href="/usr/article/notice-write">[notice-write]</a>
 			<a href="/usr/article/free-list?page=1">[free-list]</a>
