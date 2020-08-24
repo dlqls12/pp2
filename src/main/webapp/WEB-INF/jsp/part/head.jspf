@@ -51,4 +51,6 @@
 			<a href="/usr/article/notice-list?page=1">[notice-list]</a>
 		</div>
 	</div>
-	<h1 class="page-title-box con">${pageTitle}</h1>
+	<div class="con">
+		<h1 class="page-title-box">${pageTitle}</h1>
+	</div>

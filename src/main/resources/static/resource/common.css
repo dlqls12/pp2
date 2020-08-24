@@ -140,7 +140,12 @@ table {
 }
 
 .menu-box-2 {
+	padding:10px;
 	display:flex;
 	justify-content:space-around;
 	font-size:1.4rem;
+}
+
+.page-title-box {
+	margin:15px 5px;
 }
