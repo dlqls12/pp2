@@ -51,7 +51,7 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/{boardCode}-detail")
 	public String showDetail(Model model, @RequestParam Map<String, Object> param,
-			@PathVariable("boardCode") String boardCode, String listUrl) {
+			HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
 		}
@@ -61,8 +61,9 @@ public class ArticleController {
 		model.addAttribute("board", board);
 
 		int id = Integer.parseInt((String) param.get("id"));
+		Member loginedMember = (Member)req.getAttribute("loginedMember");
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		model.addAttribute("article", article);
 
@@ -83,10 +84,11 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/{boardCode}-doWrite")
 	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl, HttpServletRequest req) {
-		
 		Board board = articleService.getBoardByCode(boardCode);
 		int boardId = board.getId();
 		Member member = (Member) req.getAttribute("loginedMember");
+		
+		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr");
 		
 		if (member == null) {
 			model.addAttribute("historyBack", true);
@@ -95,10 +97,10 @@ public class ArticleController {
 		}
 		
 		int memberId = member.getId();
-		param.put("boardId", boardId);
-		param.put("memberId", memberId);
+		newParam.put("boardId", boardId);
+		newParam.put("memberId", memberId);
 		System.out.println(param);
-		int newArticleId = articleService.write(param);
+		int newArticleId = articleService.write(newParam);
 
 		redirectUrl = redirectUrl.replace("#id", newArticleId + "");
 		model.addAttribute("alertMsg", String.format("%d번 글 작성 완료.", newArticleId));
@@ -118,11 +120,13 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/{boardCode}-modify")
-	public String modify(@PathVariable("boardCode") String boardCode, Model model, int id, String listUrl) {
+	public String modify(@PathVariable("boardCode") String boardCode, HttpServletRequest req, Model model, int id, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list?page=1";
 		}
-		Article article = articleService.getForPrintArticleById(id);
+		
+		Member member = (Member) req.getAttribute("loginedMember");
+		Article article = articleService.getForPrintArticleById(member, id);
 		model.addAttribute("listUrl", listUrl);
 		model.addAttribute("article", article);
 		

@@ -109,11 +109,18 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 /* 테이블 관련 */
-table {
+.write-table {
 	width: 100%;
 	border-collapse: collapse;
 	padding: 10px;
 	text-align: left;
+}
+
+.list-table {
+	width:100%;
+	border-collapse: collapse;
+	padding:10px;
+	text-align:left;
 }
 
 .paging-box {

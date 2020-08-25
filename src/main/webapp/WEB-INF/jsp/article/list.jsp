@@ -7,7 +7,7 @@
 		게시물이 존재하지 않습니다.
 	</c:if>
 	<c:if test="${fullPage!=0}">
-		<table border="1">
+		<table class="list-table" border="1">
 			<thead>
 				<tr>
 					<th>번호</th>

@@ -21,6 +21,18 @@
 				<th>내용</th>
 				<td>${article.body}</td>
 			</tr>
+			<c:set var="fileNo" value="${String.valueOf(1)}" />
+			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
+			<c:if test="${file != null}">
+				<tr>
+					<th>첨부파일</th>
+					<td>
+						<div class="img-box img-box-auto">
+							<img src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}" alt="" />
+						</div>
+					</td>
+				</tr>
+			</c:if>
 			<tr>
 				<th>작성자</th>
 				<td>${article.extra.writer}</td>
@@ -28,8 +40,8 @@
 		</tbody>
 	</table>
 	<div>
-		<a href="${article.getModifyLink(board.code)}">[수정하기]</a>
-		<a href="${article.getDeleteLink(board.code)}">[삭제하기]</a>
+		<a href="${article.getModifyLink(board.code)}">[수정]</a>
+		<a href="${article.getDeleteLink(board.code)}">[삭제]</a>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>
