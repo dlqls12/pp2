@@ -104,8 +104,7 @@ public class FileService {
 		return id;
 	}
 
-	public void updateFile(int id, String originFileName, String fileExtTypeCode, String fileExtType2Code,
-			String fileExt, byte[] fileBytes, int fileSize) {
+	public void updateFile(int id, String originFileName, String fileExtTypeCode, String fileExtType2Code, String fileExt, byte[] fileBytes, int fileSize) {
 
 		Map<String, Object> param = new HashMap();
 		param.put("originFileName", originFileName);

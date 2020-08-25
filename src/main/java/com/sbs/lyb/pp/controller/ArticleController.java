@@ -125,7 +125,7 @@ public class ArticleController {
 			listUrl = "./" + boardCode + "-list?page=1";
 		}
 		
-		Member member = (Member) req.getAttribute("loginedMember");
+		Member member = (Member)req.getAttribute("loginedMember");
 		Article article = articleService.getForPrintArticleById(member, id);
 		model.addAttribute("listUrl", listUrl);
 		model.addAttribute("article", article);

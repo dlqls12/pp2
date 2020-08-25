@@ -118,7 +118,6 @@ public class FileController {
 							fileExtTypeCode, fileExtType2Code, fileExt, fileBytes, fileSize);
 
 					fileIds.add(fileId);
-					System.out.println("db에 파일 업로드 함.");
 				}
 			}
 		}
