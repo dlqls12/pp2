@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 수정" />
 <%@ include file="../part/head.jspf"%>
+
 <script>
 	var ArticleModifyForm__submitDone = false;
 	function ArticleModifyForm__submit(form) {
@@ -9,31 +10,95 @@
 			alert('처리중입니다.');
 			return;
 		}
-
+	
 		form.title.value = form.title.value.trim();
 		if (form.title.value.length == 0) {
 			form.title.focus();
 			alert('제목을 입력해주세요.');
+	
 			return;
 		}
-		
+	
 		form.body.value = form.body.value.trim();
 		if (form.body.value.length == 0) {
 			form.body.focus();
 			alert('내용을 입력해주세요.');
+	
 			return;
 		}
-	
+
+		var fileInput1 = form["file__article__" + ${article.id} + "__common__attachment__1"];
+
+		var deleteFileInput1 = form["deleteFile__article__" + ${article.id} + "__common__attachment__1"];
+
+		if (fileInput1 && deleteFileInput1) {
+			if (deleteFileInput1.checked) {
+				fileInput1.value = '';
+			}
+		}
+
+		var maxSizeMb = 50;
+		var maxSize = maxSizeMb * 1024 * 1024 //50MB
+
+		if (fileInput1 && fileInput1.value) {
+			if (fileInput1.files[0].size > maxSize) {
+				alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
+				return;
+			}
+		}
+		
+		var startUploadFiles = function(onSuccess) {
+			var needToUpload = false;
+
+			if (!needToUpload) {
+				needToUpload = fileInput1 && fileInput1.value.length > 0;
+			}
+
+			if (!needToUpload) {
+				needToUpload = deleteFileInput1 && deleteFileInput1.checked;
+			}
+
+			if (needToUpload == false) {
+				onSuccess();
+				return;
+			}
+
+			var fileUploadFormData = new FormData(form);
+
+			$.ajax({
+				url : './../file/doUploadAjax',
+				data : fileUploadFormData,
+				processData : false,
+				contentType : false,
+				dataType : "json",
+				type : 'POST',
+				success : onSuccess
+			});
+		}
+
 		ArticleModifyForm__submitDone = true;
-		form.submit();
-	
+		startUploadFiles(function(data) {
+			var fileIdsStr = '';
+
+			if (data && data.body && data.body.fileIdsStr) {
+				fileIdsStr = data.body.fileIdsStr;
+			}
+
+			form.fileIdsStr.value = fileIdsStr;
+
+			if (fileInput1) {
+				fileInput1.value = '';
+			}
+
+			form.submit();
+		});
 	}
 </script>
 <div class="con">
 	<form method="POST" class="form1" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
+		<input type="hidden" name="fileIdsStr" />
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=${article.id}">
 		<input type="hidden" name="id" value="${article.id}">
-		<input type="hidden" name="fileIdsStr" />
 		<table class="write-table" border="1">
 			<tbody>
 				<tr>
@@ -52,12 +117,12 @@
 						</div>
 					</td>
 				</tr>
+				<c:set var="fileNo" value="${String.valueOf(1)}" />
+				<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
 				<tr>
 					<th>첨부파일</th>
 					<td>
 						<div class="form-control-box">
-							<c:set var="fileNo" value="${String.valueOf(1)}" />
-							<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
 							<c:if test="${file != null}">					
 								<img src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}" alt="" />
 							</c:if>
@@ -69,7 +134,9 @@
 					<th>첨부파일 삭제</th>
 					<td>
 						<div class="form-control-box">
-							<label><input type="checkbox" name="deleteFile__article__${article.id}__common__attachment__1" value="Y" /> 삭제 </label>
+							<label>
+								<input type="checkbox" name="deleteFile__article__${article.id}__common__attachment__1" value="Y" /> 삭제
+							</label>
 						</div>
 					</td>
 				</tr>

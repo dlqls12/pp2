@@ -125,6 +125,9 @@ public class ArticleController {
 			listUrl = "./" + boardCode + "-list?page=1";
 		}
 		
+		Board board = articleService.getBoardByCode(boardCode);
+		model.addAttribute("board", board);
+		
 		Member member = (Member)req.getAttribute("loginedMember");
 		Article article = articleService.getForPrintArticleById(member, id);
 		model.addAttribute("listUrl", listUrl);
@@ -143,9 +146,9 @@ public class ArticleController {
 			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다."));
 			return "common/redirect";
 		}
-		
+		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr", "articleId", "id");
 		int id = Util.getAsInt(param.get("id"));
-		articleService.modify(param);
+		articleService.modify(newParam);
 
 		model.addAttribute("alertMsg", String.format("%d번 글 수정 완료.", id));
 		model.addAttribute("redirectUrl", redirectUrl);
