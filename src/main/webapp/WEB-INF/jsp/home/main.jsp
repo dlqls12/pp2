@@ -4,6 +4,8 @@
 <c:set var="pageTitle" value="메인" />
 <%@ include file="../part/head.jspf"%>
 <div class="con">
-	
+	<div class="body-box">
+		안녕
+	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

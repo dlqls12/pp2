@@ -27,7 +27,7 @@
 	}
 </script>
 
-<div class="con">
+<div class="con body-box">
 	<form method="POST" action="doSignOut" onsubmit="MemberCheckPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/home/main">
 		<input type="hidden" name="loginPwReal">

@@ -36,7 +36,7 @@
 		MemberLoginForm__submitDone = true;
 	}
 </script>
-<div class="con">
+<div class="con body-box">
 	<form method="POST" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/home/main">
 		<input type="hidden" name="loginPwReal">

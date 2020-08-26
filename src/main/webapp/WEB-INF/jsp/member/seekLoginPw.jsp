@@ -30,7 +30,7 @@
 		MemberSeekLoginPwForm__submitDone = true;
 	}
 </script>
-<div class="con">
+<div class="con body-box">
 	<form method="POST" action="doSeekLoginPw" onsubmit="MemberSeekLoginPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/member/login">
 		<table>

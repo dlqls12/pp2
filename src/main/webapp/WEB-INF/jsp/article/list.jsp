@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="${board.name} 게시판" />
 <%@ include file="../part/head.jspf"%>
-<div class="con">
+<div class="con body-box">
 	<c:if test="${fullPage==0}">
 		게시물이 존재하지 않습니다.
 	</c:if>
 	<c:if test="${fullPage!=0}">
-		<table class="list-table" border="1">
+		<table class="table1" border="1">
 			<thead>
 				<tr>
 					<th>번호</th>

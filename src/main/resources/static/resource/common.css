@@ -34,10 +34,11 @@ label[for] {
 }
 
 .con {
-	width:1200px;
+	max-width: 1200px;
 }
 
 .con {
+	border:1px solid red;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -85,6 +86,11 @@ html>head+body:nth-child(2) .height-300 {
 	resize: none;
 }
 
+.form1 .form-control-box>.reply-textarea {
+	min-height: 70px;
+	resize: none;
+}
+
 .form1 .form-row {
 	display: flex;
 	flex-wrap: wrap;
@@ -109,18 +115,11 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 /* 테이블 관련 */
-.write-table {
+.table1 {
 	width: 100%;
 	border-collapse: collapse;
 	padding: 10px;
 	text-align: left;
-}
-
-.list-table {
-	width:100%;
-	border-collapse: collapse;
-	padding:10px;
-	text-align:left;
 }
 
 .paging-box {
@@ -144,15 +143,21 @@ html>head+body:nth-child(2) .height-300 {
 .menu-box-1 {
 	display:flex;
 	justify-content:flex-end;
+	padding:10px;
 }
 
 .menu-box-2 {
 	padding:10px;
 	display:flex;
 	justify-content:space-around;
-	font-size:1.4rem;
+	font-size:1.5rem;
 }
 
 .page-title-box {
 	margin:15px 5px;
+}
+
+.body-box {
+	min-height:70vh;
+	border:1px solid green;
 }

@@ -70,11 +70,11 @@
 		});
 	}
 </script>
-<div class="con">
+<div class="con body-box">
 	<form method="POST" class="form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 		<input type="hidden" name="fileIdsStr" />
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id">
-		<table class="write-table" border="1">
+		<table class="table1" border="1">
 			<tbody>
 				<tr>
 					<th>제목</th>

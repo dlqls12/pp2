@@ -3,7 +3,10 @@
 <c:set var="pageTitle" value="게시물 상세보기" />
 <%@ include file="../part/head.jspf"%>
 <div class="con">
-	<table border=1>
+	<table border="1" class="table1">
+		<colgroup>
+			<col width="100" />
+		</colgroup>
 		<tbody>
 			<tr>
 				<th>번호</th>
@@ -41,7 +44,7 @@
 	</table>
 	<div>
 		<a href="${article.getModifyLink(board.code)}">[수정]</a>
-		<a href="${article.getDeleteLink(board.code)}">[삭제]</a>
+		<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">[삭제]</a>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

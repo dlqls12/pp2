@@ -88,7 +88,7 @@
 		MemberJoinForm__submitDone = true;
 	}
 </script>
-<div class="con">
+<div class="con body-box">
 	<form method="POST" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/member/login">
 		<input type="hidden" name="loginPwReal">

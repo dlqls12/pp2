@@ -73,7 +73,7 @@
 	display:flex;
 }
 </style>
-<div class="con">	
+<div class="con body-box">	
 	<div class="modify-mode-off">
 		<table>
 			<colgroup>

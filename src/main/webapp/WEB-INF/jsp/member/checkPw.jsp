@@ -27,7 +27,7 @@
 	}
 </script>
 
-<div class="con">
+<div class="con body-box">
 	<form method="POST" action="doCheckPw" onsubmit="MemberCheckPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo?uuid=#uuid">
 		<input type="hidden" name="loginPwReal">
