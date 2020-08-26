@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
 import com.sbs.lyb.pp.dto.Member;
+import com.sbs.lyb.pp.dto.Reply;
 import com.sbs.lyb.pp.service.ArticleService;
+import com.sbs.lyb.pp.service.ReplyService;
 import com.sbs.lyb.pp.util.Util;
 
 @Controller
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private ReplyService replyService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
 	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page) {
@@ -50,8 +54,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-detail")
-	public String showDetail(Model model, @RequestParam Map<String, Object> param,
-			HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl) {
+	public String showDetail(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
 		}
@@ -64,7 +67,9 @@ public class ArticleController {
 		Member loginedMember = (Member)req.getAttribute("loginedMember");
 
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
+		List<Reply> replies = replyService.getForPrintReplies(id);
 
+		model.addAttribute("replies", replies);
 		model.addAttribute("article", article);
 
 		return "/article/detail";

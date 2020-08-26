@@ -91,5 +91,33 @@
 		</table>
 	</form>
 	</c:if>
+	
+	<h3>댓글목록</h3>
+	<table class="table1" border="1">
+		<colgroup>
+			<col width="100"/>
+			<col width="200"/>
+			<col />
+			<col width="100"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>날짜</th>
+				<th>내용</th>
+				<th>작성자</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${replies}" var="reply">
+				<tr>
+					<td>${reply.id}</td>
+					<td>${reply.regDate}</td>
+					<td>${reply.body}</td>
+					<td>${reply.extra.writer}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </div>
 <%@ include file="../part/foot.jspf"%>
