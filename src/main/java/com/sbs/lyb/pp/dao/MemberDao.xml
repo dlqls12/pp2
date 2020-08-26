@@ -66,4 +66,14 @@
 		loginPw = SHA2(#{tmpPw}, 256)
 		WHERE id = #{id}
 	</update>
+	
+	<update id="signOut">
+		UPDATE member
+		<set>
+			updateDate = NOW(),
+			delStatus = 1,
+			delDate = NOW(),
+		</set>
+		WHERE id = #{id}
+	</update>
 </mapper>

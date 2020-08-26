@@ -25,4 +25,6 @@ public interface MemberDao {
 	Member getMemberByEmail(String email);
 
 	void modifyMemberPwTemp(String tmpPw, int id);
+
+	void signOut(int id);
 }

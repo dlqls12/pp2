@@ -1,8 +1,8 @@
-drop database if exists `pp`;
-create database `pp`;
-use `pp`;
+DROP DATABASE IF EXISTS `pp`;
+CREATE DATABASE `pp`;
+USE `pp`;
 
-create table article (
+CREATE TABLE article (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME,
     updateDate DATETIME,
@@ -11,8 +11,8 @@ create table article (
 	displayStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
     title CHAR(200) NOT NULL,
     `body` LONGTEXT NOT NULL,
-    memberId int(10) not null,
-    boardId int (10) not null
+    memberId INT(10) NOT NULL,
+    boardId INT (10) NOT NULL
 );
 
 # article 테이블에 테스트 데이터 삽입
@@ -48,11 +48,11 @@ CREATE TABLE `member` (
     `nickname` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
     `phoneNo` CHAR(20) NOT NULL,
-    division char(100) not null default 'N'
+    division CHAR(100) NOT NULL DEFAULT 'N'
 );
 
 # 테스트 데이터 삽입
-insert into `member`
+INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'admin',
@@ -108,4 +108,28 @@ ALTER TABLE `attr` ADD INDEX (`relTypeCode`, `typeCode`, `type2Code`);
 # attr에 만료날짜 추가
 ALTER TABLE `attr` ADD COLUMN `expireDate` DATETIME NULL AFTER `value`;
 
-select * from `attr`;
+# 파일 테이블 생성
+CREATE TABLE `file` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME,
+    updateDate DATETIME,
+    delDate DATETIME,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	relTypeCode CHAR(50) NOT NULL,
+	relId INT(10) UNSIGNED NOT NULL,
+    originFileName VARCHAR(100) NOT NULL,
+    fileExt CHAR(10) NOT NULL,
+    typeCode CHAR(20) NOT NULL,
+    type2Code CHAR(20) NOT NULL,
+    fileSize INT(10) UNSIGNED NOT NULL,
+    fileExtTypeCode CHAR(10) NOT NULL,
+    fileExtType2Code CHAR(10) NOT NULL,
+    fileNo TINYINT(2) UNSIGNED NOT NULL,
+    `body` LONGBLOB
+);
+
+# 파일 테이블에 유니크 인덱스 추가
+ALTER TABLE `file` ADD UNIQUE INDEX (`relId`, `relTypeCode`, `typeCode`, `type2Code`, `fileNo`); 
+
+# 파일 테이블의 기존 인덱스에 유니크가 걸려 있어서 relId가 0 인 동안 충돌이 발생할 수 있다. 그래서 일반 인덱스로 바꾼다.
+ALTER TABLE `file` DROP INDEX `relId`, ADD INDEX (`relId` , `relTypeCode` , `typeCode` , `type2Code` , `fileNo`);

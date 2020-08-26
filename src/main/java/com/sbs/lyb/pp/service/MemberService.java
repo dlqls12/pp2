@@ -95,4 +95,8 @@ public class MemberService {
 		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
 
+	public void signOut(int id) {
+		memberDao.signOut(id);
+	}
+
 }

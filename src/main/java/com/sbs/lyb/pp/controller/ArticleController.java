@@ -71,7 +71,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-write")
-	public String write(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
+	public String showWrite(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list?page=1";
 		}
@@ -120,7 +120,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/{boardCode}-modify")
-	public String modify(@PathVariable("boardCode") String boardCode, HttpServletRequest req, Model model, int id, String listUrl) {
+	public String showModify(@PathVariable("boardCode") String boardCode, HttpServletRequest req, Model model, int id, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list?page=1";
 		}

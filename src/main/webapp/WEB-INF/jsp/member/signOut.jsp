@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="마이페이지" />
+<c:set var="pageTitle" value="회원탈퇴" />
 <%@ include file="../part/head.jspf"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
@@ -28,8 +28,8 @@
 </script>
 
 <div class="con">
-	<form method="POST" action="doCheckPw" onsubmit="MemberCheckPwForm__submit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo?uuid=#uuid">
+	<form method="POST" action="doSignOut" onsubmit="MemberCheckPwForm__submit(this); return false;">
+		<input type="hidden" name="redirectUrl" value="/usr/home/main">
 		<input type="hidden" name="loginPwReal">
 		<input type="hidden" name="id" value="${loginedMember.id}">
 		<table>
@@ -43,9 +43,9 @@
 					</td>
 				</tr>
 				<tr>
-					<th>마이페이지</th>
+					<th>탈퇴하기</th>
 					<td>
-						<button type="submit">이동</button>
+						<button type="submit" onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">확인</button>
 					</td>
 				</tr>
 			</tbody>

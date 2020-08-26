@@ -41,6 +41,7 @@
 				${loginedMember.nickname}님 환영합니다.^^
 				<a href="/usr/member/doLogout">[Logout]</a>
 				<a href="/usr/member/checkPw">[My Page]</a>
+				<a href="/usr/member/signOut?id=${loginedMemberId}">[Sign Out]</a>
 			</c:if>
 		</div>
 		<div class="menu-box-2">

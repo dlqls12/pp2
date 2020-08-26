@@ -20,15 +20,39 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
+	@RequestMapping("/usr/member/signOut")
+	public String showSignOut() {
+		return "/member/signOut";
+	}
+	
+	@RequestMapping("/usr/member/doSignOut")
+	public String doSignOut(HttpSession session, @RequestParam Map<String, Object> param, Model model, String redirectUrl) {
+		int id = Util.getAsInt(param.get("id"));
+		String loginPw = Util.getAsStr(param.get("loginPwReal"));
+		Member member = memberService.getMemberById(id);
+
+		if (member.getLoginPw().equals(loginPw) == false) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
+			return "common/redirect";
+		}
+
+		memberService.signOut(id);
+		session.removeAttribute("loginedMemberId");
+		
+		model.addAttribute("alertMsg", String.format("회원탈퇴가 완료되었습니다."));
+		model.addAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
+	
 	@RequestMapping("/usr/member/join")
-	public String join() {
+	public String showJoin() {
 		return "/member/join";
 	}
 
 	@RequestMapping("/usr/member/doJoin")
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
-		ResultData checkLoginIdJoinableResultData = memberService
-				.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
+		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
 
 		if (checkLoginIdJoinableResultData.isFail()) {
 			model.addAttribute("historyBack", true);
@@ -48,7 +72,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/login")
-	public String login() {
+	public String showLogin() {
 		return "/member/login";
 	}
 
@@ -58,6 +82,12 @@ public class MemberController {
 		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member == null) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
+			return "common/redirect";
+		}
+		
+		if (member.getDelStatus() == 1) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
 			return "common/redirect";
@@ -89,11 +119,10 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/modifyMemberInfo")
-	public String modifyMemberInfo(Model model, HttpSession session, String uuid) {
+	public String showModifyMemberInfo(Model model, HttpSession session, String uuid) {
 		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
 
-		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
-				.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
 
 		if (uuid == null || uuid.length() == 0) {
 			model.addAttribute("historyBack", true);
@@ -122,7 +151,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/modifyPw")
-	public String modifyPw() {
+	public String showModifyPw() {
 		return "/member/modifyPw";
 	}
 
@@ -136,7 +165,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/checkPw")
-	public String checkPw() {
+	public String showCheckPw() {
 		return "/member/checkPw";
 	}
 
@@ -163,7 +192,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/seekLoginId")
-	public String seekLoginId() {
+	public String showSeekLoginId() {
 		return "/member/seekLoginId";
 	}
 
@@ -193,7 +222,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/seekLoginPw")
-	public String seekLoginPw() {
+	public String showSeekLoginPw() {
 		return "/member/seekLoginPw";
 	}
 
