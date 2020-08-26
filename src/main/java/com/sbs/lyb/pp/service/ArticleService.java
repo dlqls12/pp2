@@ -63,7 +63,6 @@ public class ArticleService {
 				fileService.changeRelId(fileId, id);
 			}
 		}
-		
 		return id;
 	}
 
