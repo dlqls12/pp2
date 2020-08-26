@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 상세보기" />
 <%@ include file="../part/head.jspf"%>
+<style>
+	.hide {
+		display:none;
+	}
+</style>
 <div class="con body-box">
 	<table border="1" class="table1">
 		<colgroup>
@@ -99,6 +104,7 @@
 			<col width="200"/>
 			<col />
 			<col width="100"/>
+			<col width="100"/>
 		</colgroup>
 		<thead>
 			<tr>
@@ -106,6 +112,7 @@
 				<th>날짜</th>
 				<th>내용</th>
 				<th>작성자</th>
+				<th>비고</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -115,9 +122,34 @@
 					<td>${reply.regDate}</td>
 					<td>${reply.body}</td>
 					<td>${reply.extra.writer}</td>
+					<td>
+						<button type="button" onclick="ReplyModify__showModifyForm(this);">수정</button>
+						<button type="button">삭제</button>
+					</td>
+				</tr>
+				<tr class="hide">
+					<td>${reply.id}</td>
+					<td>${reply.regDate}</td>
+					<td>${reply.body}</td>
+					<td>${reply.extra.writer}</td>
+					<td>
+						<button type="button" onclick="ReplyModify__hideModifyForm(this);">취소</button>
+						<button type="button">삭제</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
+<script>
+	function ReplyModify__showModifyForm(el) {
+		var $tr = $(el).closest('tr');
+		$tr.addClass('hide');
+	}
+	
+	function ReplyModify__hideModifyForm() {
+		var $tr = $(el).closest('tr');
+		$tr.removeClass('hide');
+	}
+</script>
 <%@ include file="../part/foot.jspf"%>

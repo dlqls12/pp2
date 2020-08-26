@@ -52,7 +52,6 @@
 
 	function MemberModifyInfo__showModifyForm(el) {
 		$('html').addClass('modify-mode-actived');
-		var $div = $(el).closest('div');
 	}
 
 	function MemberModifyInfo__hideModifyForm() {
