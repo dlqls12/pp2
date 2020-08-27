@@ -71,10 +71,12 @@
 			</tr>
 		</tbody>
 	</table>
-	<div>
-		<a href="${article.getModifyLink(board.code)}">[수정]</a>
-		<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">[삭제]</a>
-	</div>
+	<c:if test="${loginedMemberId == article.memberId}">
+		<div>
+			<a href="${article.getModifyLink(board.code)}">[수정]</a>
+			<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">[삭제]</a>
+		</div>
+	</c:if>
 	<script>
 		var ReplyWriteForm__submitDone = false;
 		function ReplyWriteForm__submit(form) {
@@ -146,7 +148,7 @@
 				<th>날짜</th>
 				<th>내용</th>
 				<th>작성자</th>
-				<c:if test="${loginedMemberId == reply.memberId}">
+				<c:if test="${isLogined}">
 					<th>비고</th>
 				</c:if>
 			</tr>
@@ -171,13 +173,13 @@
 						</div>
 					</td>
 					<td>${reply.extra.writer}</td>
-					<c:if test="${loginedMemberId == reply.memberId}">
-						<td>
+					<td>
+						<c:if test="${loginedMemberId == reply.memberId}">
 							<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
 							<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
 							<button type="button">삭제</button>
-						</td>
-					</c:if>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
