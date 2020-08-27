@@ -23,6 +23,15 @@
 		ORDER BY R.id DESC
 	</select>
 	
+	<update id="replyModify">
+		UPDATE reply
+		<set>
+			updateDate=NOW(),
+			body=#{body},
+		</set>
+		WHERE id=#{id}
+	</update>
+	
 	<resultMap type="Reply" id="reply">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

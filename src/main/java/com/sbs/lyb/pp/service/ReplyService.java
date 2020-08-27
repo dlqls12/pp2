@@ -22,4 +22,8 @@ public class ReplyService {
 		return replyDao.getForPrintReplies(id);
 	}
 
+	public void replyModify(Map<String, Object> param) {
+		replyDao.replyModify(param);
+	}
+
 }

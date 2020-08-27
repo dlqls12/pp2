@@ -13,4 +13,6 @@ public interface ReplyDao {
 	void replyWrite(Map<String, Object> param);
 
 	List<Reply> getForPrintReplies(int id);
+
+	void replyModify(Map<String, Object> param);
 }
