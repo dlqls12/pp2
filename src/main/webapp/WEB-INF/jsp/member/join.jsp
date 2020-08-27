@@ -12,6 +12,7 @@
 			alert('처리중입니다.');
 			return;
 		}
+
 		form.loginId.value = form.loginId.value.trim();
 		form.loginId.value = form.loginId.value.replaceAll('-', '');
 		form.loginId.value = form.loginId.value.replaceAll('_', '');
@@ -87,6 +88,28 @@
 		form.submit();
 		MemberJoinForm__submitDone = true;
 	}
+
+	function MemberJoinForm__checkLoginIdDup(input) {
+		var form = input.form;
+
+		form.loginId.value = form.loginId.value.trim();
+
+		if (form.loginId.value.length == 0) {
+			return;
+		}
+		
+		$.get('getLoginIdDup', {
+				loginId: form.loginId.value
+			},
+			function(data) {
+				var $message = $(form.loginId).next();
+				if (data.resultCode.substr(0, 2) == 'S-') {
+					$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
+				} else {
+					$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				}
+			}, 'json' );
+	}
 </script>
 <div class="con body-box">
 	<form method="POST" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
@@ -101,7 +124,8 @@
 					<th>로그인 아이디</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId" maxlength="30" />
+							<input onkeyup="MemberJoinForm__checkLoginIdDup(this);" type="text" placeholder="로그인 아이디 입력해주세요." name="loginId" maxlength="30" />
+							<div class="message"></div>
 						</div>
 					</td>
 				</tr>

@@ -173,13 +173,15 @@
 						</div>
 					</td>
 					<td>${reply.extra.writer}</td>
-					<td>
-						<c:if test="${loginedMemberId == reply.memberId}">
-							<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
-							<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
-							<button type="button">삭제</button>
-						</c:if>
-					</td>
+					<c:if test="${isLogined}">
+						<td>
+							<c:if test="${loginedMemberId == reply.memberId}">
+								<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
+								<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
+								<button type="button">삭제</button>
+							</c:if>
+						</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

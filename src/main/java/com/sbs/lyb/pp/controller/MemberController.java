@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.dto.ResultData;
@@ -113,7 +114,8 @@ public class MemberController {
 		if (redirectUrl == null || redirectUrl.length() == 0) {
 			redirectUrl = "/usr/home/main";
 		}
-
+		
+		model.addAttribute("alertMsg", "로그아웃 되었습니다.");
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
 	}
@@ -252,5 +254,17 @@ public class MemberController {
 		model.addAttribute("alertMsg", String.format("해당 이메일로 아이디를 발송합니다."));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/member/getLoginIdDup")
+	@ResponseBody
+	public ResultData doGetLoginIdDup(@RequestParam Map<String, Object> param) {
+		String loginId = Util.getAsStr(param.get("loginId"));
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		if ( member == null ) {
+			return new ResultData("S-1", String.format("입력하신 아이디는 사용하실 수 있습니다."), loginId);
+		}
+		return new ResultData("F-1", String.format("입력하신 아이디가 이미 존재합니다."), loginId);
 	}
 }
