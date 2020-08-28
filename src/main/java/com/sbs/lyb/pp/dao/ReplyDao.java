@@ -12,9 +12,11 @@ public interface ReplyDao {
 
 	void replyWrite(Map<String, Object> param);
 
-	List<Reply> getForPrintReplies(int id);
+	List<Reply> getReplies(int id);
 
 	void replyModify(Map<String, Object> param);
 
 	void replyDelete(Map<String, Object> param);
+
+	List<Reply> getForPrintReplies(int id, int itemsInAPage, int limitFrom);
 }

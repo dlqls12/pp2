@@ -18,8 +18,8 @@ public class ReplyService {
 		replyDao.replyWrite(param);
 	}
 
-	public List<Reply> getForPrintReplies(int id) {
-		return replyDao.getForPrintReplies(id);
+	public List<Reply> getReplies(int id) {
+		return replyDao.getReplies(id);
 	}
 
 	public void replyModify(Map<String, Object> param) {
@@ -28,6 +28,10 @@ public class ReplyService {
 
 	public void replyDelete(Map<String, Object> param) {
 		replyDao.replyDelete(param);
+	}
+
+	public List<Reply> getForPrintReplies(int id, int itemsInAPage, int limitFrom) {
+		return replyDao.getForPrintReplies(id, itemsInAPage, limitFrom);
 	}
 
 }

@@ -236,5 +236,12 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="paging-box">
+			<c:forEach var="cnt" begin="1" end="${fullPage}">
+				<li class="${cnt==page ? "current" : "" }">
+					<a href="?id=${article.id}&page=${cnt}" class="block">${cnt}</a>
+				</li>
+			</c:forEach>
+		</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

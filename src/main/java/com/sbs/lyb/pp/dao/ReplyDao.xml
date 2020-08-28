@@ -12,7 +12,7 @@
 		displayStatus = 1
 	</insert>
 	
-	<select id="getForPrintReplies" resultMap="reply">
+	<select id="getReplies" resultMap="reply">
 		SELECT R.*,
 		M.nickname AS extra__writer
 		FROM reply AS R
@@ -41,6 +41,18 @@
 		</set>
 		WHERE id=#{id}
 	</update>
+	
+	<select id="getForPrintReplies" resultMap="reply">
+		SELECT R.*,
+		M.nickname AS extra__writer
+		FROM reply AS R
+		INNER JOIN member AS M
+		ON R.memberId = M.id
+		WHERE R.displayStatus = 1
+		AND R.articleId = #{id}
+		ORDER BY R.id DESC
+		LIMIT #{limitFrom}, #{itemsInAPage}
+	</select>
 	
 	<resultMap type="Reply" id="reply">
 		<id property="id" column="id" />

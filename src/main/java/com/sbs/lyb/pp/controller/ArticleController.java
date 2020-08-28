@@ -42,9 +42,7 @@ public class ArticleController {
 		} else {
 			fullPage = size / itemsInAPage + 1;
 		}
-
-		System.out.println("fullPage: " + fullPage);
-
+		
 		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), itemsInAPage, limitFrom);
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
@@ -54,7 +52,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-detail")
-	public String showDetail(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl) {
+	public String showDetail(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl, int page) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
 		}
@@ -67,11 +65,23 @@ public class ArticleController {
 		Member loginedMember = (Member)req.getAttribute("loginedMember");
 
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
-		List<Reply> replies = replyService.getForPrintReplies(id);
-
+		List<Reply> allReplies = replyService.getReplies(id);
+		
+		int size = allReplies.size();
+		int limitFrom = (page - 1) * 10;
+		int itemsInAPage = 10;
+		int fullPage = 0;
+		if (size % itemsInAPage == 0) {
+			fullPage = size / itemsInAPage;
+		} else {
+			fullPage = size / itemsInAPage + 1;
+		}
+		List<Reply> replies = replyService.getForPrintReplies(id, itemsInAPage, limitFrom);
+		
 		model.addAttribute("replies", replies);
 		model.addAttribute("article", article);
-
+		model.addAttribute("fullPage", fullPage);
+		model.addAttribute("page", page);
 		return "/article/detail";
 	}
 

@@ -106,8 +106,11 @@
 				if (data.resultCode.substr(0, 2) == 'S-') {
 					$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				} 
-				else {
+				else if (data.resultCode.substr(0, 2) == 'F-') {
 					$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				}
+				else {
+					$message.empty().append('<div></div>');
 				}
 			}, 'json' );
 	}
