@@ -88,7 +88,7 @@
 		form.submit();
 		MemberJoinForm__submitDone = true;
 	}
-
+		
 	function MemberJoinForm__checkLoginIdDup(input) {
 		var form = input.form;
 
@@ -110,6 +110,8 @@
 				}
 			}, 'json' );
 	}
+
+	MemberJoinForm__checkLoginIdDup = _.debounce(MemberJoinForm__checkLoginIdDup, 2000);
 </script>
 <div class="con body-box">
 	<form method="POST" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">

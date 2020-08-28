@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/resource/common.css" />
 <!-- 공통(라이브러리) JS -->
 <script src="/resource/common.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="/resource/app.css" />
 
