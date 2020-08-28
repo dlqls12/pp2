@@ -2,33 +2,25 @@ package com.sbs.lyb.pp.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.lyb.pp.dto.ResultData;
 import com.sbs.lyb.pp.service.ReplyService;
-import com.sbs.lyb.pp.util.Util;
 
 @Controller
 public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
 	
-	@RequestMapping("/usr/reply/doReplyWrite")
-	public String doReplyWrite(@RequestParam Map<String, Object> param, Model model, String redirectUrl, HttpServletRequest req) {
+	@RequestMapping("/usr/reply/doReplyWriteAjax")
+	@ResponseBody
+	public ResultData doReplyWrite(@RequestParam Map<String, Object> param) {
 		replyService.replyWrite(param);
-		int articleId = Util.getAsInt(param.get("articleId"));
-				
-		redirectUrl = redirectUrl.replace("#id", articleId + "");
-		model.addAttribute("alertMsg", String.format("댓글 작성 완료."));
-		model.addAttribute("redirectUrl", redirectUrl);
-		return "common/redirect";
+		return new ResultData("S-1", String.format("댓글 작성완료."));
 	}
 	
 	@RequestMapping("/usr/reply/doReplyModifyAjax")

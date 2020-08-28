@@ -1,34 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 상세보기" />
 <%@ include file="../part/head.jspf"%>
 <style>
 .modify-mode-on {
-	display:none;
+	display: none;
 }
 
 .modify-mode-actived .modify-mode-off {
-	display:none;
+	display: none;
 }
 
 .modify-mode-actived .modify-mode-on {
-	display:inline-block;
+	display: inline-block;
 }
 
-.reply-list > tbody > tr > td > div {
-	width:100%;
+.reply-list>tbody>tr>td>div {
+	width: 100%;
 }
 
-.reply-list > tbody > tr > td > div > form {
-	width:100%;
-	display:block;
+.reply-list>tbody>tr>td>div>form {
+	width: 100%;
+	display: block;
 }
 
-.reply-list > tbody > tr > td > div > form > textarea {
-	width:100%;
-	box-sizing:border-box;
-	display:block;
-	resize:none;
+.reply-list>tbody>tr>td>div>form>textarea {
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	resize: none;
 }
 </style>
 <div class="con body-box">
@@ -54,13 +55,16 @@
 				<td>${article.body}</td>
 			</tr>
 			<c:set var="fileNo" value="${String.valueOf(1)}" />
-			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
+			<c:set var="file"
+				value="${article.extra.file__common__attachment[fileNo]}" />
 			<c:if test="${file != null}">
 				<tr>
 					<th>첨부파일</th>
 					<td>
 						<div class="img-box img-box-auto">
-							<img src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}" alt="" />
+							<img
+								src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}"
+								alt="" />
 						</div>
 					</td>
 				</tr>
@@ -73,8 +77,9 @@
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">
 		<div>
-			<a href="${article.getModifyLink(board.code)}">[수정]</a>
-			<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">[삭제]</a>
+			<a href="${article.getModifyLink(board.code)}">[수정]</a> <a
+				href="${article.getDeleteLink(board.code)}"
+				onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">[삭제]</a>
 		</div>
 	</c:if>
 	<script>
@@ -84,16 +89,29 @@
 				alert('처리중입니다.');
 				return;
 			}
-			
+
 			form.body.value = form.body.value.trim();
 			if (form.body.value.length == 0) {
 				form.body.focus();
 				alert('내용을 입력해주세요.');
 				return;
 			}
-			
-			ArticleWriteForm__submitDone = true;
-			form.submit();
+
+			ReplyWriteForm__submitDone = true;
+			$.post('./../reply/doReplyWriteAjax', {
+				articleId : form.articleId.value,
+				memberId : form.memberId.value,
+				body : form.body.value
+			}, function(data) {
+				ReplyWriteForm__submitDone = false;
+				if (data.msg) {
+					alert(data.msg);
+				}
+
+				if (data.resultCode.substr(0, 2) == 'S-') {
+					form.body.value = '';
+				}
+			}, 'json');
 		}
 
 		function ReplyModify__showModifyForm(el) {
@@ -112,7 +130,7 @@
 				alert('처리중입니다.');
 				return;
 			}
-			
+
 			form.body.value = form.body.value.trim();
 			if (form.body.value.length == 0) {
 				form.body.focus();
@@ -121,51 +139,58 @@
 			}
 
 			ReplyModifyForm__submitDone = true;
-			$.get('./../reply/doReplyModifyAjax', {
-					id: form.id.value,
-					articleId: form.articleId.value,
-					body: form.body.value
-				},
-				function(data) {
-				}, 'json' );
-			form.submit();
+			$.post('./../reply/doReplyModifyAjax', {
+				id : form.id.value,
+				articleId : form.articleId.value,
+				body : form.body.value
+			}, function(data) {
+				ReplyWriteForm__submitDone = false;
+				if (data.msg) {
+					alert(data.msg);
+				}
+
+				if (data.resultCode.substr(0, 2) == 'S-') {
+					form.body.value = '';
+				}
+			}, 'json');
 		}
 	</script>
 	<c:if test="${isLogined}">
 		<h3>댓글 작성</h3>
-		<form method="POST" class="form1" action="./../reply/doReplyWrite" onsubmit="ReplyWriteForm__submit(this); return false;">
-			<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id">
-			<input type="hidden" name="articleId" value="${article.id}" />
-			<input type="hidden" name="memberId" value="${loginedMemberId}" />
+		<form method="POST" class="form1"
+			onsubmit="ReplyWriteForm__submit(this); return false;">
+			<input type="hidden" name="articleId" value="${article.id}" /> <input
+				type="hidden" name="memberId" value="${loginedMemberId}" />
 			<table class="table1" border="1">
 				<tbody>
 					<tr>
 						<th>내용</th>
 						<td>
 							<div class="form-control-box">
-								<textarea class="reply-textarea" placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
+								<textarea class="reply-textarea" placeholder="내용을 입력해주세요."
+									name="body" maxlength="2000"></textarea>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th>작성</th>
 						<td>
-							<button type="submit">작성</button> 
+							<button type="submit">작성</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
 	</c:if>
-	
+
 	<h3>댓글목록</h3>
 	<table class="table1 reply-list" border="1">
 		<colgroup>
-			<col width="100"/>
-			<col width="200"/>
+			<col width="100" />
+			<col width="200" />
 			<col />
-			<col width="100"/>
-			<col width="100"/>
+			<col width="100" />
+			<col width="100" />
 		</colgroup>
 		<thead>
 			<tr>
@@ -184,13 +209,12 @@
 					<td>${reply.id}</td>
 					<td>${reply.regDate}</td>
 					<td>
-						<div class="modify-mode-off">
-							${reply.body}
-						</div>
+						<div class="modify-mode-off">${reply.body}</div>
 						<div class="modify-mode-on">
-							<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
-								<input type="hidden" name="id" value="${reply.id}" />
-								<input type="hidden" name="articleId" value="${article.id}" />
+							<form method="POST"
+								onsubmit="ReplyModifyForm__submit(this); return false;">
+								<input type="hidden" name="id" value="${reply.id}" /> <input
+									type="hidden" name="articleId" value="${article.id}" />
 								<textarea name="body" placeholder="내용을 입력해주세요." maxlength="2000">${reply.body}</textarea>
 								<input type="submit" value="완료" />
 							</form>
@@ -198,13 +222,13 @@
 					</td>
 					<td>${reply.extra.writer}</td>
 					<c:if test="${isLogined}">
-						<td>
-							<c:if test="${loginedMemberId == reply.memberId}">
-								<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
-								<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
+						<td><c:if test="${loginedMemberId == reply.memberId}">
+								<button type="button" class="modify-mode-off"
+									onclick="ReplyModify__showModifyForm(this);">수정</button>
+								<button type="button" class="modify-mode-on"
+									onclick="ReplyModify__hideModifyForm(this);">취소</button>
 								<button type="button">삭제</button>
-							</c:if>
-						</td>
+							</c:if></td>
 					</c:if>
 				</tr>
 			</c:forEach>

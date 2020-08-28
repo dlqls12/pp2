@@ -266,7 +266,7 @@ public class MemberController {
 	@ResponseBody
 	public ResultData doGetLoginIdDup(@RequestParam Map<String, Object> param) {
 		String loginId = Util.getAsStr(param.get("loginId"));
-		
+	
 		Member member = memberService.getMemberByLoginId(loginId);
 		if ( member == null ) {
 			return new ResultData("S-1", String.format("입력하신 아이디는 사용하실 수 있습니다."), loginId);

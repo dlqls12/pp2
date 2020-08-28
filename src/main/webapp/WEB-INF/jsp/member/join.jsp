@@ -105,7 +105,8 @@
 				var $message = $(form.loginId).next();
 				if (data.resultCode.substr(0, 2) == 'S-') {
 					$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
-				} else {
+				} 
+				else {
 					$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				}
 			}, 'json' );
