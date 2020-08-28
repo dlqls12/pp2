@@ -23,7 +23,7 @@ public class Article {
 	private Map<String, Object> extra;
 	
 	public String getDetailLink(String boardCode) {
-		return "/usr/article/" + boardCode + "-detail?id=" + id;
+		return "/usr/article/" + boardCode + "-detail?id=" + id + "&page=1";
 	}
 	
 	public String getDeleteLink(String boardCode) {

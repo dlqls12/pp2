@@ -187,61 +187,66 @@
 	</c:if>
 
 	<h3>댓글목록</h3>
-	<table class="table1 reply-list" border="1">
-		<colgroup>
-			<col width="100" />
-			<col width="200" />
-			<col />
-			<col width="100" />
-			<col width="100" />
-		</colgroup>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>날짜</th>
-				<th>내용</th>
-				<th>작성자</th>
-				<c:if test="${isLogined}">
-					<th>비고</th>
-				</c:if>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${replies}" var="reply">
+	<c:if test="${fullPage == 0}">
+		<div>댓글이 없습니다. ㅠㅠ</div>
+	</c:if>
+	<c:if test="${fullPage != 0}">
+		<table class="table1 reply-list" border="1">
+			<colgroup>
+				<col width="100" />
+				<col width="200" />
+				<col />
+				<col width="100" />
+				<col width="100" />
+			</colgroup>
+			<thead>
 				<tr>
-					<td>${reply.id}</td>
-					<td>${reply.regDate}</td>
-					<td>
-						<div class="modify-mode-off">${reply.body}</div>
-						<div class="modify-mode-on">
-							<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
-								<input type="hidden" name="id" value="${reply.id}" />
-								<input type="hidden" name="articleId" value="${article.id}" />
-								<textarea name="body" placeholder="내용을 입력해주세요." maxlength="2000">${reply.body}</textarea>
-								<input type="submit" value="완료" />
-							</form>
-						</div>
-					</td>
-					<td>${reply.extra.writer}</td>
+					<th>번호</th>
+					<th>날짜</th>
+					<th>내용</th>
+					<th>작성자</th>
 					<c:if test="${isLogined}">
-						<td>
-							<c:if test="${loginedMemberId == reply.memberId}">
-								<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
-								<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
-								<button type="button" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false; ReplyDelete__submit(${reply.id})">삭제</button>
-							</c:if>
-						</td>
+						<th>비고</th>
 					</c:if>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<div class="paging-box">
+			</thead>
+			<tbody>
+				<c:forEach items="${replies}" var="reply">
+					<tr>
+						<td>${reply.id}</td>
+						<td>${reply.regDate}</td>
+						<td>
+							<div class="modify-mode-off">${reply.body}</div>
+							<div class="modify-mode-on">
+								<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
+									<input type="hidden" name="id" value="${reply.id}" />
+									<input type="hidden" name="articleId" value="${article.id}" />
+									<textarea name="body" placeholder="내용을 입력해주세요." maxlength="2000">${reply.body}</textarea>
+									<input type="submit" value="완료" />
+								</form>
+							</div>
+						</td>
+						<td>${reply.extra.writer}</td>
+						<c:if test="${isLogined}">
+							<td>
+								<c:if test="${loginedMemberId == reply.memberId}">
+									<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
+									<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
+									<button type="button" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false; ReplyDelete__submit(${reply.id})">삭제</button>
+								</c:if>
+							</td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<div class="paging-box">
 			<c:forEach var="cnt" begin="1" end="${fullPage}">
 				<li class="${cnt==page ? "current" : "" }">
 					<a href="?id=${article.id}&page=${cnt}" class="block">${cnt}</a>
 				</li>
 			</c:forEach>
 		</div>
+	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%>
