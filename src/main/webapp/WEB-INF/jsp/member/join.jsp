@@ -95,6 +95,7 @@
 		form.loginId.value = form.loginId.value.trim();
 
 		if (form.loginId.value.length == 0) {
+			$(form.loginId).next().empty();
 			return;
 		}
 		
@@ -106,11 +107,8 @@
 				if (data.resultCode.substr(0, 2) == 'S-') {
 					$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				} 
-				else if (data.resultCode.substr(0, 2) == 'F-') {
-					$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
-				}
 				else {
-					$message.empty().append('<div></div>');
+					$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				}
 			}, 'json' );
 	}
