@@ -66,6 +66,8 @@ public class MemberService {
 
 	public void modifyMemberPw(Map<String, Object> param) {
 		memberDao.modifyMemberPw(param);
+		int id = Util.getAsInt(param.get("id"));
+		attrService.setValue("member__" + id + "__extra__isUsingTmpPw", "N", null);
 	}
 
 	public Member getMemberByEmail(String email) {
@@ -78,6 +80,7 @@ public class MemberService {
 
 	public void modifyMemberPwTemp(String tmpPw, int id) {
 		memberDao.modifyMemberPwTemp(tmpPw, id);
+		attrService.setValue("member__" + id + "__extra__isUsingTmpPw", "Y", null);
 	}
 	
 	public String genCheckPasswordAuthCode(int actorId) {
@@ -99,4 +102,14 @@ public class MemberService {
 		memberDao.signOut(id);
 	}
 
+	public boolean isUsingTmpPw(int actorId) {
+		String value = attrService.getValue("member__" + actorId + "__extra__isUsingTmpPw");
+		if ( value == null ) {
+			return false;
+		}
+		if ( value.equals("Y") ) {
+			return true;
+		}
+		return false;
+	}
 }

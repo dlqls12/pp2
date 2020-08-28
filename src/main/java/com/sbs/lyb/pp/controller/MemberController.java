@@ -81,12 +81,14 @@ public class MemberController {
 	public String doLogin(String loginId, String loginPwReal, String redirectUrl, Model model, HttpSession session) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
-
+		
 		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
 			return "common/redirect";
 		}
+		
+		int id = member.getId();
 		
 		if (member.getDelStatus() == 1) {
 			model.addAttribute("historyBack", true);
@@ -99,10 +101,15 @@ public class MemberController {
 			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
 			return "common/redirect";
 		}
-
-		session.setAttribute("loginedMemberId", member.getId());
+		
+		session.setAttribute("loginedMemberId", id);
 		model.addAttribute("redirectUrl", redirectUrl);
-		model.addAttribute("alertMsg", String.format("%s님 반갑습니다.", member.getNickname()));
+		if (memberService.isUsingTmpPw(id)) {
+			model.addAttribute("alertMsg", String.format("현재 임시 비밀번호를 사용중입니다. 비밀번호를 변경해주세요."));
+		}
+		else {
+			model.addAttribute("alertMsg", String.format("%s님 반갑습니다.", member.getNickname()));
+		}
 
 		return "common/redirect";
 	}
@@ -184,7 +191,6 @@ public class MemberController {
 		}
 
 		String uuid = memberService.genCheckPasswordAuthCode(member.getId());
-		System.out.println("UUID: " + uuid);
 
 		redirectUrl = redirectUrl.replace("#uuid", uuid + "");
 		System.out.println("uuid:" + uuid);
