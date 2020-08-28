@@ -105,6 +105,31 @@
 			var $tr = $(el).closest('tr');
 			$tr.removeClass('modify-mode-actived');
 		}
+
+		var ReplyModifyForm__submitDone = false;
+		function ReplyModifyForm__submit(form) {
+			if (ReplyWriteForm__submitDone) {
+				alert('처리중입니다.');
+				return;
+			}
+			
+			form.body.value = form.body.value.trim();
+			if (form.body.value.length == 0) {
+				form.body.focus();
+				alert('내용을 입력해주세요.');
+				return;
+			}
+
+			ReplyModifyForm__submitDone = true;
+			$.get('./../reply/doReplyModifyAjax', {
+					id: form.id.value,
+					articleId: form.articleId.value,
+					body: form.body.value
+				},
+				function(data) {
+				}, 'json' );
+			form.submit();
+		}
 	</script>
 	<c:if test="${isLogined}">
 		<h3>댓글 작성</h3>
@@ -163,8 +188,7 @@
 							${reply.body}
 						</div>
 						<div class="modify-mode-on">
-							<form method="POST" action="./../reply/doReplyModify" onsubmit="ReplyModifyForm__submit(this); return false;">
-								<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id">
+							<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
 								<input type="hidden" name="id" value="${reply.id}" />
 								<input type="hidden" name="articleId" value="${article.id}" />
 								<textarea name="body" placeholder="내용을 입력해주세요." maxlength="2000">${reply.body}</textarea>

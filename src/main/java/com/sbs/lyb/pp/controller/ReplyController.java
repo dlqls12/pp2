@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sbs.lyb.pp.dto.ResultData;
 import com.sbs.lyb.pp.service.ReplyService;
 import com.sbs.lyb.pp.util.Util;
 
@@ -29,15 +31,10 @@ public class ReplyController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/usr/reply/doReplyModify")
-	public String doReplyModify(@RequestParam Map<String, Object> param, Model model, String redirectUrl, HttpServletRequest req) {
+	@RequestMapping("/usr/reply/doReplyModifyAjax")
+	@ResponseBody
+	public ResultData doReplyModify(@RequestParam Map<String, Object> param) {
 		replyService.replyModify(param);
-		int id = Util.getAsInt(param.get("id"));
-		int articleId = Util.getAsInt(param.get("articleId"));
-		
-		redirectUrl = redirectUrl.replace("#id", articleId + "");
-		model.addAttribute("alertMsg", String.format("%d번 댓글 수정 완료.", id));
-		model.addAttribute("redirectUrl", redirectUrl);
-		return "common/redirect";
+		return new ResultData("S-1", String.format("댓글 수정완료."));
 	}	
 }
