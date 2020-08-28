@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.lyb.pp.dto.ResultData;
 import com.sbs.lyb.pp.service.ReplyService;
+import com.sbs.lyb.pp.util.Util;
 
 @Controller
 public class ReplyController {
@@ -28,5 +29,14 @@ public class ReplyController {
 	public ResultData doReplyModify(@RequestParam Map<String, Object> param) {
 		replyService.replyModify(param);
 		return new ResultData("S-1", String.format("댓글 수정완료."));
+	}
+	
+	@RequestMapping("/usr/reply/doReplyDeleteAjax")
+	@ResponseBody
+	public ResultData doReplyDelete(@RequestParam Map<String, Object> param) {
+		replyService.replyDelete(param);
+		int id = Util.getAsInt(param.get("id"));
+		System.out.println("id:"+id);
+		return new ResultData("S-1", String.format("댓글 삭제완료."));
 	}	
 }

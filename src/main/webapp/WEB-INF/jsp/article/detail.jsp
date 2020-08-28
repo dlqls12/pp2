@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 상세보기" />
 <%@ include file="../part/head.jspf"%>
@@ -55,16 +54,13 @@
 				<td>${article.body}</td>
 			</tr>
 			<c:set var="fileNo" value="${String.valueOf(1)}" />
-			<c:set var="file"
-				value="${article.extra.file__common__attachment[fileNo]}" />
+			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
 			<c:if test="${file != null}">
 				<tr>
 					<th>첨부파일</th>
 					<td>
 						<div class="img-box img-box-auto">
-							<img
-								src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}"
-								alt="" />
+							<img src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}" alt="" />
 						</div>
 					</td>
 				</tr>
@@ -77,9 +73,8 @@
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">
 		<div>
-			<a href="${article.getModifyLink(board.code)}">[수정]</a> <a
-				href="${article.getDeleteLink(board.code)}"
-				onclick="if ( confirm('정말로 탈퇴하시겠습니까?') == false ) return false;">[삭제]</a>
+			<a href="${article.getModifyLink(board.code)}">[수정]</a>
+			<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
 		</div>
 	</c:if>
 	<script>
@@ -154,21 +149,29 @@
 				}
 			}, 'json');
 		}
+
+		function ReplyDelete__submit(el) {
+			$.post('./../reply/doReplyDeleteAjax', {
+				id: el
+			}, function(data) {
+				if (data.msg) {
+					alert(data.msg);
+				}
+			},'json');
+		}
 	</script>
 	<c:if test="${isLogined}">
 		<h3>댓글 작성</h3>
-		<form method="POST" class="form1"
-			onsubmit="ReplyWriteForm__submit(this); return false;">
-			<input type="hidden" name="articleId" value="${article.id}" /> <input
-				type="hidden" name="memberId" value="${loginedMemberId}" />
+		<form method="POST" class="form1" onsubmit="ReplyWriteForm__submit(this); return false;">
+			<input type="hidden" name="articleId" value="${article.id}" />
+			<input type="hidden" name="memberId" value="${loginedMemberId}" />
 			<table class="table1" border="1">
 				<tbody>
 					<tr>
 						<th>내용</th>
 						<td>
 							<div class="form-control-box">
-								<textarea class="reply-textarea" placeholder="내용을 입력해주세요."
-									name="body" maxlength="2000"></textarea>
+								<textarea class="reply-textarea" placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
 							</div>
 						</td>
 					</tr>
@@ -211,10 +214,9 @@
 					<td>
 						<div class="modify-mode-off">${reply.body}</div>
 						<div class="modify-mode-on">
-							<form method="POST"
-								onsubmit="ReplyModifyForm__submit(this); return false;">
-								<input type="hidden" name="id" value="${reply.id}" /> <input
-									type="hidden" name="articleId" value="${article.id}" />
+							<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
+								<input type="hidden" name="id" value="${reply.id}" />
+								<input type="hidden" name="articleId" value="${article.id}" />
 								<textarea name="body" placeholder="내용을 입력해주세요." maxlength="2000">${reply.body}</textarea>
 								<input type="submit" value="완료" />
 							</form>
@@ -222,13 +224,13 @@
 					</td>
 					<td>${reply.extra.writer}</td>
 					<c:if test="${isLogined}">
-						<td><c:if test="${loginedMemberId == reply.memberId}">
-								<button type="button" class="modify-mode-off"
-									onclick="ReplyModify__showModifyForm(this);">수정</button>
-								<button type="button" class="modify-mode-on"
-									onclick="ReplyModify__hideModifyForm(this);">취소</button>
-								<button type="button">삭제</button>
-							</c:if></td>
+						<td>
+							<c:if test="${loginedMemberId == reply.memberId}">
+								<button type="button" class="modify-mode-off" onclick="ReplyModify__showModifyForm(this);">수정</button>
+								<button type="button" class="modify-mode-on" onclick="ReplyModify__hideModifyForm(this);">취소</button>
+								<button type="button" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false; ReplyDelete__submit(${reply.id})">삭제</button>
+							</c:if>
+						</td>
 					</c:if>
 				</tr>
 			</c:forEach>

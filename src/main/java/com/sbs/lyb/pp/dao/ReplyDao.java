@@ -15,4 +15,6 @@ public interface ReplyDao {
 	List<Reply> getForPrintReplies(int id);
 
 	void replyModify(Map<String, Object> param);
+
+	void replyDelete(Map<String, Object> param);
 }

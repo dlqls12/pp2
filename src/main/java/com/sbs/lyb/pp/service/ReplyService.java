@@ -26,4 +26,8 @@ public class ReplyService {
 		replyDao.replyModify(param);
 	}
 
+	public void replyDelete(Map<String, Object> param) {
+		replyDao.replyDelete(param);
+	}
+
 }
