@@ -40,10 +40,10 @@ public class MessageController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/usr/message/detail")
+	@RequestMapping("/usr/message/detailMessage")
 	public String showDetail(int id, String uuid, Model model, HttpSession session) {
 		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
-
+		
 		ResultData checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
 
 		if (uuid == null || uuid.length() == 0) {
@@ -64,8 +64,9 @@ public class MessageController {
 			model.addAttribute("alertMsg", "잘못된 경로.");
 			return "common/redirect";
 		}
+		
 		model.addAttribute("message", message);
-		return "/message/detail";
+		return "/message/detailMessage";
 	}
 	
 	@RequestMapping("/usr/message/deleteMessage")

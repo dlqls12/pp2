@@ -159,37 +159,49 @@
 	</div>
 	<div>
 		<h3>쪽지함</h3>
-		<table class="table1 reply-list" border="1">
-			<colgroup>
-				<col width="100" />
-				<col width="200" />
-				<col />
-				<col width="100" />
-				<col width="100" />
-			</colgroup>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>날짜</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${messageList}" var="message">
+		<c:if test="${fullPage == 0}">
+			<div>쪽지가 없습니다. ㅠㅠ</div>
+		</c:if>
+		<c:if test="${fullPage != 0}">
+			<table class="table1 reply-list" border="1">
+				<colgroup>
+					<col width="100" />
+					<col width="200" />
+					<col />
+					<col width="100" />
+					<col width="100" />
+				</colgroup>
+				<thead>
 					<tr>
-						<td>${message.id}</td>
-						<td>${message.regDate}</td>
-						<td><a href="./../message/detail?id=${message.id}&uuid=${uuid}">${message.title}</a></td>
-						<td><a href="memberPage?id=${message.writerId}">${message.extra.writer}</a></td>
-						<td>
-							<button type="button" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">삭제</button>
-						</td>
+						<th>번호</th>
+						<th>날짜</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>비고</th>
 					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${messageList}" var="message">
+						<tr>
+							<td>${message.id}</td>
+							<td>${message.regDate}</td>
+							<td><a href="./../message/detailMessage?id=${message.id}&uuid=${uuid}">${message.title}</a></td>
+							<td><a href="memberPage?id=${message.writerId}">${message.extra.writer}</a></td>
+							<td>
+								<a href="./../message/deleteMessage?id=${message.id}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">삭제</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div class="paging-box">
+				<c:forEach var="cnt" begin="1" end="${fullPage}">
+					<li class="${cnt == page ? "current" : "" }">
+						<a href="?page=${cnt}&uuid=${uuid}" class="block">${cnt}</a>
+					</li>
 				</c:forEach>
-			</tbody>
-		</table>
+			</div>
+		</c:if>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%> 

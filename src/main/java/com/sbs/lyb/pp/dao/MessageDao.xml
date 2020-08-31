@@ -13,6 +13,13 @@
 		displayStatus = 1
 	</insert>
 	
+	<select id="getAllMessageList" resultMap="message">
+		SELECT *
+		FROM message
+		WHERE displayStatus = 1
+		AND getterId = #{id}
+	</select>
+	
 	<select id="getMessageList" resultMap="message">
 		SELECT M1.*,
 		M2.nickname AS extra__writer
@@ -20,8 +27,9 @@
 		INNER JOIN member AS M2
 		ON M1.writerId = M2.id
 		WHERE M1.displayStatus = 1
-		AND M1.getterId = #{id}
+		AND M1.getterId = #{loginedMemberId}
 		ORDER BY M1.id DESC
+		LIMIT #{limitFrom}, #{itemsInAPage}
 	</select>
 	
 	<select id="getMessageById" resultMap="message">

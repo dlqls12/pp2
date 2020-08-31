@@ -18,8 +18,8 @@ public class MessageService {
 		messageDao.sendMessage(param);
 	}
 
-	public List<Message> getMessageList(int id) {
-		return messageDao.getMessageList(id);
+	public List<Message> getAllMessageList(int id) {
+		return messageDao.getAllMessageList(id);
 	}
 
 	public Message getMessageById(int id) {
@@ -28,6 +28,10 @@ public class MessageService {
 
 	public void deleteMessage(int id) {
 		messageDao.deleteMessage(id);
+	}
+
+	public List<Message> getMessageList(int loginedMemberId, int itemsInAPage, int limitFrom) {
+		return messageDao.getMessageList(loginedMemberId, itemsInAPage, limitFrom);
 	}
 
 }

@@ -155,3 +155,19 @@ memberId = 1,
 articleId = 1,
 displayStatus = 1,
 `body` = '내용1';
+
+# message 테이블 세팅
+CREATE TABLE `message` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME,
+    updateDate DATETIME,
+    writerId INT(10) UNSIGNED NOT NULL,
+    getterId INT(10) UNSIGNED NOT NULL,
+    delDate DATETIME,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	displayStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+	title CHAR(200) NOT NULL,
+    `body` LONGTEXT NOT NULL
+);
+
+SELECT * FROM `message`;

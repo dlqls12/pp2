@@ -133,7 +133,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/modifyMemberInfo")
-	public String showModifyMemberInfo(Model model, HttpSession session, String uuid) {
+	public String showModifyMemberInfo(int page, Model model, HttpSession session, String uuid) {
 		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
 
 		ResultData checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
@@ -151,10 +151,24 @@ public class MemberController {
 		}
 		
 		Member loginedMember = memberService.getMemberById(loginedMemberId);
-		List<Message> messageList = messageService.getMessageList(loginedMemberId);
+		List<Message> allMessageList = messageService.getAllMessageList(loginedMemberId);
+		
+		int size = allMessageList.size();
+		int limitFrom = (page - 1) * 10;
+		int itemsInAPage = 10;
+		int fullPage = 0;
+		if (size % itemsInAPage == 0) {
+			fullPage = size / itemsInAPage;
+		} else {
+			fullPage = size / itemsInAPage + 1;
+		}
+		
+		List<Message> messageList = messageService.getMessageList(loginedMemberId, itemsInAPage, limitFrom);
+		
 		model.addAttribute("loginedMember", loginedMember);
 		model.addAttribute("messageList", messageList);
 		model.addAttribute("uuid", uuid);
+		model.addAttribute("fullPage", fullPage);
 		return "/member/modifyMemberInfo";
 	}
 
