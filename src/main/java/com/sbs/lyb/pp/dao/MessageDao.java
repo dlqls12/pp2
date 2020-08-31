@@ -19,4 +19,6 @@ public interface MessageDao {
 	void deleteMessage(int id);
 
 	List<Message> getMessageList(int loginedMemberId, int itemsInAPage, int limitFrom);
+
+	void readStatusChange(int id);
 }

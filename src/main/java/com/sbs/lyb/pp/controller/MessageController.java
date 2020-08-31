@@ -66,6 +66,7 @@ public class MessageController {
 		}
 		
 		model.addAttribute("message", message);
+		messageService.readStatusChange(id);
 		return "/message/detailMessage";
 	}
 	

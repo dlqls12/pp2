@@ -50,6 +50,12 @@
 		WHERE id = #{id}
 	</update>
 	
+	<update id="readStatusChange">
+		UPDATE message
+		SET readStatus = 1
+		WHERE id = #{id}
+	</update>
+	
 	<resultMap type="Message" id="message">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
@@ -57,6 +63,7 @@
 		<id property="delDate" column="delDate" />
 		<id property="delStatus" column="delStatus" />
 		<id property="displayStatus" column="displayStatus" />
+		<id property="readStatus" column="readStatus" />
 		<id property="title" column="title" />
 		<id property="body" column="body" />
 		<id property="writerId" column="writerId" />

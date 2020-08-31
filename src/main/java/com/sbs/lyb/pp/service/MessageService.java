@@ -34,4 +34,8 @@ public class MessageService {
 		return messageDao.getMessageList(loginedMemberId, itemsInAPage, limitFrom);
 	}
 
+	public void readStatusChange(int id) {
+		messageDao.readStatusChange(id);
+	}
+
 }

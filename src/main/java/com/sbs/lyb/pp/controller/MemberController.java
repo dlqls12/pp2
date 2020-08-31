@@ -109,6 +109,16 @@ public class MemberController {
 		
 		session.setAttribute("loginedMemberId", id);
 		model.addAttribute("redirectUrl", redirectUrl);
+		
+		List<Message> messageList = messageService.getAllMessageList(id);
+		
+		for ( Message message : messageList ) {
+			if ( message.isReadStatus() ) {
+				model.addAttribute("alertMsg", "읽지않은 쪽지가 있습니다.");
+				return "common/redirect";
+			}
+		}
+		
 		if (memberService.isUsingTmpPw(id)) {
 			model.addAttribute("alertMsg", String.format("현재 임시 비밀번호를 사용중입니다. 비밀번호를 변경해주세요."));
 		}

@@ -16,6 +16,7 @@ public class Message {
 	private boolean delStatus;
 	private String delDate;
 	private boolean displayStatus;
+	private boolean readStatus;
 	private int writerId;
 	private int getterId;
 	private String title;
