@@ -13,4 +13,8 @@ public interface MessageDao {
 	void sendMessage(Map<String, Object> param);
 
 	List<Message> getMessageList(int id);
+
+	Message getMessageById(int id);
+
+	void deleteMessage(int id);
 }

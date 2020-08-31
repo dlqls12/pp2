@@ -24,6 +24,24 @@
 		ORDER BY M1.id DESC
 	</select>
 	
+	<select id="getMessageById" resultMap="message">
+		SELECT M1.*,
+		M2.nickname AS extra__writer
+		FROM message AS M1
+		INNER JOIN member AS M2
+		ON M1.writerId = M2.id
+		WHERE M1.id = #{id}
+		AND M1.displayStatus = 1
+	</select>
+	
+	<update id="deleteMessage">
+		UPDATE message
+		SET delDate = NOW(),
+		delStatus = 1,
+		displayStatus = 0
+		WHERE id = #{id}
+	</update>
+	
 	<resultMap type="Message" id="message">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

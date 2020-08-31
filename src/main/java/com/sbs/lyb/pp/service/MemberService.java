@@ -85,7 +85,7 @@ public class MemberService {
 	
 	public String genCheckPasswordAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();
-		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60));
+		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60*10));
 
 		return authCode;
 	}

@@ -154,6 +154,7 @@ public class MemberController {
 		List<Message> messageList = messageService.getMessageList(loginedMemberId);
 		model.addAttribute("loginedMember", loginedMember);
 		model.addAttribute("messageList", messageList);
+		model.addAttribute("uuid", uuid);
 		return "/member/modifyMemberInfo";
 	}
 

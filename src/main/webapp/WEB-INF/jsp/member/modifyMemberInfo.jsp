@@ -74,9 +74,9 @@
 </style>
 <div class="con body-box">	
 	<div class="modify-mode-off">
-		<table>
+		<table class="table1" border="1">
 			<colgroup>
-				<col width="100">
+				<col width="150">
 			</colgroup>
 			<tbody>
 				<tr>
@@ -106,10 +106,10 @@
 		</table>
 	</div>
 	<div class="modify-mode-on">
-		<form method="POST" action="doModifyMemberInfo" onsubmit="MemberModifyInfoForm__submit(this); return false;">
+		<form method="POST" class="form1" action="doModifyMemberInfo" onsubmit="MemberModifyInfoForm__submit(this); return false;">
 			<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo">
 			<input type="hidden" name="id" value="${loginedMember.id}">
-			<table>
+			<table class="table1" border="1">
 				<colgroup>
 					<col width="100">
 				</colgroup>
@@ -159,13 +159,21 @@
 	</div>
 	<div>
 		<h3>쪽지함</h3>
-		<table class="table1" border="1">
+		<table class="table1 reply-list" border="1">
+			<colgroup>
+				<col width="100" />
+				<col width="200" />
+				<col />
+				<col width="100" />
+				<col width="100" />
+			</colgroup>
 			<thead>
 				<tr>
 					<th>번호</th>
 					<th>날짜</th>
 					<th>제목</th>
-					<th>보낸사람</th>
+					<th>작성자</th>
+					<th>비고</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -173,8 +181,11 @@
 					<tr>
 						<td>${message.id}</td>
 						<td>${message.regDate}</td>
-						<td>${message.title}</td>
-						<td><a href="memberPage?id=${message.writerId}">[${message.extra.writer}]</a></td>
+						<td><a href="./../message/detail?id=${message.id}&uuid=${uuid}">${message.title}</a></td>
+						<td><a href="memberPage?id=${message.writerId}">${message.extra.writer}</a></td>
+						<td>
+							<button type="button" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">삭제</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

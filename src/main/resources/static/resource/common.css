@@ -73,6 +73,10 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 /* 폼 관련 */
+.form1 {
+	width:100%;
+}
+
 .form1 .form-control-box>input, .form1 .form-control-box>textarea {
 	width: 100%;
 	padding: 0;
