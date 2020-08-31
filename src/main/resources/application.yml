@@ -25,7 +25,7 @@ mybatis:
   type-aliases-package: com.sbs.lyb.pp.dto
 custom:
   logoText: 대학중고장터
-  siteMainUrl: http://localhost:8085/home/main
+  siteMainUrl: http://localhost:8085/usr/home/main
   siteName: 대학중고장터
   emailFrom: dlqls12321@gmail.com
   emailFromName: 대학중고장터

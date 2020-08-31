@@ -1,5 +1,6 @@
 package com.sbs.lyb.pp.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.lyb.pp.dto.Member;
+import com.sbs.lyb.pp.dto.Message;
 import com.sbs.lyb.pp.dto.ResultData;
 import com.sbs.lyb.pp.service.MemberService;
+import com.sbs.lyb.pp.service.MessageService;
 import com.sbs.lyb.pp.util.Util;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	MessageService messageService;
 
 	@RequestMapping("/usr/member/signOut")
 	public String showSignOut() {
@@ -144,9 +149,11 @@ public class MemberController {
 			model.addAttribute("alertMsg", checkValidCheckPasswordAuthCodeResultData.getMsg());
 			return "common/redirect";
 		}
-
+		
 		Member loginedMember = memberService.getMemberById(loginedMemberId);
+		List<Message> messageList = messageService.getMessageList(loginedMemberId);
 		model.addAttribute("loginedMember", loginedMember);
+		model.addAttribute("messageList", messageList);
 		return "/member/modifyMemberInfo";
 	}
 
@@ -276,5 +283,13 @@ public class MemberController {
 			return new ResultData("S-1", String.format("입력하신 아이디는 사용하실 수 있습니다."), loginId);
 		}
 		return new ResultData("F-1", String.format("입력하신 아이디가 이미 존재합니다."), loginId);
+	}
+	
+	@RequestMapping("/usr/member/memberPage")
+	public String showMemberPage(Model model, int id) {
+		Member member = memberService.getMemberById(id);
+		
+		model.addAttribute("member", member);
+		return "/member/memberPage";
 	}
 }

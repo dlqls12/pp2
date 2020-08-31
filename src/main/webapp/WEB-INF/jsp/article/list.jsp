@@ -22,7 +22,14 @@
 						<td>${article.id}</td>
 						<td>${article.regDate}</td>
 						<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
-						<td>${article.extra.writer}</td>
+						<td>
+							<c:if test="${article.memberId != loginedMemberId }">
+								<a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
+							</c:if>
+							<c:if test="${article.memberId == loginedMemberId }">
+								${article.extra.writer}
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -157,5 +157,28 @@
 			</table>
 		</form>
 	</div>
+	<div>
+		<h3>쪽지함</h3>
+		<table class="table1" border="1">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>날짜</th>
+					<th>제목</th>
+					<th>보낸사람</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${messageList}" var="message">
+					<tr>
+						<td>${message.id}</td>
+						<td>${message.regDate}</td>
+						<td>${message.title}</td>
+						<td><a href="memberPage?id=${message.writerId}">[${message.extra.writer}]</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </div>
 <%@ include file="../part/foot.jspf"%> 

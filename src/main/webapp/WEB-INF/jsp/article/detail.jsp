@@ -67,7 +67,14 @@
 			</c:if>
 			<tr>
 				<th>작성자</th>
-				<td>${article.extra.writer}</td>
+				<td>
+					<c:if test="${article.memberId != loginedMemberId }">
+						<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
+					</c:if>
+					<c:if test="${article.memberId == loginedMemberId }">
+						${article.extra.writer}
+					</c:if>
+				</td>
 			</tr>
 		</tbody>
 	</table>
