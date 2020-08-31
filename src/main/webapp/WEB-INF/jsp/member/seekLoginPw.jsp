@@ -31,9 +31,9 @@
 	}
 </script>
 <div class="con body-box">
-	<form method="POST" action="doSeekLoginPw" onsubmit="MemberSeekLoginPwForm__submit(this); return false;">
+	<form method="POST" class="form1" action="doSeekLoginPw" onsubmit="MemberSeekLoginPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/member/login">
-		<table>
+		<table class="table1" border="1">
 			<tbody>
 				<tr>
 					<th>아이디</th>

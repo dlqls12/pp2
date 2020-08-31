@@ -116,12 +116,12 @@
 	MemberJoinForm__checkLoginIdDup = _.debounce(MemberJoinForm__checkLoginIdDup, 2000);
 </script>
 <div class="con body-box">
-	<form method="POST" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+	<form method="POST" class="form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/member/login">
 		<input type="hidden" name="loginPwReal">
-		<table>
+		<table class="table1" border="1">
 			<colgroup>
-				<col width="100">
+				<col width="200">
 			</colgroup>
 			<tbody>
 				<tr>

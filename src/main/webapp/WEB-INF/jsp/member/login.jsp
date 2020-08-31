@@ -37,10 +37,13 @@
 	}
 </script>
 <div class="con body-box">
-	<form method="POST" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
+	<form method="POST" class="form1" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/home/main">
 		<input type="hidden" name="loginPwReal">
-		<table>
+		<table class="table1" border="1">
+			<colgroup>
+				<col width=200 />
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>로그인 아이디</th>
