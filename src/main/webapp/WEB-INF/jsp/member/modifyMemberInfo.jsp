@@ -182,7 +182,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${messageList}" var="message">
-						<tr>
+						<tr class="${message.readStatus == false ? "noRead" : ""}">
 							<td>${message.id}</td>
 							<td>${message.regDate}</td>
 							<td><a href="./../message/detailMessage?id=${message.id}&uuid=${uuid}">${message.title}</a></td>

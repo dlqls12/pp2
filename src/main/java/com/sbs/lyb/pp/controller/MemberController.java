@@ -111,12 +111,19 @@ public class MemberController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		
 		List<Message> messageList = messageService.getAllMessageList(id);
-		
-		for ( Message message : messageList ) {
-			if ( message.isReadStatus() ) {
-				model.addAttribute("alertMsg", "읽지않은 쪽지가 있습니다.");
-				return "common/redirect";
+		System.out.println("messageList:" + messageList);
+		int count = 0;
+		for (int i = 0; i < messageList.size(); i++) {
+			if ( messageList.get(i).isReadStatus() == false ) {
+				count++;
 			}
+		}
+		System.out.println("count:" + count);
+		
+		
+		if (count > 0) {
+			model.addAttribute("alertMsg", String.format("읽지 않은 메세지가 %d개 있습니다.", count));
+			return "common/redirect";
 		}
 		
 		if (memberService.isUsingTmpPw(id)) {

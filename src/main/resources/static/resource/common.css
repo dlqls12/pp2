@@ -165,3 +165,7 @@ html>head+body:nth-child(2) .height-300 {
 	min-height:70vh;
 	border:1px solid green;
 }
+
+.noRead {
+	background-color:red;
+}
