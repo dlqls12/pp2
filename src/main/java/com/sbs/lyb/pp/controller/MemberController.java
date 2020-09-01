@@ -182,6 +182,7 @@ public class MemberController {
 		
 		List<Message> messageList = messageService.getMessageList(loginedMemberId, itemsInAPage, limitFrom);
 		
+		model.addAttribute("page", page);
 		model.addAttribute("loginedMember", loginedMember);
 		model.addAttribute("messageList", messageList);
 		model.addAttribute("uuid", uuid);

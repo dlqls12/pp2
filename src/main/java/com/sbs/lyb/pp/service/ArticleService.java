@@ -23,8 +23,8 @@ public class ArticleService {
 	@Autowired
 	private FileService fileService;
 		
-	public List<Article> getForPrintArticles(int boardId) {
-		return articleDao.getForPrintArticles(boardId);
+	public List<Article> getForPrintArticles(int boardId, String searchKeyword) {
+		return articleDao.getForPrintArticles(boardId, searchKeyword);
 	}
 
 	public Article getForPrintArticleById(Member member, int id) {
@@ -66,8 +66,8 @@ public class ArticleService {
 		return id;
 	}
 
-	public List<Article> getArticlesSortByBoard(int id, int itemsInAPage, int limitFrom) {
-		return articleDao.getArticlesSortByBoard(id, itemsInAPage, limitFrom);
+	public List<Article> getArticlesSortByBoard(int id, int itemsInAPage, int limitFrom, String searchKeyword) {
+		return articleDao.getArticlesSortByBoard(id, itemsInAPage, limitFrom, searchKeyword);
 	}
 
 	public void delete(int id) {

@@ -73,7 +73,7 @@
 <div class="con body-box">
 	<form method="POST" class="form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 		<input type="hidden" name="fileIdsStr" />
-		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id">
+		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id&page=1">
 		<table class="table1" border="1">
 			<tbody>
 				<tr>

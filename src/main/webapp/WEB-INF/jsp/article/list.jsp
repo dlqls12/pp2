@@ -5,6 +5,8 @@
 <div class="con body-box">
 	<c:if test="${fullPage==0}">
 		게시물이 존재하지 않습니다.
+		<h4><a href="${board.code}-write">[글 쓰러 가기]</a></h4>
+		<h4><button type="button" onclick="history.back();">돌아가기</button></h4>
 	</c:if>
 	<c:if test="${fullPage!=0}">
 		<table class="table1" border="1">
@@ -41,6 +43,12 @@
 				</li>
 			</c:forEach>
 		</div>
+		
+		<form action="${board.code}-list?page=1&searchKeyword=${searchKeyword}">
+				<input type="hidden" name="page" value="1" />
+				<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
+				<button type="submit">검색</button>	
+		</form>
 	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%>

@@ -7,6 +7,9 @@
 		FROM article
 		WHERE displayStatus = 1
 		AND boardId = #{boardId}
+		<if test="searchKeyword != null">
+			AND title LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 	</select>
 
 	<select id="getArticlesSortByBoard" resultMap="article">
@@ -17,6 +20,9 @@
 		ON A.memberId = M.id
 		WHERE A.displayStatus = 1
 		AND A.boardId = #{id}
+		<if test="searchKeyword != null">
+			AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 		ORDER BY A.id DESC
 		LIMIT #{limitFrom}, #{itemsInAPage}
 	</select>

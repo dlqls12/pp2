@@ -28,11 +28,12 @@ public class ArticleController {
 	private ReplyService replyService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
-	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page) {
+	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, String searchKeyword) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 
-		List<Article> allArticles = articleService.getForPrintArticles(board.getId());
+		List<Article> allArticles = articleService.getForPrintArticles(board.getId(), searchKeyword);
+		
 		int size = allArticles.size();
 		int limitFrom = (page - 1) * 10;
 		int itemsInAPage = 10;
@@ -43,7 +44,7 @@ public class ArticleController {
 			fullPage = size / itemsInAPage + 1;
 		}
 		
-		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), itemsInAPage, limitFrom);
+		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), itemsInAPage, limitFrom, searchKeyword);
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
