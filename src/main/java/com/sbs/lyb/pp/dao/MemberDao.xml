@@ -3,8 +3,7 @@
 
 <mapper namespace="com.sbs.lyb.pp.dao.MemberDao">
 	<insert id="join" useGeneratedKeys="true" keyProperty="id">
-		INSERT
-		INTO member
+		INSERT INTO member
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		authStatus = 0,
@@ -13,13 +12,11 @@
 		`name` = #{name},
 		nickname = #{nickname},
 		email = #{email},
-		phoneNo = #{phoneNo},
-		division = 'N'
+		phoneNo = #{phoneNo}
 	</insert>
 	
 	<select id="getLoginIdDupCount" resultType="int">
-		SELECT COUNT(*) AS
-		cnt
+		SELECT COUNT(*) AS cnt
 		FROM member
 		WHERE loginId = #{loginId}
 	</select>
@@ -33,8 +30,7 @@
 	<select id="getMemberById" resultType="Member">
 		SELECT *
 		FROM member
-		WHERE
-		id = #{id}
+		WHERE id = #{id}
 	</select>
 	
 	<update id="modifyMemberInfo">
@@ -76,4 +72,16 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<update id="joinGroup">
+		UPDATE member
+		SET groupId = #{newGroupId}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="getMemberListByGroupId" resultType="Member">
+		SELECT *
+		FROM member
+		WHERE groupId = #{groupId}
+	</select>
 </mapper>

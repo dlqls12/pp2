@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sbs.lyb.pp.dto.Group;
 import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.dto.Message;
 import com.sbs.lyb.pp.dto.ResultData;
+import com.sbs.lyb.pp.service.GroupService;
 import com.sbs.lyb.pp.service.MemberService;
 import com.sbs.lyb.pp.service.MessageService;
 import com.sbs.lyb.pp.util.Util;
@@ -25,6 +27,8 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	MessageService messageService;
+	@Autowired
+	GroupService groupService;
 
 	@RequestMapping("/usr/member/signOut")
 	public String showSignOut() {
@@ -181,6 +185,10 @@ public class MemberController {
 		}
 		
 		List<Message> messageList = messageService.getMessageList(loginedMemberId, itemsInAPage, limitFrom);
+		if ( loginedMember.getGroupId() > 0 ) {
+			Group group = groupService.getGroupById(loginedMember.getGroupId());
+			model.addAttribute("groupName", group.getName());
+		}
 		
 		model.addAttribute("page", page);
 		model.addAttribute("loginedMember", loginedMember);

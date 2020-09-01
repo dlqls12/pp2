@@ -5,7 +5,7 @@
 <%@ include file="../part/head.jspf"%>
 <div class="con">
 	<div class="body-box">
-		안녕
+		<div><a href="./../group/createGroup">[그룹 만들기]</a></div>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

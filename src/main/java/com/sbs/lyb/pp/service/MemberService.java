@@ -1,5 +1,6 @@
 package com.sbs.lyb.pp.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -111,5 +112,13 @@ public class MemberService {
 			return true;
 		}
 		return false;
+	}
+
+	public void joinGroup(int newGroupId, int id) {
+		memberDao.joinGroup(newGroupId, id);
+	}
+
+	public List<Member> getMemberListByGroupId(int id) {
+		return memberDao.getMemberListByGroupId(id);
 	}
 }

@@ -48,7 +48,7 @@ CREATE TABLE `member` (
     `nickname` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
     `phoneNo` CHAR(20) NOT NULL,
-    division CHAR(100) NOT NULL DEFAULT 'N'
+    groupId int(100) NOT NULL DEFAULT 0
 );
 
 # 테스트 데이터 삽입
@@ -166,8 +166,22 @@ CREATE TABLE `message` (
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	displayStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+	readStatus tinyint(1) unsigned not null default 0,
 	title CHAR(200) NOT NULL,
     `body` LONGTEXT NOT NULL
 );
 
-SELECT * FROM `message`;
+CREATE TABLE `group` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME,
+    updateDate DATETIME,
+    delDate DATETIME,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	`name` char(100) not null,
+	`body` text not null
+);
+
+SELECT * FROM `member`
+select * from `group`
+truncate `group`
+SELECT *   FROM `group` WHERE `name` = 'sbs';

@@ -33,6 +33,9 @@
 		<input type="hidden" name="loginPwReal">
 		<input type="hidden" name="id" value="${loginedMember.id}">
 		<table class="table1" border="1">
+			<colgroup>
+				<col width="150"/>
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>로그인 비번</th>

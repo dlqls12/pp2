@@ -95,6 +95,12 @@
 					<th>휴대폰</th>
 					<td>${loginedMember.phoneNo}</td>
 				</tr>
+				<c:if test="${groupName != null}">
+					<tr>
+						<th>그룹</th>
+						<td><a href="./../group/groupPage?id=${loginedMember.groupId}">${groupName}</a></td>
+					</tr>
+				</c:if>
 				<tr>
 					<th>회원 정보 수정</th>
 					<td>
