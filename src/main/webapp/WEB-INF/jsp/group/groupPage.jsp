@@ -36,6 +36,7 @@
 		<c:if test="${group.memberCount > 1}">
 			<a href="doSignOutGroup?id=${loginedMemberId}&groupId=${group.id}" onclick="if ( confirm('정말로 ${group.name}그룹에서 나가시겠습니까?') == false ) return false;">[그룹 탈퇴하기]</a>
 		</c:if>
+		<div><a href="./../article/${group.code}-list?page=1">[우리그룹 게시판이동]</a></div>
 	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%> 

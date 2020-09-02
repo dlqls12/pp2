@@ -63,7 +63,7 @@
 				<tr>
 					<th>그룹생성</th>
 					<td>
-						<button type="submit">만들기</button>
+						<button type="submit" onclick="if ( confirm('정말 해당 내용으로 그룹을 생성하시겠습니까?') == false ) return false;">만들기</button>
 					</td>
 				</tr>
 			</tbody>

@@ -82,6 +82,7 @@
 		<div>
 			<a href="${article.getModifyLink(board.code)}">[수정]</a>
 			<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
+			<a href="${board.code}-list?page=1">[리스트로 돌아가기]</a>
 		</div>
 	</c:if>
 	<script>

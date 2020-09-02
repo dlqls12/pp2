@@ -89,7 +89,9 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			isLogined = true;
 			loginedMember = memberService.getMemberById(loginedMemberId);
-			groupOfLoginedMember = groupService.getGroupById(loginedMember.getGroupId());
+			if ( loginedMember.getGroupId() > 0 ) {
+				groupOfLoginedMember = groupService.getGroupById(loginedMember.getGroupId());
+			}
 		}
 
 		request.setAttribute("groupOfLoginedMember", groupOfLoginedMember);

@@ -314,10 +314,6 @@ public class MemberController {
 	@ResponseBody
 	public ResultData doGetLoginIdDup(@RequestParam Map<String, Object> param) {
 		String loginId = Util.getAsStr(param.get("loginId"));
-		if ( loginId.length() == 0 ) {
-			return new ResultData("N-1", "아이디를 입력해주세요.");
-		}
-		
 		Member member = memberService.getMemberByLoginId(loginId);
 		
 		if ( member == null ) {
@@ -329,8 +325,10 @@ public class MemberController {
 	@RequestMapping("/usr/member/memberPage")
 	public String showMemberPage(Model model, int id) {
 		Member member = memberService.getMemberById(id);
-		
+		Group group = groupService.getGroupById(member.getGroupId());
+	
 		model.addAttribute("member", member);
+		model.addAttribute("group", group);
 		return "/member/memberPage";
 	}
 }

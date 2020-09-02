@@ -23,7 +23,11 @@
 			<tr>
 				<th>휴대폰</th>
 				<td>${member.phoneNo}</td>
-			</tr>	
+			</tr>
+			<tr>
+				<th>그룹</th>
+				<td>${group.name}</td>
+			</tr>
 		</tbody>
 	</table>
 	<a href="/usr/message/sendMessage?getterId=${member.id}">[쪽지보내기]</a>

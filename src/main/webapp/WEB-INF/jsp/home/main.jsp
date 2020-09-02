@@ -5,6 +5,10 @@
 <div class="con body-box">
 	<div><a href="./../group/createGroup">[그룹 만들기]</a></div>
 	<div><a href="./../group/seekGroup">[그룹 찾기]</a></div>
-	<div><a href="./../article/${groupOfLoginedMember.code}-list?page=1">[우리그룹 게시판이동]</a></div>
+	<c:if test="${loginedMember.groupId != 0 && isLogined}">
+		<div>
+			<a href="./../article/${groupOfLoginedMember.code}-list?page=1">[우리그룹 게시판이동]</a>
+		</div>
+	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%>

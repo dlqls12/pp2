@@ -80,16 +80,16 @@ public class GroupController {
 	
 	@RequestMapping("/usr/group/doJoinGroup")
 	public String doJoinGroup(int id, int groupId, Model model) {
-		memberService.joinGroup(id, groupId);
 		Group group = groupService.getGroupById(groupId);
-		
 		Member member = memberService.getMemberById(id);
+		
 		if ( member.getGroupId() > 0 ) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
 			return "/common/redirect";
 		}
 		
+		memberService.joinGroup(id, groupId);
 		String redirectUrl = "/usr/group/groupPage?id=" + groupId;
 		model.addAttribute("alertMsg", String.format("%s 그룹에 가입되었습니다.", group.getName()));
 		model.addAttribute("redirectUrl", redirectUrl);
