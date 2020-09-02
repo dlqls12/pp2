@@ -116,7 +116,7 @@ public class MemberService {
 		return false;
 	}
 
-	public void joinGroup(int newGroupId, int id) {
+	public void joinGroup(int id, int newGroupId) {
 		memberDao.joinGroup(newGroupId, id);
 		groupService.sizeUp(newGroupId);
 	}

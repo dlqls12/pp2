@@ -31,7 +31,7 @@
 					<th>그룹명</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" />
+							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchKeyword}"/>
 						</div>
 					</td>
 				</tr>

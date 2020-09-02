@@ -118,6 +118,15 @@ html>head+body:nth-child(2) .height-300 {
 	word-break: keep-all;
 }
 
+/* 검색 폼 */
+.search-box-el {
+	display:flex;
+}
+
+.search-box-el > input {
+	margin:0 10px;
+}
+
 /* 테이블 관련 */
 .table1 {
 	width: 100%;
@@ -126,9 +135,15 @@ html>head+body:nth-child(2) .height-300 {
 	text-align: left;
 }
 
+.search-box {
+	display:flex;
+	justify-content:center;
+}
+
 .paging-box {
 	display:flex;
 	justify-content:center;
+	margin:5px;
 }
 
 .paging-box .current {

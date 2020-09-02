@@ -3,13 +3,19 @@
 <c:set var="pageTitle" value="${board.name} 게시판" />
 <%@ include file="../part/head.jspf"%>
 <div class="con body-box">
+	<h4><a href="${board.code}-write">[글 쓰러 가기]</a></h4>
 	<c:if test="${fullPage==0}">
 		게시물이 존재하지 않습니다.
-		<h4><a href="${board.code}-write">[글 쓰러 가기]</a></h4>
 		<h4><button type="button" onclick="history.back();">돌아가기</button></h4>
 	</c:if>
 	<c:if test="${fullPage!=0}">
 		<table class="table1" border="1">
+			<colgroup>
+				<col width="100"/>
+				<col width="200"/>
+				<col />
+				<col width="100"/>
+			</colgroup>
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -43,12 +49,15 @@
 				</li>
 			</c:forEach>
 		</div>
-		
-		<form action="${board.code}-list?page=1&searchKeyword=${searchKeyword}">
-				<input type="hidden" name="page" value="1" />
-				<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
-				<button type="submit">검색</button>	
-		</form>
+		<div class="search-box">
+			<form class="form2" action="${board.code}-list?page=1&searchKeyword=${searchKeyword}">
+				<div class="search-box-el">
+					<input type="hidden" name="page" value="1" />
+					<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
+					<button type="submit">검색</button>
+				</div>
+			</form>
+		</div>
 	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%>

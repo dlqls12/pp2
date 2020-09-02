@@ -3,6 +3,8 @@ package com.sbs.lyb.pp.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +25,29 @@ public class GroupController {
 	private MemberService memberService;
 	
 	@RequestMapping("/usr/group/createGroup")
-	public String showCreateGroup() {
+	public String showCreateGroup(HttpServletRequest req, Model model) {
+		
+		Member member = (Member) req.getAttribute("loginedMember");
+		if ( member.getGroupId() > 0 ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
+			return "/common/redirect";
+		}
 		return "/group/createGroup";
 	}
 	
 	@RequestMapping("/usr/group/doCreateGroup")
-	public String doCreateGroup(@RequestParam Map<String, Object> param, String redirectUrl, Model model) {
+	public String doCreateGroup(@RequestParam Map<String, Object> param, String redirectUrl, HttpServletRequest req, Model model) {
 		int id = Util.getAsInt(param.get("id"));
 		String name = Util.getAsStr(param.get("name"));
 		Group group = groupService.getGroupByName(name);
+		
+		Member member = (Member) req.getAttribute("loginedMember");
+		if ( member.getGroupId() > 0 ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
+			return "/common/redirect";
+		}
 		
 		if ( group != null ) {
 			redirectUrl = "/usr/group/groupPage?id=" + group.getId();
@@ -66,8 +82,16 @@ public class GroupController {
 	public String doJoinGroup(int id, int groupId, Model model) {
 		memberService.joinGroup(id, groupId);
 		Group group = groupService.getGroupById(groupId);
-		model.addAttribute("alertMsg", String.format("%s 그룹에 가입되었습니다.", group.getName()));
+		
+		Member member = memberService.getMemberById(id);
+		if ( member.getGroupId() > 0 ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
+			return "/common/redirect";
+		}
+		
 		String redirectUrl = "/usr/group/groupPage?id=" + groupId;
+		model.addAttribute("alertMsg", String.format("%s 그룹에 가입되었습니다.", group.getName()));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "/common/redirect";
 	}
@@ -91,7 +115,7 @@ public class GroupController {
 		
 		if ( group.getMemberCount() == 1 ) {
 			memberService.resetGroupId(id, group.getId());
-			groupService.delete(group.getId());
+			groupService.delete(group.getId(), group.getCode());
 		}
 		else {
 			memberService.resetGroupId(id, group.getId());

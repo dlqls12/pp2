@@ -30,10 +30,10 @@
 		<a href="doJoinGroup?id=${loginedMemberId}&groupId=${group.id}" onclick="if ( confirm('정말로 ${group.name}그룹에 참여하시겠습니까?') == false ) return false;">[그룹 참여하기]</a>
 	</c:if>
 	<c:if test="${loginedMember.groupId == group.id }">
-		<c:if test="${groupSize == 1}">
+		<c:if test="${group.memberCount == 1}">
 			<a href="doSignOutGroup?id=${loginedMemberId}&groupId=${group.id}" onclick="if ( confirm('회원수가 0이 되어 해당 그룹은 자동으로 삭제됩니다. 정말 탈퇴하시겠습니까?') == false ) return false;">[그룹 탈퇴하기]</a>
 		</c:if>
-		<c:if test="${groupSize > 1}">
+		<c:if test="${group.memberCount > 1}">
 			<a href="doSignOutGroup?id=${loginedMemberId}&groupId=${group.id}" onclick="if ( confirm('정말로 ${group.name}그룹에서 나가시겠습니까?') == false ) return false;">[그룹 탈퇴하기]</a>
 		</c:if>
 	</c:if>

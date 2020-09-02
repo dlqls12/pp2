@@ -15,9 +15,13 @@ import com.sbs.lyb.pp.util.Util;
 public class GroupService {
 	@Autowired
 	private GroupDao groupDao;
+	@Autowired
+	private BoardService boardService;
 
 	public int createGroup(@RequestParam Map<String, Object> param) {
 		groupDao.createGroup(param);
+		String code = Util.getAsStr(param.get("code"));
+		boardService.createGroupBoard(code);
 		String name = Util.getAsStr(param.get("name"));
 		Group group = getGroupByName(name);
 		int id = group.getId();
@@ -32,8 +36,9 @@ public class GroupService {
 		return groupDao.getGroupById(id);
 	}
 
-	public void delete(int id) {
+	public void delete(int id, String code) {
 		groupDao.delete(id);
+		boardService.deleteBoard(code);
 	}
 
 	public List<Group> getGroupListBySearchKeyword(String searchKeyword) {

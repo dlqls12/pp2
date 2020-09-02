@@ -113,7 +113,7 @@
 	</div>
 	<div class="modify-mode-on">
 		<form method="POST" class="form1" action="doModifyMemberInfo" onsubmit="MemberModifyInfoForm__submit(this); return false;">
-			<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo">
+			<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo?page=1&uuid=${uuid}">
 			<input type="hidden" name="id" value="${loginedMember.id}">
 			<table class="table1" border="1">
 				<colgroup>
