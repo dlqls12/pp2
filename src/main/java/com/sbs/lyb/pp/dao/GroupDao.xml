@@ -7,7 +7,8 @@
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		`name` = #{name},
-		`body` = #{body}
+		`body` = #{body},
+		`code` = #{code}
 	</insert>
 	
 	<select id="getGroupByName" resultType="Group">
@@ -21,4 +22,28 @@
 		FROM `group`
 		WHERE `id` = #{id}
 	</select>
+	
+	<delete id="delete">
+		DELETE FROM `group`
+		WHERE id = #{id}
+	</delete>
+	
+	<select id="getGroupListBySearchKeyword" resultType="Group">
+		SELECT *
+		FROM `group`
+		WHERE
+		`name` LIKE CONCAT('%',#{searchKeyword},'%')
+	</select>
+	
+	<update id="sizeUp">
+		UPDATE `group`
+		SET memberCount = memberCount + 1
+		WHERE id = #{id}
+	</update>
+	
+	<update id="sizeDown">
+		UPDATE `group`
+		SET memberCount = memberCount - 1
+		WHERE id = #{id}
+	</update>
 </mapper>

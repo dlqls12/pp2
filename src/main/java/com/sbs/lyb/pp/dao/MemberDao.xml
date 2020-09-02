@@ -84,4 +84,11 @@
 		FROM member
 		WHERE groupId = #{groupId}
 	</select>
+	
+	<update id="resetGroupId">
+		UPDATE member SET
+		updateDate = NOW(),
+		groupId = 0
+		WHERE id = #{id}
+	</update>
 </mapper>

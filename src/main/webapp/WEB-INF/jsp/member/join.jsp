@@ -117,7 +117,7 @@
 </script>
 <div class="con body-box">
 	<form method="POST" class="form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/member/login">
+		<input type="hidden" name="redirectUrl" value="/usr/member/login">
 		<input type="hidden" name="loginPwReal">
 		<table class="table1" border="1">
 			<colgroup>

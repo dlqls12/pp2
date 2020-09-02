@@ -1,5 +1,6 @@
 package com.sbs.lyb.pp.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,29 @@ public class GroupService {
 		return id;
 	}
 
-	private Group getGroupByName(String name) {
+	public Group getGroupByName(String name) {
 		return groupDao.getGroupByName(name);
 	}
 
 	public Group getGroupById(int id) {
 		return groupDao.getGroupById(id);
+	}
+
+	public void delete(int id) {
+		groupDao.delete(id);
+	}
+
+	public List<Group> getGroupListBySearchKeyword(String searchKeyword) {
+		return groupDao.getGroupListBySearchKeyword(searchKeyword);
+	}
+
+	public void sizeUp(int newGroupId) {
+		int id = newGroupId;
+		groupDao.sizeUp(id);
+	}
+
+	public void sizeDown(int groupId) {
+		int id = groupId;
+		groupDao.sizeDown(id);
 	}
 }

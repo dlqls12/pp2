@@ -25,6 +25,8 @@ public class MemberService {
 	private String siteName;
 	@Autowired
 	private AttrService attrService;
+	@Autowired
+	private GroupService groupService;
 	
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
@@ -116,9 +118,15 @@ public class MemberService {
 
 	public void joinGroup(int newGroupId, int id) {
 		memberDao.joinGroup(newGroupId, id);
+		groupService.sizeUp(newGroupId);
 	}
 
 	public List<Member> getMemberListByGroupId(int id) {
 		return memberDao.getMemberListByGroupId(id);
+	}
+
+	public void resetGroupId(int id, int groupId) {
+		memberDao.resetGroupId(id);
+		groupService.sizeDown(groupId);
 	}
 }

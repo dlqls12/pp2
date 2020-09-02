@@ -1,5 +1,6 @@
 package com.sbs.lyb.pp.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -14,4 +15,12 @@ public interface GroupDao {
 	void createGroup(Map<String, Object> param);
 
 	Group getGroupById(int id);
+
+	void delete(int id);
+
+	List<Group> getGroupListBySearchKeyword(String searchKeyword);
+
+	void sizeUp(int id);
+
+	void sizeDown(int id);
 }

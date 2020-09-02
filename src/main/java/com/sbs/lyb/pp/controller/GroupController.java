@@ -31,6 +31,15 @@ public class GroupController {
 	public String doCreateGroup(@RequestParam Map<String, Object> param, String redirectUrl, Model model) {
 		int id = Util.getAsInt(param.get("id"));
 		String name = Util.getAsStr(param.get("name"));
+		Group group = groupService.getGroupByName(name);
+		
+		if ( group != null ) {
+			redirectUrl = "/usr/group/groupPage?id=" + group.getId();
+			model.addAttribute("alertMsg", String.format("해당 그룹은 이미 존재합니다."));
+			model.addAttribute("redirectUrl", redirectUrl);
+			return "/common/redirect";
+		}
+		
 		int newGroupId = groupService.createGroup(param);
 		memberService.joinGroup(id, newGroupId);
 		redirectUrl = redirectUrl.replace("#id", newGroupId + "");
@@ -41,8 +50,6 @@ public class GroupController {
 	
 	@RequestMapping("/usr/group/groupPage")
 	public String showGroupPage(int id, Model model) {
-		List<Member> memberList = memberService.getMemberListByGroupId(id);
-		int groupSize = memberList.size();
 		Group group = groupService.getGroupById(id);
 		
 		if ( group == null ) {
@@ -52,7 +59,6 @@ public class GroupController {
 		}
 		
 		model.addAttribute("group", group);
-		model.addAttribute("groupSize", groupSize);
 		return "/group/groupPage";
 	}
 	
@@ -64,5 +70,49 @@ public class GroupController {
 		String redirectUrl = "/usr/group/groupPage?id=" + groupId;
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "/common/redirect";
+	}
+	
+	@RequestMapping("/usr/group/doSignOutGroup")
+	public String doSignOutGroup(int id, int groupId, Model model) {
+		Member member = memberService.getMemberById(id);
+		Group group = groupService.getGroupById(groupId);
+		
+		if ( member == null ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "잘못된 경로!");
+			return "/common/redirect";
+		}
+		
+		if ( member.getGroupId() == 0 ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "잘못된 경로!");
+			return "/common/redirect";
+		}
+		
+		if ( group.getMemberCount() == 1 ) {
+			memberService.resetGroupId(id, group.getId());
+			groupService.delete(group.getId());
+		}
+		else {
+			memberService.resetGroupId(id, group.getId());
+		}
+		
+		model.addAttribute("alertMsg", String.format("%s그룹에서 탈퇴하셨습니다.", group.getName()));
+		model.addAttribute("redirectUrl", "/usr/home/main");
+		return "/common/redirect";
+	}
+	
+	@RequestMapping("/usr/group/seekGroup")
+	public String showSeekGroup(String searchKeyword, Model model) {
+		if ( searchKeyword == null ) {
+			return "/group/seekGroup";
+		}
+		
+		List<Group> groupList = groupService.getGroupListBySearchKeyword(searchKeyword);
+		int groupCount = groupList.size();
+		System.out.println("groupCount: " + groupCount);
+		model.addAttribute("groupCount", groupCount);
+		model.addAttribute("groupList", groupList);
+		return "/group/seekGroup";
 	}
 }

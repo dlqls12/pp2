@@ -32,4 +32,6 @@ public interface MemberDao {
 	void joinGroup(int newGroupId, int id);
 
 	List<Member> getMemberListByGroupId(int id);
+
+	void resetGroupId(int id);
 }

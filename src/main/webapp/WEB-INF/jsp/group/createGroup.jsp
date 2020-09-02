@@ -16,6 +16,13 @@
 			return;
 		}
 
+		form.code.value = form.code.value.trim();
+		if (form.code.value.length == 0) {
+			form.code.focus();
+			alert('그룹코드를 입력해주세요.');
+			return;
+		}
+
 		form.submit();
 		GroupCreateForm__submitDone = true;
 	}
@@ -42,6 +49,14 @@
 					<td>
 						<div class="form-control-box">
 							<textarea name="body" placeholder="간단한 소개글을 입력해주세요."></textarea>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>그룹코드</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="그룹코드를 입력해주세요." name="code" maxlength="20" />
 						</div>
 					</td>
 				</tr>
