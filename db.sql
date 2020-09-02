@@ -48,7 +48,7 @@ CREATE TABLE `member` (
     `nickname` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
     `phoneNo` CHAR(20) NOT NULL,
-    groupId int(100) NOT NULL DEFAULT 0
+    groupId INT(100) NOT NULL DEFAULT 0
 );
 
 # 테스트 데이터 삽입
@@ -166,7 +166,7 @@ CREATE TABLE `message` (
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	displayStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
-	readStatus tinyint(1) unsigned not null default 0,
+	readStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	title CHAR(200) NOT NULL,
     `body` LONGTEXT NOT NULL
 );
@@ -177,11 +177,13 @@ CREATE TABLE `group` (
     updateDate DATETIME,
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
-	`name` char(100) not null,
-	`body` text not null
+	`name` CHAR(100) UNIQUE NOT NULL,
+	`body` TEXT NOT NULL,
+	`code` CHAR(20) NOT NULL UNIQUE,
+	memberCount INT(100) NOT NULL DEFAULT 0
 );
-
 SELECT * FROM `member`
-select * from `group`
-truncate `group`
-SELECT *   FROM `group` WHERE `name` = 'sbs';
+SELECT * FROM `group`
+SELECT * FROM `board`
+TRUNCATE `group`;
+DELETE FROM board WHERE `code` = 'sbs';
