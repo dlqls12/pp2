@@ -82,13 +82,22 @@
 		<input type="hidden" name="fileIdsStr" />
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id&page=1">
 		<div class="select-box">
-			<div class="label">카테고리 선택</div>
-				<select class="select" name="sortId">
-				    <option value="none">=== select ===</option>
-				    <option value="1">sell</option>
-				    <option value="2">buy</option>
-				</select>
-			</div>
+			<c:if test="${board.id == 3}">
+				<div class="label">카테고리 선택</div>
+					<select class="select" name="sortId">
+					    <option value="none">=== select ===</option>
+					    <option value="1">sell</option>
+					    <option value="2">buy</option>
+					</select>
+				</div>
+			</c:if>
+			<c:if test="${board.id != 3}">
+				<div class="label">카테고리 선택</div>
+					<select class="select" name="sortId">
+					    <option value="0">none</option>
+					</select>
+				</div>
+			</c:if>
 		<table class="table1" border="1">
 			<tbody>
 				<tr>

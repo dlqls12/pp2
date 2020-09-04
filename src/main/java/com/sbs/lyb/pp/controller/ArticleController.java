@@ -31,7 +31,7 @@ public class ArticleController {
 	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
-
+		
 		List<Article> allArticles = articleService.getForPrintArticles(board.getId(), searchKeyword);
 		
 		int size = allArticles.size();
@@ -45,12 +45,13 @@ public class ArticleController {
 		}
 		
 		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), itemsInAPage, limitFrom, searchKeyword);
-		System.out.println("articles 넌 뭐니 ? " + articles);
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
-		model.addAttribute("sortId", sortId);
-
+		if ( board.getId() > 2 ) {
+			model.addAttribute("sortId", sortId);
+		}
+		
 		return "/article/list";
 	}
 
