@@ -29,9 +29,9 @@ public interface MemberDao {
 
 	void signOut(int id);
 
-	void joinGroup(int newGroupId, int id);
+	void joinParty(int newPartyId, int id);
 
-	List<Member> getMemberListByGroupId(int id);
+	List<Member> getMemberListByPartyId(int id);
 
-	void resetGroupId(int id);
+	void resetPartyId(int id);
 }

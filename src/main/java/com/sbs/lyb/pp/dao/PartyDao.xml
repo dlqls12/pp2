@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sbs.lyb.pp.dao.GroupDao">
-	<insert id="createGroup">
-		INSERT INTO `group`
+<mapper namespace="com.sbs.lyb.pp.dao.PartyDao">
+	<insert id="createParty">
+		INSERT INTO `party`
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		`name` = #{name},
@@ -11,38 +11,38 @@
 		`code` = #{code}
 	</insert>
 	
-	<select id="getGroupByName" resultType="Group">
+	<select id="getPartyByName" resultType="Party">
 		SELECT *
-		FROM `group`
+		FROM `party`
 		WHERE `name` = #{name}
 	</select>
 	
-	<select id="getGroupById" resultType="Group">
+	<select id="getPartyById" resultType="Party">
 		SELECT *
-		FROM `group`
+		FROM `party`
 		WHERE `id` = #{id}
 	</select>
 	
 	<delete id="delete">
-		DELETE FROM `group`
+		DELETE FROM `party`
 		WHERE id = #{id}
 	</delete>
 	
-	<select id="getGroupListBySearchKeyword" resultType="Group">
+	<select id="getPartyListBySearchKeyword" resultType="Party">
 		SELECT *
-		FROM `group`
+		FROM `party`
 		WHERE
 		`name` LIKE CONCAT('%',#{searchKeyword},'%')
 	</select>
 	
 	<update id="sizeUp">
-		UPDATE `group`
+		UPDATE `party`
 		SET memberCount = memberCount + 1
 		WHERE id = #{id}
 	</update>
 	
 	<update id="sizeDown">
-		UPDATE `group`
+		UPDATE `party`
 		SET memberCount = memberCount - 1
 		WHERE id = #{id}
 	</update>

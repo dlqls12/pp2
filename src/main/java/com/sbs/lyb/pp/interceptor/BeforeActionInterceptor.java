@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sbs.lyb.pp.dto.Group;
+import com.sbs.lyb.pp.dto.Party;
 import com.sbs.lyb.pp.dto.Member;
-import com.sbs.lyb.pp.service.GroupService;
+import com.sbs.lyb.pp.service.PartyService;
 import com.sbs.lyb.pp.service.MemberService;
 
 @Component("beforeActionInterceptor") // 컴포넌트 이름 설정
@@ -29,7 +29,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
-	private GroupService groupService;
+	private PartyService groupService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -83,18 +83,13 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 		Member loginedMember = null;
-		Group groupOfLoginedMember = null;
 
 		if (session.getAttribute("loginedMemberId") != null) {
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			isLogined = true;
 			loginedMember = memberService.getMemberById(loginedMemberId);
-			if ( loginedMember.getGroupId() > 0 ) {
-				groupOfLoginedMember = groupService.getGroupById(loginedMember.getGroupId());
-			}
 		}
 
-		request.setAttribute("groupOfLoginedMember", groupOfLoginedMember);
 		request.setAttribute("loginedMemberId", loginedMemberId);
 		request.setAttribute("isLogined", isLogined);
 		request.setAttribute("loginedMember", loginedMember);

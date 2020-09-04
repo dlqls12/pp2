@@ -9,6 +9,13 @@
 			alert('처리중입니다.');
 			return;
 		}
+
+		form.sortId.value = form.sortId.value.trim();
+		if (form.sortId.value == "none") {
+			form.sortId.focus();
+			alert('카테고리를 입력해주세요.');
+			return;
+		}
 		
 		form.title.value = form.title.value.trim();
 		if (form.title.value.length == 0) {
@@ -74,6 +81,14 @@
 	<form method="POST" class="form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 		<input type="hidden" name="fileIdsStr" />
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id&page=1">
+		<div class="select-box">
+			<div class="label">카테고리 선택</div>
+				<select class="select" name="sortId">
+				    <option value="none">=== select ===</option>
+				    <option value="1">sell</option>
+				    <option value="2">buy</option>
+				</select>
+			</div>
 		<table class="table1" border="1">
 			<tbody>
 				<tr>

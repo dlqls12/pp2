@@ -95,10 +95,10 @@
 					<th>휴대폰</th>
 					<td>${loginedMember.phoneNo}</td>
 				</tr>
-				<c:if test="${groupName != null}">
+				<c:if test="${partyName != null}">
 					<tr>
-						<th>그룹</th>
-						<td><a href="./../group/groupPage?id=${loginedMember.groupId}">${groupName}</a></td>
+						<th>파티</th>
+						<td><a href="./../party/partyPage?id=${loginedMember.partyId}">${partyName}</a></td>
 					</tr>
 				</c:if>
 				<tr>

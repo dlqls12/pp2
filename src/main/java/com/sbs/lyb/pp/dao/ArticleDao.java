@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
@@ -11,15 +12,15 @@ import com.sbs.lyb.pp.dto.Board;
 @Mapper
 public interface ArticleDao {
 
-	List<Article> getForPrintArticles(int boardId, String searchKeyword);
+	List<Article> getForPrintArticles(@Param("boardId") int boardId,@Param("searchKeyword") String searchKeyword);
 
-	Article getForPrintArticleById(int id);
+	Article getForPrintArticleById(@Param("id") int id);
 
-	Board getBoardByCode(String code);
+	Board getBoardByCode(@Param("boardCode") String code);
 
 	void write(Map<String, Object> param);
 
-	List<Article> getArticlesSortByBoard(int id, int itemsInAPage, int limitFrom, String searchKeyword);
+	List<Article> getArticlesSortByBoard(@Param("id") int id, @Param("itemsInAPage")int itemsInAPage,  @Param("limitFrom")int limitFrom, @Param("searchKeyword") String searchKeyword);
 
 	void delete(int id);
 

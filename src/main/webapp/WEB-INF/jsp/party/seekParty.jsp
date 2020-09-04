@@ -3,9 +3,9 @@
 <c:set var="pageTitle" value="그룹찾기" />
 <%@ include file="../part/head.jspf"%>
 <script>
-	var GroupSeekForm__submitDone = false;
-	function GroupSeekForm__submit(form) {
-		if (GroupSeekForm__submitDone) {
+	var PartySeekForm__submitDone = false;
+	function PartySeekForm__submit(form) {
+		if (PartySeekForm__submitDone) {
 			alert('처리중입니다.');
 			return;
 		}
@@ -17,18 +17,18 @@
 		}
 
 		form.submit();
-		GroupSeekForm__submitDone = true;
+		PartySeekForm__submitDone = true;
 	}
 </script>
 <div class="con body-box">
-	<form class="form1" action="?searchKeyword=${searchKeyword}" onsubmit="GroupSeekForm__submit(this); return false;">
+	<form class="form1" action="?searchKeyword=${searchKeyword}" onsubmit="PartySeekForm__submit(this); return false;">
 		<table class="table1" border="1">
 			<colgroup>
 				<col width=200 />
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>그룹명</th>
+					<th>파티명</th>
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchKeyword}"/>
@@ -46,14 +46,14 @@
 	</form>
 	
 	<h4>검색 결과</h4>
-	<c:if test="${groupCount == 0}">
+	<c:if test="${partyCount == 0}">
 		결과를 찾을 수 없습니다.
 	</c:if>
-	<c:if test="${groupCount != 0}">
-		<c:if test="${groupCount == null}">
+	<c:if test="${partyCount != 0}">
+		<c:if test="${partyCount == null}">
 			검색어를 입력해보세요.
 		</c:if>
-		<c:if test="${groupCount != null}">
+		<c:if test="${partyCount != null}">
 			<table class="table1" border="1">
 				<colgroup>
 					<col width="100"/>
@@ -66,19 +66,19 @@
 					<tr>
 						<th>번호</th> 
 						<th>생성날짜</th>
-						<th>그룹명</th>
+						<th>파티명</th>
 						<th>코드</th>
 						<th>회원수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${groupList}" var="group">
+					<c:forEach items="${partyList}" var="party">
 						<tr>
-							<td>${group.id}</td>
-							<td>${group.regDate}</td>
-							<td><a href="groupPage?id=${group.id}">${group.name}</a></td>
-							<td>${group.code}</td>
-							<td>${group.memberCount}</td>
+							<td>${party.id}</td>
+							<td>${party.regDate}</td>
+							<td><a href="partyPage?id=${party.id}">${party.name}</a></td>
+							<td>${party.code}</td>
+							<td>${party.memberCount}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

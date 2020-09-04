@@ -3,33 +3,33 @@
 <c:set var="pageTitle" value="그룹만들기" />
 <%@ include file="../part/head.jspf"%>
 <script>
-	var GroupCreateForm__submitDone = false;
-	function GroupCreateForm__submit(form) {
-		if (GroupCreateForm__submitDone) {
+	var PartyCreateForm__submitDone = false;
+	function PartyCreateForm__submit(form) {
+		if (PartyCreateForm__submitDone) {
 			alert('처리중입니다.');
 			return;
 		}
 		form.name.value = form.name.value.trim();
 		if (form.name.value.length == 0) {
 			form.name.focus();
-			alert('그룹이름을 입력해주세요.');
+			alert('파티이름을 입력해주세요.');
 			return;
 		}
 
 		form.code.value = form.code.value.trim();
 		if (form.code.value.length == 0) {
 			form.code.focus();
-			alert('그룹코드를 입력해주세요.');
+			alert('파티코드를 입력해주세요.');
 			return;
 		}
 
 		form.submit();
-		GroupCreateForm__submitDone = true;
+		PartyCreateForm__submitDone = true;
 	}
 </script>
 <div class="con body-box">
-	<form method="POST" class="form1" action="doCreateGroup" onsubmit="GroupCreateForm__submit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/usr/group/groupPage?id=#id">
+	<form method="POST" class="form1" action="doCreateParty" onsubmit="PartyCreateForm__submit(this); return false;">
+		<input type="hidden" name="redirectUrl" value="/usr/party/partyPage?id=#id">
 		<input type="hidden" name="id" value="${loginedMemberId}">
 		<table class="table1" border="1">
 			<colgroup>
@@ -37,15 +37,15 @@
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>그룹명</th>
+					<th>파티명</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="그룹이름을 입력해주세요." name="name" maxlength="30" />
+							<input type="text" placeholder="파티이름을 입력해주세요." name="name" maxlength="30" />
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th>그룹소개</th>
+					<th>파티소개</th>
 					<td>
 						<div class="form-control-box">
 							<textarea name="body" placeholder="간단한 소개글을 입력해주세요."></textarea>
@@ -56,14 +56,14 @@
 					<th>그룹코드</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="그룹코드를 입력해주세요." name="code" maxlength="20" />
+							<input type="text" placeholder="파티코드를 입력해주세요." name="code" maxlength="20" />
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<th>그룹생성</th>
 					<td>
-						<button type="submit" onclick="if ( confirm('정말 해당 내용으로 그룹을 생성하시겠습니까?') == false ) return false;">만들기</button>
+						<button type="submit" onclick="if ( confirm('정말 해당 내용으로 파티를 생성하시겠습니까?') == false ) return false;">만들기</button>
 					</td>
 				</tr>
 			</tbody>

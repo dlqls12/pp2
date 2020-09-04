@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sbs.lyb.pp.dto.Group;
+import com.sbs.lyb.pp.dto.Party;
 import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.dto.Message;
 import com.sbs.lyb.pp.dto.ResultData;
-import com.sbs.lyb.pp.service.GroupService;
+import com.sbs.lyb.pp.service.PartyService;
 import com.sbs.lyb.pp.service.MemberService;
 import com.sbs.lyb.pp.service.MessageService;
 import com.sbs.lyb.pp.util.Util;
@@ -28,7 +28,7 @@ public class MemberController {
 	@Autowired
 	MessageService messageService;
 	@Autowired
-	GroupService groupService;
+	PartyService partyService;
 
 	@RequestMapping("/usr/member/signOut")
 	public String showSignOut() {
@@ -185,9 +185,9 @@ public class MemberController {
 		}
 		
 		List<Message> messageList = messageService.getMessageList(loginedMemberId, itemsInAPage, limitFrom);
-		if ( loginedMember.getGroupId() > 0 ) {
-			Group group = groupService.getGroupById(loginedMember.getGroupId());
-			model.addAttribute("groupName", group.getName());
+		if ( loginedMember.getPartyId() > 0 ) {
+			Party party = partyService.getPartyById(loginedMember.getPartyId());
+			model.addAttribute("partyName", party.getName());
 		}
 		
 		model.addAttribute("page", page);
@@ -325,10 +325,10 @@ public class MemberController {
 	@RequestMapping("/usr/member/memberPage")
 	public String showMemberPage(Model model, int id) {
 		Member member = memberService.getMemberById(id);
-		Group group = groupService.getGroupById(member.getGroupId());
+		Party party = partyService.getPartyById(member.getPartyId());
 	
 		model.addAttribute("member", member);
-		model.addAttribute("group", group);
+		model.addAttribute("party", party);
 		return "/member/memberPage";
 	}
 }

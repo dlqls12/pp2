@@ -11,95 +11,95 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sbs.lyb.pp.dto.Group;
+import com.sbs.lyb.pp.dto.Party;
 import com.sbs.lyb.pp.dto.Member;
-import com.sbs.lyb.pp.service.GroupService;
+import com.sbs.lyb.pp.service.PartyService;
 import com.sbs.lyb.pp.service.MemberService;
 import com.sbs.lyb.pp.util.Util;
 
 @Controller
-public class GroupController {
+public class PartyController {
 	@Autowired
-	private GroupService groupService;
+	private PartyService partyService;
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("/usr/group/createGroup")
-	public String showCreateGroup(HttpServletRequest req, Model model) {
+	@RequestMapping("/usr/party/createParty")
+	public String showCreateParty(HttpServletRequest req, Model model) {
 		
 		Member member = (Member) req.getAttribute("loginedMember");
-		if ( member.getGroupId() > 0 ) {
+		if ( member.getPartyId() > 0 ) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
 			return "/common/redirect";
 		}
-		return "/group/createGroup";
+		return "/party/createParty";
 	}
 	
-	@RequestMapping("/usr/group/doCreateGroup")
-	public String doCreateGroup(@RequestParam Map<String, Object> param, String redirectUrl, HttpServletRequest req, Model model) {
+	@RequestMapping("/usr/party/doCreateParty")
+	public String doCreateParty(@RequestParam Map<String, Object> param, String redirectUrl, HttpServletRequest req, Model model) {
 		int id = Util.getAsInt(param.get("id"));
 		String name = Util.getAsStr(param.get("name"));
-		Group group = groupService.getGroupByName(name);
+		Party party = partyService.getPartyByName(name);
 		
 		Member member = (Member) req.getAttribute("loginedMember");
-		if ( member.getGroupId() > 0 ) {
+		if ( member.getPartyId() > 0 ) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
 			return "/common/redirect";
 		}
 		
-		if ( group != null ) {
-			redirectUrl = "/usr/group/groupPage?id=" + group.getId();
+		if ( party != null ) {
+			redirectUrl = "/usr/party/partyPage?id=" + party.getId();
 			model.addAttribute("alertMsg", String.format("해당 그룹은 이미 존재합니다."));
 			model.addAttribute("redirectUrl", redirectUrl);
 			return "/common/redirect";
 		}
 		
-		int newGroupId = groupService.createGroup(param);
-		memberService.joinGroup(id, newGroupId);
-		redirectUrl = redirectUrl.replace("#id", newGroupId + "");
+		int newPartyId = partyService.createParty(param);
+		memberService.joinParty(id, newPartyId);
+		redirectUrl = redirectUrl.replace("#id", newPartyId + "");
 		model.addAttribute("alertMsg", String.format("%s 그룹이 생성 되었습니다.", name));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "/common/redirect";
 	}
 	
-	@RequestMapping("/usr/group/groupPage")
-	public String showGroupPage(int id, Model model) {
-		Group group = groupService.getGroupById(id);
+	@RequestMapping("/usr/party/partyPage")
+	public String showPartyPage(int id, Model model) {
+		Party party = partyService.getPartyById(id);
 		
-		if ( group == null ) {
+		if ( party == null ) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", String.format("잘못된 경로!"));
 			return "/common/redirect";
 		}
 		
-		model.addAttribute("group", group);
-		return "/group/groupPage";
+		model.addAttribute("party", party);
+		return "/party/partyPage";
 	}
 	
-	@RequestMapping("/usr/group/doJoinGroup")
-	public String doJoinGroup(int id, int groupId, Model model) {
-		Group group = groupService.getGroupById(groupId);
+	@RequestMapping("/usr/party/doJoinParty")
+	public String doJoinParty(int id, int partyId, Model model) {
+		Party party = partyService.getPartyById(partyId);
 		Member member = memberService.getMemberById(id);
 		
-		if ( member.getGroupId() > 0 ) {
+		if ( member.getPartyId() > 0 ) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
 			return "/common/redirect";
 		}
 		
-		memberService.joinGroup(id, groupId);
-		String redirectUrl = "/usr/group/groupPage?id=" + groupId;
-		model.addAttribute("alertMsg", String.format("%s 그룹에 가입되었습니다.", group.getName()));
+		memberService.joinParty(id, partyId);
+		String redirectUrl = "/usr/party/partyPage?id=" + partyId;
+		model.addAttribute("alertMsg", String.format("%s 그룹에 가입되었습니다.", party.getName()));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "/common/redirect";
 	}
 	
-	@RequestMapping("/usr/group/doSignOutGroup")
-	public String doSignOutGroup(int id, int groupId, Model model) {
+	@RequestMapping("/usr/party/doSignOutParty")
+	public String doSignOutParty(int id, int partyId, Model model) {
 		Member member = memberService.getMemberById(id);
-		Group group = groupService.getGroupById(groupId);
+		Party party = partyService.getPartyById(partyId);
 		
 		if ( member == null ) {
 			model.addAttribute("historyBack", true);
@@ -107,36 +107,36 @@ public class GroupController {
 			return "/common/redirect";
 		}
 		
-		if ( member.getGroupId() == 0 ) {
+		if ( member.getPartyId() == 0 ) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "잘못된 경로!");
 			return "/common/redirect";
 		}
 		
-		if ( group.getMemberCount() == 1 ) {
-			memberService.resetGroupId(id, group.getId());
-			groupService.delete(group.getId(), group.getCode());
+		if ( party.getMemberCount() == 1 ) {
+			memberService.resetPartyId(id, party.getId());
+			partyService.delete(party.getId(), party.getCode());
 		}
 		else {
-			memberService.resetGroupId(id, group.getId());
+			memberService.resetPartyId(id, party.getId());
 		}
 		
-		model.addAttribute("alertMsg", String.format("%s그룹에서 탈퇴하셨습니다.", group.getName()));
+		model.addAttribute("alertMsg", String.format("%s그룹에서 탈퇴하셨습니다.", party.getName()));
 		model.addAttribute("redirectUrl", "/usr/home/main");
 		return "/common/redirect";
 	}
 	
-	@RequestMapping("/usr/group/seekGroup")
-	public String showSeekGroup(String searchKeyword, Model model) {
+	@RequestMapping("/usr/party/seekParty")
+	public String showSeekParty(String searchKeyword, Model model) {
 		if ( searchKeyword == null ) {
-			return "/group/seekGroup";
+			return "/party/seekParty";
 		}
 		
-		List<Group> groupList = groupService.getGroupListBySearchKeyword(searchKeyword);
-		int groupCount = groupList.size();
-		System.out.println("groupCount: " + groupCount);
-		model.addAttribute("groupCount", groupCount);
-		model.addAttribute("groupList", groupList);
-		return "/group/seekGroup";
+		List<Party> partyList = partyService.getPartyListBySearchKeyword(searchKeyword);
+		int partyCount = partyList.size();
+		System.out.println("partyCount: " + partyCount);
+		model.addAttribute("partyCount", partyCount);
+		model.addAttribute("partyList", partyList);
+		return "/party/seekParty";
 	}
 }

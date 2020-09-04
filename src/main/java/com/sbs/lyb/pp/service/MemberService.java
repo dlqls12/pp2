@@ -26,7 +26,7 @@ public class MemberService {
 	@Autowired
 	private AttrService attrService;
 	@Autowired
-	private GroupService groupService;
+	private PartyService partyService;
 	
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
@@ -116,17 +116,17 @@ public class MemberService {
 		return false;
 	}
 
-	public void joinGroup(int id, int newGroupId) {
-		memberDao.joinGroup(newGroupId, id);
-		groupService.sizeUp(newGroupId);
+	public void joinParty(int id, int newPartyId) {
+		memberDao.joinParty(newPartyId, id);
+		partyService.sizeUp(newPartyId);
 	}
 
-	public List<Member> getMemberListByGroupId(int id) {
-		return memberDao.getMemberListByGroupId(id);
+	public List<Member> getMemberListByPartyId(int id) {
+		return memberDao.getMemberListByPartyId(id);
 	}
 
-	public void resetGroupId(int id, int groupId) {
-		memberDao.resetGroupId(id);
-		groupService.sizeDown(groupId);
+	public void resetPartyId(int id, int partyId) {
+		memberDao.resetPartyId(id);
+		partyService.sizeDown(partyId);
 	}
 }

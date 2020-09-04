@@ -48,8 +48,8 @@
 			<a href="/usr/home/main">[Main]</a>
 			<a href="/usr/article/free-write">[free-write]</a>
 			<a href="/usr/article/notice-write">[notice-write]</a>
-			<a href="/usr/article/free-list?page=1">[free-list]</a>
-			<a href="/usr/article/notice-list?page=1">[notice-list]</a>
+			<a href="/usr/article/free-list?page=1&sortId=0">[free-list]</a>
+			<a href="/usr/article/notice-list?page=1&sortId=0">[notice-list]</a>
 		</div>
 	</div>
 	<div class="con">

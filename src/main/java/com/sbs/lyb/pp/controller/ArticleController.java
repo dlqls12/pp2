@@ -28,7 +28,7 @@ public class ArticleController {
 	private ReplyService replyService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
-	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, String searchKeyword) {
+	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 
@@ -45,9 +45,11 @@ public class ArticleController {
 		}
 		
 		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), itemsInAPage, limitFrom, searchKeyword);
+		System.out.println("articles 넌 뭐니 ? " + articles);
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
+		model.addAttribute("sortId", sortId);
 
 		return "/article/list";
 	}
@@ -104,7 +106,7 @@ public class ArticleController {
 		int boardId = board.getId();
 		Member member = (Member) req.getAttribute("loginedMember");
 		
-		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr");
+		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "sortId", "fileIdsStr");
 		
 		if (member == null) {
 			model.addAttribute("historyBack", true);

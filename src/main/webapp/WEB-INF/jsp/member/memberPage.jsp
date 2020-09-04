@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<th>그룹</th>
-				<td>${group.name}</td>
+				<td>${party.name}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -53,6 +53,7 @@
 		`body` = #{body},
 		memberId = #{memberId},
 		boardId = #{boardId},
+		sortId = #{sortId},
 		displayStatus = 1
 	</insert>
 
@@ -86,6 +87,7 @@
 		<id property="title" column="title" />
 		<id property="body" column="body" />
 		<id property="memberId" column="memberId" />
+		<id property="sortId" column="sortId" />
 		<id property="boardId" column="boardId" />
 		<association property="extra" javaType="map">
 			<id property="writer" column="extra__writer" />

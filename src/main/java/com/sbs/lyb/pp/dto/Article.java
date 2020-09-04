@@ -20,6 +20,7 @@ public class Article {
 	private String body;
 	private int memberId;
 	private int boardId;
+	private int sortId;
 	private Map<String, Object> extra;
 	
 	public String getDetailLink(String boardCode) {

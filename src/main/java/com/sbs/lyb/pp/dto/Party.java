@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Group {
+public class Party {
 	private int id;
 	private String regDate;
 	private String updateDate;

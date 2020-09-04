@@ -73,22 +73,22 @@
 		WHERE id = #{id}
 	</update>
 	
-	<update id="joinGroup">
+	<update id="joinParty">
 		UPDATE member
-		SET groupId = #{newGroupId}
+		SET partyId = #{newPartyId}
 		WHERE id = #{id}
 	</update>
 	
-	<select id="getMemberListByGroupId" resultType="Member">
+	<select id="getMemberListByPartyId" resultType="Member">
 		SELECT *
 		FROM member
-		WHERE groupId = #{groupId}
+		WHERE partyId = #{partyId}
 	</select>
 	
-	<update id="resetGroupId">
+	<update id="resetPartyId">
 		UPDATE member SET
 		updateDate = NOW(),
-		groupId = 0
+		partyId = 0
 		WHERE id = #{id}
 	</update>
 </mapper>
