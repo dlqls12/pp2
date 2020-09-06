@@ -12,7 +12,7 @@ import com.sbs.lyb.pp.dto.Board;
 @Mapper
 public interface ArticleDao {
 
-	List<Article> getForPrintArticles(@Param("boardId") int boardId,@Param("searchKeyword") String searchKeyword);
+	List<Article> getForPrintArticles(@Param("boardId") int boardId, @Param("sortId") int sortId, @Param("searchKeyword") String searchKeyword);
 
 	Article getForPrintArticleById(@Param("id") int id);
 
@@ -20,7 +20,7 @@ public interface ArticleDao {
 
 	void write(Map<String, Object> param);
 
-	List<Article> getArticlesSortByBoard(@Param("id") int id, @Param("itemsInAPage")int itemsInAPage,  @Param("limitFrom")int limitFrom, @Param("searchKeyword") String searchKeyword);
+	List<Article> getArticlesSortByBoard(@Param("id") int id, @Param("sortId") int sortId, @Param("itemsInAPage")int itemsInAPage,  @Param("limitFrom")int limitFrom, @Param("searchKeyword") String searchKeyword);
 
 	void delete(int id);
 

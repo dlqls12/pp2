@@ -10,6 +10,9 @@
 		<if test="searchKeyword != null">
 			AND title LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
+		<if test="sortId != 0">
+			AND sortId = #{sortId}
+		</if>
 	</select>
 
 	<select id="getArticlesSortByBoard" resultMap="article">
@@ -23,11 +26,14 @@
 		<if test="searchKeyword != null">
 			AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
+		<if test="sortId != 0">
+			AND sortId = #{sortId}
+		</if>
 		ORDER BY A.id DESC
 		LIMIT #{limitFrom}, #{itemsInAPage}
 	</select>
 
-	<select id="getForPrintArticleById" parameterType="int" resultMap="article">
+	<select id="getForPrintArticleById" resultMap="article">
 		SELECT A.*,
 		M.nickname AS extra__writer
 		FROM article AS A

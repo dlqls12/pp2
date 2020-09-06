@@ -76,6 +76,16 @@
 					</c:if>
 				</td>
 			</tr>
+			<c:if test="${tagList.size() != 0}">
+				<tr>
+					<th>태그</th>
+					<td>
+						<c:forEach items="${tagList}" var="tag">
+							<a href="">#${tag.body}</a>&nbsp
+						</c:forEach>
+					</td>
+				</tr>
+			</c:if>
 		</tbody>
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">

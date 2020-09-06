@@ -16,8 +16,10 @@ import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
 import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.dto.Reply;
+import com.sbs.lyb.pp.dto.Tag;
 import com.sbs.lyb.pp.service.ArticleService;
 import com.sbs.lyb.pp.service.ReplyService;
+import com.sbs.lyb.pp.service.TagService;
 import com.sbs.lyb.pp.util.Util;
 
 @Controller
@@ -26,13 +28,15 @@ public class ArticleController {
 	private ArticleService articleService;
 	@Autowired
 	private ReplyService replyService;
+	@Autowired
+	private TagService tagService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
-	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword) {
+	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword, String searchTag) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 		
-		List<Article> allArticles = articleService.getForPrintArticles(board.getId(), searchKeyword);
+		List<Article> allArticles = articleService.getForPrintArticles(board.getId(), sortId, searchKeyword);
 		
 		int size = allArticles.size();
 		int limitFrom = (page - 1) * 10;
@@ -44,7 +48,7 @@ public class ArticleController {
 			fullPage = size / itemsInAPage + 1;
 		}
 		
-		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), itemsInAPage, limitFrom, searchKeyword);
+		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), sortId, itemsInAPage, limitFrom, searchKeyword);
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
@@ -86,13 +90,17 @@ public class ArticleController {
 		model.addAttribute("article", article);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
+		
+		List<Tag> tagList = tagService.getTagList(id);
+		model.addAttribute("tagList", tagList);
+		
 		return "/article/detail";
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-write")
 	public String showWrite(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
 		if (listUrl == null) {
-			listUrl = "./" + boardCode + "-list?page=1";
+			listUrl = "./" + boardCode + "-list?page=1&sortId=0";
 		}
 		model.addAttribute("listUrl", listUrl);
 		Board board = articleService.getBoardByCode(boardCode);
@@ -118,8 +126,10 @@ public class ArticleController {
 		int memberId = member.getId();
 		newParam.put("boardId", boardId);
 		newParam.put("memberId", memberId);
-		System.out.println(param);
 		int newArticleId = articleService.write(newParam);
+		
+		String tag = Util.getAsStr(param.get("tag"));
+		tagService.addTag(newArticleId, tag);
 
 		redirectUrl = redirectUrl.replace("#id", newArticleId + "");
 		model.addAttribute("alertMsg", String.format("%d번 글 작성 완료.", newArticleId));
@@ -151,7 +161,7 @@ public class ArticleController {
 		Article article = articleService.getForPrintArticleById(member, id);
 		model.addAttribute("listUrl", listUrl);
 		model.addAttribute("article", article);
-		
+
 		return "article/modify";
 	}
 	
@@ -171,6 +181,7 @@ public class ArticleController {
 
 		model.addAttribute("alertMsg", String.format("%d번 글 수정 완료.", id));
 		model.addAttribute("redirectUrl", redirectUrl);
+		
 		return "common/redirect";
 	}
 }

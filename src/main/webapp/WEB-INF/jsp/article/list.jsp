@@ -46,14 +46,7 @@
 								<td>${article.id}</td>
 								<td>${article.regDate}</td>
 								<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
-								<td>
-									<c:if test="${article.memberId != loginedMemberId }">
-										<a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
-									</c:if>
-									<c:if test="${article.memberId == loginedMemberId }">
-										${article.extra.writer}
-									</c:if>
-								</td>
+								<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
 							</tr>
 						</c:if>
 					</c:if>
@@ -62,14 +55,7 @@
 							<td>${article.id}</td>
 							<td>${article.regDate}</td>
 							<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
-							<td>
-								<c:if test="${article.memberId != loginedMemberId }">
-									<a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
-								</c:if>
-								<c:if test="${article.memberId == loginedMemberId }">
-									${article.extra.writer}
-								</c:if>
-							</td>
+							<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
 						</tr>
 					</c:if>
 				</c:forEach>

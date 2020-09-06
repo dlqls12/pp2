@@ -81,25 +81,25 @@
 	<form method="POST" class="form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 		<input type="hidden" name="fileIdsStr" />
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id&page=1">
-		<div class="select-box">
-			<c:if test="${board.id == 3}">
-				<div class="label">카테고리 선택</div>
-					<select class="select" name="sortId">
-					    <option value="none">=== select ===</option>
-					    <option value="1">sell</option>
-					    <option value="2">buy</option>
-					</select>
-				</div>
-			</c:if>
-			<c:if test="${board.id != 3}">
-				<div class="label">카테고리 선택</div>
-					<select class="select" name="sortId">
-					    <option value="0">none</option>
-					</select>
-				</div>
-			</c:if>
+		<c:if test="${board.id != 3}">
+			<input type="hidden" name="sortId" value="0" />
+		</c:if>
 		<table class="table1" border="1">
 			<tbody>
+				<c:if test="${board.id == 3}">
+				<tr>
+					<th>카테고리 선택</th>
+					<td>
+						<div class="form-control-box">
+							<select class="select" name="sortId">
+							    <option value="none">=== select ===</option>
+							    <option value="1">sell</option>
+							    <option value="2">buy</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+				</c:if>
 				<tr>
 					<th>제목</th>
 					<td>
@@ -124,6 +124,16 @@
 						</div>
 					</td>
 				</tr>
+				<c:if test="${board.id == 3}">
+				<tr>
+					<th>태그 추가하기</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="태그를 입력해주세요. ex) #강아지" name="tag" maxlength="100" />
+						</div>
+					</td>
+				</tr>
+				</c:if>
 				<tr>
 					<th>작성</th>
 					<td>

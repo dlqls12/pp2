@@ -183,22 +183,6 @@ html>head+body:nth-child(2) .height-300 {
 	background-color:#D3B7D8;
 }
 
-.select-box {
-	display:flex;
-	width:100%;
-	box-sizing: border-box;
-	border-top:1px solid black;
-}
-
-.label {
-	display:flex;
-	width:32%;
-	font-weight: bold;
-	align-items:center;
-	border-left:1px solid black;
-	border-right:1px solid black;
-}
-
 .select {
 	width: 100%;
 	box-sizing: border-box;

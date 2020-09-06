@@ -141,6 +141,14 @@
 					</td>
 				</tr>
 				<tr>
+					<th>태그</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="태그를 입력해주세요. ex) #강아지" name="tag" maxlength="100" />
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<th>작성</th>
 					<td>
 						<button type="submit">작성</button> 

@@ -21,15 +21,13 @@
 				<td>${member.email}</td>
 			</tr>
 			<tr>
-				<th>휴대폰</th>
-				<td>${member.phoneNo}</td>
-			</tr>
-			<tr>
 				<th>그룹</th>
-				<td>${party.name}</td>
+				<td><a href="./../party/partyPage?id=${member.partyId}">${party.name}</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<a href="/usr/message/sendMessage?getterId=${member.id}">[쪽지보내기]</a>
+	<c:if test="${loginedMemberId != member.id}">
+		<a href="/usr/message/sendMessage?getterId=${member.id}">[쪽지보내기]</a>
+	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%> 
