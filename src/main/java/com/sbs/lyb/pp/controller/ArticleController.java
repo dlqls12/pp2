@@ -137,11 +137,13 @@ public class ArticleController {
 		return "common/redirect";
 	}
 	
-	@RequestMapping("/usr/article/{boardCode}-delete")
+	@RequestMapping("/usr/article/{boardCode}-doDelete")
 	public String doDelete(@PathVariable("boardCode") String boardCode, Model model, int id) {
-		String redirectUrl = String.format("/usr/article/%s-list?page=1", boardCode);
+		String redirectUrl = String.format("/usr/article/%s-list?page=1&sortId=0", boardCode);
 		
 		articleService.delete(id);
+		tagService.deleteTag(id);
+		
 		
 		model.addAttribute("alertMsg", String.format("%d번 글이 삭제되었습니다.", id));
 		model.addAttribute("redirectUrl", redirectUrl);
@@ -178,6 +180,9 @@ public class ArticleController {
 		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr", "articleId", "id");
 		int id = Util.getAsInt(param.get("id"));
 		articleService.modify(newParam);
+		
+		String tag = Util.getAsStr(param.get("tag"));
+		tagService.modifyTag(id, tag);
 
 		model.addAttribute("alertMsg", String.format("%d번 글 수정 완료.", id));
 		model.addAttribute("redirectUrl", redirectUrl);

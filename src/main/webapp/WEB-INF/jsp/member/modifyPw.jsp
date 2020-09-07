@@ -40,11 +40,14 @@
 	}
 </script>
 <div class="con body-box">
-	<form method="POST" action="doModifyPw" onsubmit="MemberModifyPwForm__submit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo">
+	<form method="POST" class="form1" action="doModifyPw" onsubmit="MemberModifyPwForm__submit(this); return false;">
+		<input type="hidden" name="redirectUrl" value="/usr/member/modifyMemberInfo?page=1&uuid=${uuid}">
 		<input type="hidden" name="loginPwReal">
 		<input type="hidden" name="id" value="${loginedMember.id}">
-		<table>
+		<table class="table1" border="1">
+			<colgroup>
+				<col width="150" />
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>로그인 비번</th>

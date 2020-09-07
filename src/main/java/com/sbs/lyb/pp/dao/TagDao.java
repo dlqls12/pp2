@@ -12,4 +12,6 @@ public interface TagDao {
 	void addTag(int id, String tag);
 
 	List<Tag> getTagList(int id);
+
+	void deleteTag(int id);
 }

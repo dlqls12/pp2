@@ -208,12 +208,29 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/modifyPw")
-	public String showModifyPw() {
+	public String showModifyPw(HttpSession session, String uuid, Model model) {
+		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, uuid);
+
+		if (uuid == null || uuid.length() == 0) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "비밀번호 체크 인증코드가 없습니다.");
+			return "common/redirect";
+		}
+
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			model.addAttribute("redirectUrl", "/usr/member/checkPw");
+			model.addAttribute("alertMsg", checkValidCheckPasswordAuthCodeResultData.getMsg());
+			return "common/redirect";
+		}
+		
+		model.addAttribute("uuid", uuid);
 		return "/member/modifyPw";
 	}
 
 	@RequestMapping("/usr/member/doModifyPw")
-	public String doModifyPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl) {
+	public String doModifyPw(@RequestParam Map<String, Object> param, Model model, String redirectUrl, String uuid) {
 		memberService.modifyMemberPw(param);
 
 		model.addAttribute("alertMsg", String.format("비밀번호가 변경되었습니다."));

@@ -53,7 +53,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>그룹코드</th>
+					<th>파티코드</th>
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="파티코드를 입력해주세요." name="code" maxlength="20" />
@@ -61,7 +61,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>그룹생성</th>
+					<th>파티생성</th>
 					<td>
 						<button type="submit" onclick="if ( confirm('정말 해당 내용으로 파티를 생성하시겠습니까?') == false ) return false;">만들기</button>
 					</td>

@@ -72,9 +72,7 @@
 			<form class="form2" action="${board.code}-list">
 				<div class="search-box-el">
 					<input type="hidden" name="page" value="1" />
-					<c:if test="${board.id == 3}">
-						<input type="hidden" name="sortId" value="${param.sortId}" />
-					</c:if>
+					<input type="hidden" name="sortId" value="${param.sortId}" />
 					<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
 					<button type="submit">검색</button>
 				</div>

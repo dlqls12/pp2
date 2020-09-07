@@ -24,4 +24,13 @@ public class TagService {
 	public List<Tag> getTagList(int id) {
 		return tagDao.getTagList(id);
 	}
+
+	public void modifyTag(int id, String tag) {
+		tagDao.deleteTag(id);
+		addTag(id, tag);
+	}
+
+	public void deleteTag(int id) {
+		tagDao.deleteTag(id);
+	}
 }
