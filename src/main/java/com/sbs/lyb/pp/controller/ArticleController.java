@@ -32,7 +32,7 @@ public class ArticleController {
 	private TagService tagService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
-	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword, String searchTag) {
+	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 		
@@ -60,7 +60,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-detail")
-	public String showDetail(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl, int page) {
+	public String showDetail(Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, String listUrl, int page) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
 		}
@@ -70,9 +70,8 @@ public class ArticleController {
 		model.addAttribute("board", board);
 
 		int id = Integer.parseInt((String) param.get("id"));
-		Member loginedMember = (Member)req.getAttribute("loginedMember");
 
-		Article article = articleService.getForPrintArticleById(loginedMember, id);
+		Article article = articleService.getForPrintArticleById(id);
 		List<Reply> allReplies = replyService.getReplies(id);
 		
 		int size = allReplies.size();
@@ -151,7 +150,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/{boardCode}-modify")
-	public String showModify(@PathVariable("boardCode") String boardCode, HttpServletRequest req, Model model, int id, String listUrl) {
+	public String showModify(@PathVariable("boardCode") String boardCode, Model model, int id, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list?page=1";
 		}
@@ -159,8 +158,7 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 		
-		Member member = (Member)req.getAttribute("loginedMember");
-		Article article = articleService.getForPrintArticleById(member, id);
+		Article article = articleService.getForPrintArticleById(id);
 		model.addAttribute("listUrl", listUrl);
 		model.addAttribute("article", article);
 

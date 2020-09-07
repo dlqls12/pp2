@@ -33,4 +33,8 @@ public class TagService {
 	public void deleteTag(int id) {
 		tagDao.deleteTag(id);
 	}
+
+	public List<Tag> getTagListByBody(String searchTag) {
+		return tagDao.getTagListByBody(searchTag);
+	}
 }

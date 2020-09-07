@@ -27,7 +27,7 @@ public class ArticleService {
 		return articleDao.getForPrintArticles(boardId, sortId, searchKeyword);
 	}
 
-	public Article getForPrintArticleById(Member member, int id) {
+	public Article getForPrintArticleById(int id) {
 		Article article = articleDao.getForPrintArticleById(id);
 		
 		List<File> files = fileService.getFiles("article", article.getId(), "common", "attachment");

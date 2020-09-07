@@ -14,4 +14,6 @@ public interface TagDao {
 	List<Tag> getTagList(int id);
 
 	void deleteTag(int id);
+
+	List<Tag> getTagListByBody(String searchTag);
 }

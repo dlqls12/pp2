@@ -244,7 +244,7 @@
 								</form>
 							</div>
 						</td>
-						<td>${reply.extra.writer}</td>
+						<td><a href="./../member/memberPage?id=${reply.memberId}">${reply.extra.writer}</a></td>
 						<c:if test="${isLogined}">
 							<td>
 								<c:if test="${loginedMemberId == reply.memberId}">

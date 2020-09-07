@@ -12,7 +12,8 @@ CREATE TABLE article (
     title CHAR(200) NOT NULL,
     `body` LONGTEXT NOT NULL,
     memberId INT(10) NOT NULL,
-    boardId INT (10) NOT NULL
+    boardId INT (10) NOT NULL,
+    sortId INT(10) NOT NULL DEFAULT 0
 );
 
 # article 테이블에 테스트 데이터 삽입
@@ -48,7 +49,7 @@ CREATE TABLE `member` (
     `nickname` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
     `phoneNo` CHAR(20) NOT NULL,
-    groupId INT(100) NOT NULL DEFAULT 0
+    partyId INT(100) NOT NULL DEFAULT 0
 );
 
 # 테스트 데이터 삽입
@@ -84,6 +85,12 @@ SET regDate = NOW(),
 updateDAte = NOW(),
 `code` = 'notice',
 `name` = '공지사항';
+
+INSERT INTO `board`
+SET regDate = NOW(),
+updateDAte = NOW(),
+`code` = 'deal',
+`name` = '거래';
 
 # 부가 정보 테이블
 CREATE TABLE attr (
@@ -171,7 +178,7 @@ CREATE TABLE `message` (
     `body` LONGTEXT NOT NULL
 );
 
-CREATE TABLE `group` (
+CREATE TABLE `party` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME,
     updateDate DATETIME,
@@ -182,8 +189,11 @@ CREATE TABLE `group` (
 	`code` CHAR(20) NOT NULL UNIQUE,
 	memberCount INT(100) NOT NULL DEFAULT 0
 );
-SELECT * FROM `member`
-SELECT * FROM `group`
-SELECT * FROM `board`
-TRUNCATE `group`;
-DELETE FROM board WHERE `code` = 'sbs';
+
+CREATE TABLE `tag` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME,
+    updateDate DATETIME,
+	`body` TEXT NOT NULL,
+	articleId INT(10) NOT NULL DEFAULT 0
+);

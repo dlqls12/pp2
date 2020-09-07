@@ -21,4 +21,10 @@
 		FROM tag
 		WHERE articleId = #{id}
 	</delete>
+	
+	<select id="getTagListByBody" resultType="tag">
+		SELECT *
+		FROM tag
+		WHERE body = #{searchTag}
+	</select>
 </mapper>

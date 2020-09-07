@@ -28,11 +28,11 @@
 </script>
 
 <div class="con body-box">
-	<form method="POST" action="doSignOut" onsubmit="MemberCheckPwForm__submit(this); return false;">
+	<form method="POST" class="form1" action="doSignOut" onsubmit="MemberCheckPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/home/main">
 		<input type="hidden" name="loginPwReal">
 		<input type="hidden" name="id" value="${loginedMember.id}">
-		<table>
+		<table class="table1" border="1">
 			<tbody>
 				<tr>
 					<th>로그인 비번</th>
