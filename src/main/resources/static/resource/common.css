@@ -160,14 +160,13 @@ html>head+body:nth-child(2) .height-300 {
 
 .menu-box-1 {
 	display:flex;
-	justify-content:flex-end;
+	justify-content:space-between;
 	padding:10px;
 }
 
 .menu-box-2 {
-	padding:10px;
 	display:flex;
-	justify-content:space-around;
+	justify-content:space-between;
 	font-size:1.5rem;
 }
 
@@ -189,4 +188,24 @@ html>head+body:nth-child(2) .height-300 {
 	display: block;
 	padding:10px;
 	border-right:1px solid black;
+}
+
+.menu-item {
+	width:20%;
+}
+
+.menu-item > a {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+	hieght:100%;
+	padding:10px;
+	border-top:2px solid orange;
+	border-bottom:2px solid orange;
+}
+
+.menu-item > a:hover {
+	color:blue;
+	background-color:orange;
 }

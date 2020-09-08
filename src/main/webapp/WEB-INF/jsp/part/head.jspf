@@ -29,27 +29,29 @@
 </head>
 <body>
 	<div class="top-bar con">
-		<div class="logo">
-			<a href="/usr/home/main">[Logo]</a>
-		</div>
 		<div class="menu-box-1">
-			<c:if test="${isLogined == false}">
-				<a href="/usr/member/login">[Login]</a>
-				<a href="/usr/member/join">[Join]</a>
-			</c:if>
-			<c:if test="${isLogined}">
-				${loginedMember.nickname}님 환영합니다.^^
-				<a href="/usr/member/doLogout">[Logout]</a>
-				<a href="/usr/member/checkPw">[My Page]</a>
-				<a href="/usr/member/signOut?id=${loginedMemberId}">[Sign Out]</a>
-			</c:if>
+			<div class="logo">
+				<a href="/usr/home/main">[Logo]</a>
+			</div>
+			<div>
+				<c:if test="${isLogined == false}">
+					<a href="/usr/member/login">[Login]</a>
+					<a href="/usr/member/join">[Join]</a>
+				</c:if>
+				<c:if test="${isLogined}">
+					${loginedMember.nickname}님 환영합니다.^^
+					<a href="/usr/member/doLogout">[Logout]</a>
+					<a href="/usr/member/checkPw">[My Page]</a>
+					<a href="/usr/member/signOut?id=${loginedMemberId}">[Sign Out]</a>
+				</c:if>
+			</div>
 		</div>
 		<div class="menu-box-2">
-			<a href="/usr/article/free-write">[free-write]</a>
-			<a href="/usr/article/deal-write">[deal-write]</a>
-			<a href="/usr/article/notice-list?page=1&sortId=0">[notice-list]</a>
-			<a href="/usr/article/free-list?page=1&sortId=0">[free-list]</a>
-			<a href="/usr/article/deal-list?page=1&sortId=0">[deal-list]</a>
+			<div class="menu-item"><a href="/usr/article/free-write">[free-write]</a></div>
+			<div class="menu-item"><a href="/usr/article/deal-write">[deal-write]</a></div>
+			<div class="menu-item"><a href="/usr/article/notice-list?page=1&sortId=0">[notice-list]</a></div>
+			<div class="menu-item"><a href="/usr/article/free-list?page=1&sortId=0">[free-list]</a></div>
+			<div class="menu-item"><a href="/usr/article/deal-list?page=1&sortId=0">[deal-list]</a></div>
 		</div>
 	</div>
 	<div class="con">
