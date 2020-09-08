@@ -1,5 +1,6 @@
 package com.sbs.lyb.pp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -186,5 +187,23 @@ public class ArticleController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		
 		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/article/listSortByTag")
+	public String showListSortByTag(int sortId, String searchTag, Model model) {
+		List<Article> articleList = new ArrayList<Article>(); 		
+		Article article = null;
+		List<Tag> tagList = tagService.getTagListByBody(searchTag);
+		
+		for ( int i = 0; i < tagList.size(); i++ ) {
+			article = articleService.getForPrintArticleById(tagList.get(i).getArticleId());
+			articleList.add(article);
+		}
+		
+		model.addAttribute("articleList", articleList);
+		model.addAttribute("searchTag", searchTag);
+		model.addAttribute("sortId", sortId);
+		
+		return "article/listSortByTag";
 	}
 }

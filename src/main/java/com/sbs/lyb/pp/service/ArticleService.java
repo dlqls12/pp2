@@ -13,7 +13,6 @@ import com.sbs.lyb.pp.dao.ArticleDao;
 import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
 import com.sbs.lyb.pp.dto.File;
-import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.util.Util;
 
 @Service
