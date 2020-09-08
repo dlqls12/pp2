@@ -68,12 +68,7 @@
 			<tr>
 				<th>작성자</th>
 				<td>
-					<c:if test="${article.memberId != loginedMemberId }">
-						<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
-					</c:if>
-					<c:if test="${article.memberId == loginedMemberId }">
-						${article.extra.writer}
-					</c:if>
+					<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
 				</td>
 			</tr>
 			<c:if test="${tagList.size() != 0}">

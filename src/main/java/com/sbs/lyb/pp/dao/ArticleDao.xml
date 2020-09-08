@@ -82,6 +82,15 @@
 		</set>
 		WHERE id=#{id}
 	</update>
+		
+	<select id="getArticlesByMemberId" resultMap="article">
+		SELECT A.*,
+		B.name AS extra__name
+		FROM article AS A
+		INNER JOIN board AS B
+		ON A.boardId = B.id
+		WHERE A.memberId = #{memberId}
+	</select>
 
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
@@ -97,6 +106,7 @@
 		<id property="boardId" column="boardId" />
 		<association property="extra" javaType="map">
 			<id property="writer" column="extra__writer" />
+			<id property="name" column="extra__name" />
 		</association>
 	</resultMap>
 </mapper>

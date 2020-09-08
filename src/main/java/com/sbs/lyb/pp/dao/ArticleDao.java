@@ -25,4 +25,6 @@ public interface ArticleDao {
 	void delete(int id);
 
 	void modify(Map<String, Object> param);
+
+	List<Article> getArticlesByMemberId(int memberId);
 }

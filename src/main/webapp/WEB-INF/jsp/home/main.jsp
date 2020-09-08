@@ -5,5 +5,6 @@
 <div class="con body-box">
 	<div><a href="./../party/createParty">[파티 만들기]</a></div>
 	<div><a href="./../party/seekParty">[파티 찾기]</a></div>
+	<div><a href="./../article/seekTag">[게시물 태그 검색]</a></div>
 </div>
 <%@ include file="../part/foot.jspf"%>

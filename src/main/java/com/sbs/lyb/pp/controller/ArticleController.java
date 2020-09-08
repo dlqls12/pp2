@@ -19,6 +19,7 @@ import com.sbs.lyb.pp.dto.Member;
 import com.sbs.lyb.pp.dto.Reply;
 import com.sbs.lyb.pp.dto.Tag;
 import com.sbs.lyb.pp.service.ArticleService;
+import com.sbs.lyb.pp.service.MemberService;
 import com.sbs.lyb.pp.service.ReplyService;
 import com.sbs.lyb.pp.service.TagService;
 import com.sbs.lyb.pp.util.Util;
@@ -31,6 +32,8 @@ public class ArticleController {
 	private ReplyService replyService;
 	@Autowired
 	private TagService tagService;
+	@Autowired
+	private MemberService memberService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
 	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword) {
@@ -53,9 +56,7 @@ public class ArticleController {
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
-		if ( board.getId() > 2 ) {
-			model.addAttribute("sortId", sortId);
-		}
+		model.addAttribute("sortId", sortId);
 		
 		return "/article/list";
 	}
@@ -205,5 +206,20 @@ public class ArticleController {
 		model.addAttribute("sortId", sortId);
 		
 		return "article/listSortByTag";
+	}
+	
+	@RequestMapping("/usr/article/listSortByMember")
+	public String showListSortByMember(int memberId, Model model) {
+		List<Article> articleList = articleService.getArticlesByMemberId(memberId);
+		Member member = memberService.getMemberById(memberId);
+		
+		model.addAttribute("articleList", articleList);
+		model.addAttribute("memberNickname", member.getNickname());
+		return "article/listSortByMember";
+	}
+	
+	@RequestMapping("/usr/article/seekTag")
+	public String showSeekTag() {
+		return "article/seekTag";
 	}
 }

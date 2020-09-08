@@ -85,6 +85,9 @@
 			<input type="hidden" name="sortId" value="0" />
 		</c:if>
 		<table class="table1" border="1">
+			<colgroup>
+				<col width="200"/>
+			</colgroup>
 			<tbody>
 				<c:if test="${board.id == 3}">
 				<tr>
