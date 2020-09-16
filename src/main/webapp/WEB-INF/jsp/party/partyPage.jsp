@@ -5,7 +5,9 @@
 <%@ include file="../part/head.jspf"%>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
-
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <div class="con body-box">
 	<table class="table1" border="1">
 		<colgroup>
@@ -18,7 +20,7 @@
 			</tr>
 			<tr>
 				<th>소개글</th>
-				<td>${party.body}</td>
+				<td><pre>${party.body}</pre></td>
 			</tr>
 			<tr>
 				<th>회원수</th>

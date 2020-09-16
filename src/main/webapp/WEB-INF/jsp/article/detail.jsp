@@ -35,6 +35,14 @@
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
 <div class="con body-box">
+	<div class="subTitle">
+		<div>제목:${article.title}</div>
+		<div>
+			날짜:${article.regDate} |
+			작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a> |
+			조회수:${article.hit}
+		</div> 
+	</div>
 	<table border="1" class="table1">
 		<colgroup>
 			<col width="100" />
@@ -54,7 +62,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${article.body}</td>
+				<td><pre>${article.body}</pre></td>
 			</tr>
 			<c:set var="fileNo" value="${String.valueOf(1)}" />
 			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />

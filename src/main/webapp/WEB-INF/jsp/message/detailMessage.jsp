@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${message.body}</td>
+				<td><pre>${message.body}</pre></td>
 			</tr>
 			<tr>
 				<th>작성자</th>

@@ -20,6 +20,9 @@
 		PartySeekForm__submitDone = true;
 	}
 </script>
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <div class="con body-box">
 	<form class="form1" action="?searchKeyword=${searchKeyword}" onsubmit="PartySeekForm__submit(this); return false;">
 		<table class="table1" border="1">

@@ -152,6 +152,10 @@ html>head+body:nth-child(2) .height-300 {
 	padding: 10px 10px;
 } 
 
+.table1 > tbody > tr td:first-child, .table1 > tbody > tr td:last-child, .table1 > tbody > tr td:nth-child(3) {
+	text-align:left;
+}
+
 .search-box {
 	display:flex;
 	justify-content:center;
@@ -219,8 +223,7 @@ html>head+body:nth-child(2) .height-300 {
 	width:93%;
 	hieght:100%;
 	padding:10px;
-	border-top:2px solid #2A2A2A;
-	border-bottom:2px solid #2A2A2A;
+	
 }
 
 .menu-item > a:hover {
@@ -248,6 +251,12 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 .pageTitle {
+	display:flex;
+	justify-content:space-between;
+	margin:15px 0;
+}
+
+.subTitle {
 	display:flex;
 	justify-content:space-between;
 	margin:15px 0;
