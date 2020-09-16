@@ -84,6 +84,10 @@
 					</td>
 				</tr>
 			</c:if>
+			<tr>
+				<th>조회수</th>
+				<td>${article.hit}</td>
+			</tr>
 		</tbody>
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">

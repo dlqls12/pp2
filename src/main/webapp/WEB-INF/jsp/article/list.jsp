@@ -31,16 +31,16 @@
 			<table class="table1" border="1">
 				<colgroup>
 					<col width="100"/>
-					<col width="200"/>
 					<col />
+					<col width="200"/>
 					<col width="100"/>
 				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>날짜</th>
 						<th>제목</th>
 						<th>작성자</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -49,18 +49,18 @@
 							<c:if test="${sortId == article.sortId}">
 								<tr>
 									<td>${article.id}</td>
-									<td>${article.regDate}</td>
 									<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
 									<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+									<td>${article.hit}</td>
 								</tr>
 							</c:if>
 						</c:if>
 						<c:if test="${board.id != 3 || sortId == 0}">
 							<tr>
 								<td>${article.id}</td>
-								<td>${article.regDate}</td>
 								<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
 								<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+								<td>${article.hit}</td>
 							</tr>
 						</c:if>
 					</c:forEach>

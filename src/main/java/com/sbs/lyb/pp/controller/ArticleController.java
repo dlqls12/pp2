@@ -87,6 +87,8 @@ public class ArticleController {
 		}
 		List<Reply> replies = replyService.getForPrintReplies(id, itemsInAPage, limitFrom);
 		
+		articleService.addHit(id);
+		
 		model.addAttribute("replies", replies);
 		model.addAttribute("article", article);
 		model.addAttribute("fullPage", fullPage);

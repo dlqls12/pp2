@@ -21,6 +21,7 @@ public class Article {
 	private int memberId;
 	private int boardId;
 	private int sortId;
+	private int hit;
 	private Map<String, Object> extra;
 	
 	public String getDetailLink(String boardCode) {
