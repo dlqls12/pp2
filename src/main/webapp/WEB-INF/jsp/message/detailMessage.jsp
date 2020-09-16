@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="쪽지 상세보기" />
 <%@ include file="../part/head.jspf"%>
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <div class="con body-box">
 	<table border="1" class="table1">
 		<colgroup>

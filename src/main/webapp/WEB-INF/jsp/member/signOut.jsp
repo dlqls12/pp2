@@ -26,7 +26,9 @@
 		MemberCheckPwForm__submitDone = true;
 	}
 </script>
-
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <div class="con body-box">
 	<form method="POST" class="form1" action="doSignOut" onsubmit="MemberCheckPwForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/home/main">

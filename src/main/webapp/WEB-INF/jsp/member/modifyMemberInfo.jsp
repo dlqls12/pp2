@@ -72,6 +72,9 @@
 	display:flex;
 }
 </style>
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <div class="con body-box">	
 	<div class="modify-mode-off">
 		<table class="table1" border="1">

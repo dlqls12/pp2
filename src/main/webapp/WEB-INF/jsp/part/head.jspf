@@ -54,6 +54,3 @@
 			<div class="menu-item"><a href="/usr/article/deal-list?page=1&sortId=0">[deal-list]</a></div>
 		</div>
 	</div>
-	<div class="con">
-		<h1 class="page-title-box">${pageTitle}</h1>
-	</div>

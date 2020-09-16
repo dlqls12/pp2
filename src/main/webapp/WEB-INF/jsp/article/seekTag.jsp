@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 태그검색" />
 <%@ include file="../part/head.jspf"%>
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <script>
 	var TagSeekForm__submitDone = false;
 	function TagSeekForm__submit(form) {

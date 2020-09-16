@@ -2,7 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 수정" />
 <%@ include file="../part/head.jspf"%>
-
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <script>
 	var ArticleModifyForm__submitDone = false;
 	function ArticleModifyForm__submit(form) {

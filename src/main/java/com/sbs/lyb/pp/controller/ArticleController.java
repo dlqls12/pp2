@@ -212,7 +212,9 @@ public class ArticleController {
 	public String showListSortByMember(int memberId, Model model) {
 		List<Article> articleList = articleService.getArticlesByMemberId(memberId);
 		Member member = memberService.getMemberById(memberId);
+		int articlesSize = articleList.size();
 		
+		model.addAttribute("articlesSize", articlesSize);
 		model.addAttribute("articleList", articleList);
 		model.addAttribute("memberNickname", member.getNickname());
 		return "article/listSortByMember";

@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="${memberNickname}님이 작성한 게시물" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="con body-box">
+	<div class="pageTitle">
+		<div>${memberNickname}님이 작성한 게시물입니다.</div>
+		<div>총 게시물 수 : ${articlesSize}</div>
+	</div>
 	<table class="table1" border="1">
 		<colgroup>
 			<col width="100" />

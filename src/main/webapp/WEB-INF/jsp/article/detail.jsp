@@ -31,6 +31,9 @@
 	resize: none;
 }
 </style>
+<div class="con">
+	<h1 class="page-title-box">${pageTitle}</h1>
+</div>
 <div class="con body-box">
 	<table border="1" class="table1">
 		<colgroup>
@@ -210,7 +213,7 @@
 				<col width="200" />
 				<col />
 				<col width="100" />
-				<col width="100" />
+				<col width="200" />
 			</colgroup>
 			<thead>
 				<tr>

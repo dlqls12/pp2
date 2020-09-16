@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="${board.name} 게시판" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="con body-box">
-	<c:if test="${board.id != 2}">
-		<h4><a href="${board.code}-write">[글 쓰러 가기]</a></h4>
-	</c:if>
-	<c:if test="${board.id == 2 && loginedMemberId == 1}">
-		<h4><a href="${board.code}-write">[글 쓰러 가기]</a></h4>
-	</c:if>
+	<div class="pageTitle">
+		<div>${board.name}게시판</div>
+		<div>
+			<c:if test="${board.id != 2}">
+				<div><a href="${board.code}-write">[글 쓰러 가기]</a></div>
+			</c:if>
+			<c:if test="${board.id == 2 && loginedMemberId == 1}">
+				<div><a href="${board.code}-write">[글 쓰러 가기]</a></div>
+			</c:if>
+		</div>
+	</div>
 	<c:if test="${fullPage==0}">
 		게시물이 존재하지 않습니다.
 		<h4><button type="button" onclick="history.back();">돌아가기</button></h4>
@@ -23,25 +27,35 @@
 			    <option value="2">buy</option>
 			</select>
 		</c:if>
-		<table class="table1" border="1">
-			<colgroup>
-				<col width="100"/>
-				<col width="200"/>
-				<col />
-				<col width="100"/>
-			</colgroup>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>날짜</th>
-					<th>제목</th>
-					<th>작성자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${articles}" var="article">
-					<c:if test="${board.id == 3}">
-						<c:if test="${sortId == article.sortId}">
+		<div class="table1-box">
+			<table class="table1" border="1">
+				<colgroup>
+					<col width="100"/>
+					<col width="200"/>
+					<col />
+					<col width="100"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>날짜</th>
+						<th>제목</th>
+						<th>작성자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${articles}" var="article">
+						<c:if test="${board.id == 3}">
+							<c:if test="${sortId == article.sortId}">
+								<tr>
+									<td>${article.id}</td>
+									<td>${article.regDate}</td>
+									<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
+									<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+								</tr>
+							</c:if>
+						</c:if>
+						<c:if test="${board.id != 3 || sortId == 0}">
 							<tr>
 								<td>${article.id}</td>
 								<td>${article.regDate}</td>
@@ -49,18 +63,10 @@
 								<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
 							</tr>
 						</c:if>
-					</c:if>
-					<c:if test="${board.id != 3 || sortId == 0}">
-						<tr>
-							<td>${article.id}</td>
-							<td>${article.regDate}</td>
-							<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
-							<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</tbody>
-		</table>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 		<div class="paging-box">
 			<c:forEach var="cnt" begin="1" end="${fullPage}">
 				<li class="${cnt==page ? "current" : "" }">

@@ -3,8 +3,11 @@
 
 <mapper namespace="com.sbs.lyb.pp.dao.ArticleDao">
 	<select id="getForPrintArticles" resultMap="article">
-		SELECT *
-		FROM article
+		SELECT A.*,
+		M.nickname AS extra__writer
+		FROM article AS A
+		INNER JOIN member AS M
+		ON A.memberId = M.id
 		WHERE displayStatus = 1
 		AND boardId = #{boardId}
 		<if test="searchKeyword != null">
@@ -13,6 +16,7 @@
 		<if test="sortId != 0">
 			AND sortId = #{sortId}
 		</if>
+		ORDER BY id DESC
 	</select>
 
 	<select id="getArticlesSortByBoard" resultMap="article">
