@@ -1,3 +1,13 @@
+html {
+	background-color:#0F222D;
+	color:#EBE7ED;
+}
+
+table {
+	background-color:#EBE7ED;
+	color:#0F222D;
+	border:3px solid #F55139;
+}
 /* 노말라이즈 */
 body, ul, li, h1 {
 	margin: 0;
@@ -11,7 +21,7 @@ a {
 }
 
 a:hover {
-	color:red;
+	color:#F55139;
 }
 
 label[for] {
@@ -26,16 +36,6 @@ label[for] {
 
 .inline-block {
 	display: inline-block;
-}
-
-.img-box>img, .img-box>svg {
-	width: 100%;
-	display: block;
-}
-
-.video-box>video {
-	width: 100%;
-	display: block;
 }
 
 .con {
@@ -53,14 +53,6 @@ label[for] {
 
 html>head+body:nth-child(2) .height-300 {
 	min-height: 100px;
-}
-
-.bg-white {
-	background-color: white;
-}
-
-.padding-10 {
-	padding: 10px;
 }
 
 /* flex 관련 */
@@ -141,19 +133,21 @@ html>head+body:nth-child(2) .height-300 {
 	border-collapse: collapse;
 	padding: 10px;
 	text-align: left;
-	border:2px solid black;
 }
 
 .table1 > thead > tr {
-	background-color:#EAEAEA;
-	
+	background-color:#dfdfdf;
+	color:#0F222D;
+}
+
+.table1 > tbody > tr th {
+	text-align:center;
 }
 
 .table2 > thead > tr th {
 	text-align: center;
-	background-color:#EAEAEA;
-	border-bottom:2px solid black;
-	border-top:2px solid black;
+	background-color:#dfdfdf;
+	border-bottom:3px solid #F55139;
 }
 
 .table2 > thead > tr th:nth-child(2) {
@@ -168,20 +162,25 @@ html>head+body:nth-child(2) .height-300 {
 	padding:10px;
 }
 
-.table3 > thead > tr th, .table3 > tbody > tr td {
-	padding:10px;
-} 
-
 .table2 > tbody > tr:nth-child(2n) {
-	background-color:#EAEAEA;
+	background-color:#dfdfdf;
 }
 
 .table2 > tbody > tr td:first-child, .table2 > tbody > tr td:last-child, .table2 > tbody > tr td:nth-child(3), .table2 > tbody > tr td:nth-child(4) {
 	text-align:center;
 }
 
-.table2 > tbody > tr:last-child {
-	border-bottom:2px solid black;
+.table3 > thead > tr th, .table3 > tbody > tr td {
+	padding:10px;
+}
+
+.table3 > thead > tr th {
+	text-align: center;
+	background-color:#dfdfdf;
+}
+
+.table3 > tbody > tr th {
+	text-align:center;
 }
 
 .search-box {
@@ -196,16 +195,23 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 .paging-box .current {
-	color:red;
+	color:#F55139;
 }
 
 .paging-box > li {
 	margin: 0 5px;
 }
 
+.paging-box > li {
+	font-size:1.4rem;
+	font-weight:bold;
+}
+
 .logo {
 	display:flex;
-	justify-content:center;	
+	justify-content:center;
+	width:100%;
+	background-color:#0F222D;
 }
 
 .menu-box-1 {
@@ -214,18 +220,25 @@ html>head+body:nth-child(2) .height-300 {
 	padding:10px;
 }
 
-.menu-box-2 {
-	display:flex;
-	justify-content:space-between;
-	font-size:1.5rem;
-}
-
 .page-title-box {
+	display:flex;
+	justify-content:center;
+	align-items:center;
 	margin:15px 5px;
 }
 
 .body-box {
-	min-height:70vh;
+	min-height:60vh;
+}
+
+.bottom {
+	display:flex;
+	justify-content:flex-end;
+	width:100%;
+	border-top:3px solid #F55139;
+	color:#EBE7ED;
+	font-size:1.5rem;
+	margin:20px 0;
 }
 
 .noRead {
@@ -239,7 +252,6 @@ html>head+body:nth-child(2) .height-300 {
 	box-sizing: border-box;
 	display: block;
 	padding:10px;
-	border-right:1px solid black;
 }
 
 .menu-item {
@@ -250,10 +262,8 @@ html>head+body:nth-child(2) .height-300 {
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	width:93%;
+	width:100%;
 	hieght:100%;
-	padding:10px;
-	
 }
 
 .menu-item > a:hover {
@@ -268,8 +278,24 @@ html>head+body:nth-child(2) .height-300 {
 
 .party-menu-item {
 	width:30%;
-	height:100px;
-	border:1px solid black;
+	height:150px;
+	border:3px solid #F55139;
+	font-size:2rem;
+	font-weight:bold;
+	margin:15px 0;
+}
+
+.party-menu-item > a {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:100%;
+}
+
+.party-menu-item > a:hover {
+	background-color:#EBE7ED;
+	color:#0F222D;
 }
 
 .main-notice {
@@ -289,7 +315,6 @@ html>head+body:nth-child(2) .height-300 {
 .subTitle {
 	display:flex;
 	justify-content:flex-end;
-	margin:15px 0;
 }
 
 .sell {
@@ -317,4 +342,13 @@ html>head+body:nth-child(2) .height-300 {
 
 .title {
 	font-weight:bold;
+}
+
+.membership-box {
+	display:flex;
+	justify-content:flex-end;
+}
+
+.bodyarea {
+	height:300px;
 }

@@ -8,7 +8,7 @@
 <div class="con body-box">
 	<table border="1" class="table1">
 		<colgroup>
-			<col width="100" />
+			<col width="200" />
 		</colgroup>
 		<tbody>
 			<tr>
@@ -19,7 +19,7 @@
 				<th>날짜</th>
 				<td>${message.regDate}</td>
 			</tr>
-			<tr>
+			<tr class="bodyarea">
 				<th>제목</th>
 				<td>${message.title}</td>
 			</tr>

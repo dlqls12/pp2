@@ -119,8 +119,7 @@
 					<th>내용</th>
 					<td>
 						<div class="form-control-box">
-							<input type="hidden" name="body">
-							<div id="editor1"></div>
+							<textarea placeholder="내용을 입력해주세요." name="body" maxlength="2000">${article.body}</textarea>
 						</div>
 					</td>
 				</tr>
@@ -167,13 +166,3 @@
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%>
-<script>
-	var editor1 = new toastui.Editor({
-		el : document.querySelector("#editor1"),
-		height : "500px",
-		initialEditType : "markdown",
-		previewStyle : "vertical",
-		initialValue : "# 내용을 입력해주세요.",
-		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
-	});
-</script>

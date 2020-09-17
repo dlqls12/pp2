@@ -35,21 +35,16 @@
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
 <div class="con body-box">
-	<div class="subTitle">
-		날짜:${article.regDate} |
-		작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a> |
-		조회수:${article.hit}
-	</div>
 	<table border="1" class="table1">
 		<colgroup>
-			<col width="100" />
+			<col width="200" />
 		</colgroup>
 		<tbody>
 			<tr>
 				<th>제목</th>
 				<td>${article.title}</td>
 			</tr>
-			<tr>
+			<tr class="bodyarea">
 				<th>내용</th>
 				<td><pre>${article.body}</pre></td>
 			</tr>
@@ -75,6 +70,19 @@
 					</td>
 				</tr>
 			</c:if>
+			<c:if test="${board.id == 3}">
+				<tr>
+					<th>거래완료여부</th>
+					<td>
+						<c:if test="${article.sortId != 0 }">
+							<a href="doDealComplete?articleId=${article.id}" onclick="if ( confirm('거래완료 후에는 되돌릴 수 없습니다. 정말 완료하시겠습니까?') == false ) return false;">[거래완료?]</a>
+						</c:if>
+						<c:if test="${article.sortId == 0}">
+							거래가 완료된 게시물입니다.
+						</c:if>
+					</td>
+				</tr>
+			</c:if>
 		</tbody>
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">
@@ -84,15 +92,10 @@
 				<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
 				<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
 			</div>
-			<c:if test="${board.id == 3 && article.sortId != 0}">
-				<div>
-					<a href="doDealComplete?articleId=${article.id}" onclick="if ( confirm('거래완료 후에는 되돌릴 수 없습니다. 정말 완료하시겠습니까?') == false ) return false;">[거래완료?]</a>
-				</div>
-			</c:if>
+			<div class="subTitle">
+				날짜:${article.regDate} | 작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>&nbsp| 조회수:${article.hit}
+			</div>
 		</div>
-		<c:if test="${board.id == 3 && article.sortId == 0}">
-			거래가 완료된 게시물입니다.
-		</c:if>
 	</c:if>
 	<script>
 		var ReplyWriteForm__submitDone = false;
@@ -183,6 +186,9 @@
 			<input type="hidden" name="articleId" value="${article.id}" />
 			<input type="hidden" name="memberId" value="${loginedMemberId}" />
 			<table class="table1" border="1">
+				<colgroup>
+					<col width="200" />
+				</colgroup>
 				<tbody>
 					<tr>
 						<th>내용</th>
@@ -208,20 +214,20 @@
 		<div>댓글이 없습니다. ㅠㅠ</div>
 	</c:if>
 	<c:if test="${fullPage != 0}">
-		<table class="table1 reply-list" border="1">
+		<table class="table2">
 			<colgroup>
 				<col width="100" />
-				<col width="200" />
 				<col />
-				<col width="100" />
+				<col width="200" />
+				<col width="200" />
 				<col width="200" />
 			</colgroup>
 			<thead>
 				<tr>
 					<th>번호</th>
-					<th>날짜</th>
 					<th>내용</th>
 					<th>작성자</th>
+					<th>날짜</th>
 					<c:if test="${isLogined}">
 						<th>비고</th>
 					</c:if>
@@ -231,7 +237,6 @@
 				<c:forEach items="${replies}" var="reply">
 					<tr>
 						<td>${reply.id}</td>
-						<td>${reply.regDate}</td>
 						<td>
 							<div class="modify-mode-off">${reply.body}</div>
 							<div class="modify-mode-on">
@@ -244,6 +249,7 @@
 							</div>
 						</td>
 						<td><a href="./../member/memberPage?id=${reply.memberId}">${reply.extra.writer}</a></td>
+						<td>${reply.regDate}</td>
 						<c:if test="${isLogined}">
 							<td>
 								<c:if test="${loginedMemberId == reply.memberId}">

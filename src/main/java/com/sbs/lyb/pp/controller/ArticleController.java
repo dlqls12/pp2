@@ -223,7 +223,26 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/seekTag")
-	public String showSeekTag() {
+	public String showSeekTag(String searchTag, Model model) {
+		if ( searchTag == null ) {
+			return "article/seekTag";
+		}
+		
+		List<Article> articleList = new ArrayList<Article>(); 		
+		Article article = null;
+		List<Tag> tagList = tagService.getTagListByBody(searchTag);
+		
+		for ( int i = 0; i < tagList.size(); i++ ) {
+			article = articleService.getForPrintArticleById(tagList.get(i).getArticleId());
+			articleList.add(article);
+		}
+		
+		int articleCount = articleList.size();
+		
+		model.addAttribute("articleCount", articleCount);
+		model.addAttribute("articleList", articleList);
+		model.addAttribute("searchTag", searchTag);
+		
 		return "article/seekTag";
 	}
 	

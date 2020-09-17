@@ -79,7 +79,7 @@
 	<div class="modify-mode-off">
 		<table class="table3" border="1">
 			<colgroup>
-				<col width="150">
+				<col width="200">
 			</colgroup>
 			<tbody>
 				<tr>

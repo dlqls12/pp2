@@ -24,8 +24,7 @@
 	}
 </script>
 <div class="con body-box">
-	<form class="form1" action="listSortByTag" onsubmit="TagSeekForm__submit(this); return false;">
-		<input type="hidden" name="sortId" value="0" />
+	<form class="form1" action="?searchTag=${searchTag}" onsubmit="TagSeekForm__submit(this); return false;">
 		<table class="table1" border="1">
 			<colgroup>
 				<col width=200 />
@@ -48,5 +47,51 @@
 			</tbody>
 		</table>
 	</form>
+	<h4>검색 결과</h4>
+	<c:if test="${articleCount == 0}">
+		결과를 찾을 수 없습니다.
+	</c:if>
+	<c:if test="${articleCount != 0}">
+		<c:if test="${partyCount == null}">
+			검색어를 입력해보세요.
+		</c:if>
+		<c:if test="${articleCount != null}">
+			<table class="table2">
+				<colgroup>
+					<col width="100" />
+					<col />
+					<col width="150" />
+					<col width="200" />
+					<col width="100" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:set var="code" value="deal"></c:set>
+					<c:forEach items="${articleList}" var="article">
+						<tr>
+							<td>${article.id}</td>
+							<td class="title">
+								<c:if test="${article.sortId == 2}"><div class="buy">[삽니다]</div></c:if>
+								<c:if test="${article.sortId == 1}"><div class="sell">[팝니다]</div></c:if>
+								<c:if test="${article.sortId == 0}"><div class="dealComplete">[거래완료]</div></c:if>
+								<a href="deal-detail?id=${article.id}&page=1">${article.title}</a>
+							</td>
+							<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+							<td>${article.regDate}</td>
+							<td>${article.hit}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
+	</c:if>
 </div>
 <%@ include file="../part/foot.jspf"%>

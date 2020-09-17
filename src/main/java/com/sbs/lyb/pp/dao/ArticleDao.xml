@@ -89,7 +89,7 @@
 		
 	<select id="getArticlesByMemberId" resultMap="article">
 		SELECT A.*,
-		B.name AS extra__name
+		B.code AS extra__name
 		FROM article AS A
 		INNER JOIN board AS B
 		ON A.boardId = B.id
