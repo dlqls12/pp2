@@ -31,7 +31,7 @@
 	<div class="top-bar con">
 		<div class="menu-box-1">
 			<div class="logo">
-				<a href="/usr/home/main">[Logo]</a>
+				<a href="/usr/home/main"><img src="/resource/img/team.png" alt="logo" /></a>
 			</div>
 			<div>
 				<c:if test="${isLogined == false}">

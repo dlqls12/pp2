@@ -52,7 +52,7 @@
 						<c:set var="cnt" value="${cnt+1}"/>
 						<tr>
 							<td>${article.id}</td>
-							<td>
+							<td class="title">
 								<c:if test="${board.id == 3}">
 									<c:if test="${article.sortId == 2}"><div class="buy">[삽니다]</div></c:if>
 									<c:if test="${article.sortId == 1}"><div class="sell">[팝니다]</div></c:if>

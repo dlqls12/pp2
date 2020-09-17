@@ -229,7 +229,9 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 .noRead {
-	background-color:#D3B7D8;
+	display:inline-block;
+	color:red;
+	font-weight:bold;
 }
 
 .select {
@@ -311,4 +313,8 @@ html>head+body:nth-child(2) .height-300 {
 .crud-box {
 	display:flex;
 	justify-content:space-between;
+}
+
+.title {
+	font-weight:bold;
 }

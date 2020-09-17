@@ -173,30 +173,33 @@
 			<div>쪽지가 없습니다. ㅠㅠ</div>
 		</c:if>
 		<c:if test="${fullPage != 0}">
-			<table class="table1 reply-list" border="1">
+			<table class="table2 reply-list" border="1">
 				<colgroup>
 					<col width="100" />
-					<col width="200" />
 					<col />
-					<col width="100" />
+					<col width="150" />
+					<col width="200" />
 					<col width="100" />
 				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>날짜</th>
 						<th>제목</th>
 						<th>작성자</th>
+						<th>날짜</th>
 						<th>비고</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${messageList}" var="message">
-						<tr class="${message.readStatus == false ? "noRead" : ""}">
+						<tr>
 							<td>${message.id}</td>
-							<td>${message.regDate}</td>
-							<td><a href="./../message/detailMessage?id=${message.id}&uuid=${uuid}">${message.title}</a></td>
+							<td>
+								<c:if test="${message.readStatus == false}"><div class="noRead">[안읽음]</div></c:if>
+								<a href="./../message/detailMessage?id=${message.id}&uuid=${uuid}">${message.title}</a>
+							</td>
 							<td><a href="memberPage?id=${message.writerId}">${message.extra.writer}</a></td>
+							<td>${message.regDate}</td>
 							<td>
 								<a href="./../message/deleteMessage?id=${message.id}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">삭제</a>
 							</td>
