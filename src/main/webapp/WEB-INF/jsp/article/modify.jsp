@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="게시물 수정" />
 <%@ include file="../part/head.jspf"%>
+<%@ include file="../part/toastUiEditor.jspf"%>
 <div class="con">
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
@@ -102,6 +103,9 @@
 		<input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=${article.id}&page=1">
 		<input type="hidden" name="id" value="${article.id}">
 		<table class="table1" border="1">
+			<colgroup>
+				<col width="200"/>
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>제목</th>
@@ -115,7 +119,8 @@
 					<th>내용</th>
 					<td>
 						<div class="form-control-box">
-							<textarea placeholder="내용을 입력해주세요." name="body" maxlength="2000">${article.body}</textarea>
+							<input type="hidden" name="body">
+							<div id="editor1"></div>
 						</div>
 					</td>
 				</tr>
@@ -162,3 +167,13 @@
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%>
+<script>
+	var editor1 = new toastui.Editor({
+		el : document.querySelector("#editor1"),
+		height : "500px",
+		initialEditType : "markdown",
+		previewStyle : "vertical",
+		initialValue : "# 내용을 입력해주세요.",
+		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
+	});
+</script>

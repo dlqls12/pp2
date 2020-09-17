@@ -94,12 +94,21 @@
 		INNER JOIN board AS B
 		ON A.boardId = B.id
 		WHERE A.memberId = #{memberId}
+		ORDER BY A.id DESC;
 	</select>
 
 	<update id="addHit">
 		UPDATE article
 		<set>
-			hit = hit + 1
+			hit = hit + 1,
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<update id="dealComplete">
+		UPDATE article
+		<set>
+			sortId = 0,
 		</set>
 		WHERE id=#{id}
 	</update>

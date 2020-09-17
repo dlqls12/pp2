@@ -29,4 +29,6 @@ public interface ArticleDao {
 	List<Article> getArticlesByMemberId(int memberId);
 
 	void addHit(int id);
+
+	void dealComplete(int articleId);
 }

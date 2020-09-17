@@ -10,16 +10,18 @@
 	<table class="table1" border="1">
 		<colgroup>
 			<col width="100" />
-			<col width="200" />
 			<col />
+			<col width="150" />
+			<col width="200" />
 			<col width="100" />
 		</colgroup>
 		<thead>
 			<tr>
 				<th>카테고리</th>
-				<th>날짜</th>
 				<th>제목</th>
 				<th>작성자</th>
+				<th>날짜</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,11 +29,12 @@
 			<c:forEach items="${articleList}" var="article">
 					<tr>
 						<td>${article.extra.name}</td>
-						<td>${article.regDate}</td>
 						<td>
 							<a href="${article.getDetailLink(article.extra.name)}">${article.title}</a>
 						</td>
 						<td>${memberNickname}</td>
+						<td>${article.regDate}</td>
+						<td>${article.hit}</td>
 					</tr>
 			</c:forEach>
 		</tbody>

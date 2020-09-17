@@ -7,6 +7,11 @@ body, ul, li, h1 {
 
 a {
 	color: inherit;
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
 }
 
 label[for] {
@@ -117,6 +122,10 @@ html>head+body:nth-child(2) .height-300 {
 	word-break: keep-all;
 }
 
+.form1 > table > tbody > tr th {
+	text-align:center;
+}
+
 /* 검색 폼 */
 .search-box-el {
 	display:flex;
@@ -127,33 +136,52 @@ html>head+body:nth-child(2) .height-300 {
 }
 
 /* 테이블 관련 */
-.table1 {
+.table1, .table2, .table3 {
 	width: 100%;
 	border-collapse: collapse;
 	padding: 10px;
 	text-align: left;
-	border:2px solid #2A2A2A;
-}
-
-.table1-box {
-	hieght:80lv;
+	border:2px solid black;
 }
 
 .table1 > thead > tr {
-	border-bottom:1px solid #2A2A2A;
-	background-color:#afafaf;
+	background-color:#EAEAEA;
+	
 }
 
-.table1 > thead > tr th {
+.table2 > thead > tr th {
 	text-align: center;
+	background-color:#EAEAEA;
+	border-bottom:2px solid black;
+	border-top:2px solid black;
 }
 
-.table1 > thead > tr th, .table1 > tbody > tr td {
-	padding: 10px 10px;
+.table2 > thead > tr th:nth-child(2) {
+	text-align:left;
+}
+
+.table1 > tbody > tr td {
+	padding:3px;
+}
+
+.table2 > thead > tr th, .table2 > tbody > tr td {
+	padding:10px;
+}
+
+.table3 > thead > tr th, .table3 > tbody > tr td {
+	padding:10px;
 } 
 
-.table1 > tbody > tr td:first-child, .table1 > tbody > tr td:last-child, .table1 > tbody > tr td:nth-child(3) {
-	text-align:left;
+.table2 > tbody > tr:nth-child(2n) {
+	background-color:#EAEAEA;
+}
+
+.table2 > tbody > tr td:first-child, .table2 > tbody > tr td:last-child, .table2 > tbody > tr td:nth-child(3), .table2 > tbody > tr td:nth-child(4) {
+	text-align:center;
+}
+
+.table2 > tbody > tr:last-child {
+	border-bottom:2px solid black;
 }
 
 .search-box {
@@ -258,6 +286,29 @@ html>head+body:nth-child(2) .height-300 {
 
 .subTitle {
 	display:flex;
-	justify-content:space-between;
+	justify-content:flex-end;
 	margin:15px 0;
+}
+
+.sell {
+	display:inline-block;
+	color:red;
+	font-weight:bold;
+}
+
+.buy {
+	display:inline-block;
+	color:green;
+	font-weight:bold;
+}
+
+.dealComplete {
+	display:inline-block;
+	color:orange;
+	font-weight:bold;
+}
+
+.crud-box {
+	display:flex;
+	justify-content:space-between;
 }

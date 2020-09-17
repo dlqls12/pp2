@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="pageTitle" value="${board.name} 게시판" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="con body-box">
@@ -7,10 +8,10 @@
 		<div>${board.name}게시판</div>
 		<div>
 			<c:if test="${board.id != 2}">
-				<div><a href="${board.code}-write">[글 쓰러 가기]</a></div>
+				<div><a href="${board.code}-write">글쓰기</a></div>
 			</c:if>
 			<c:if test="${board.id == 2 && loginedMemberId == 1}">
-				<div><a href="${board.code}-write">[글 쓰러 가기]</a></div>
+				<div><a href="${board.code}-write">글쓰기</a></div>
 			</c:if>
 		</div>
 	</div>
@@ -28,10 +29,11 @@
 			</select>
 		</c:if>
 		<div class="table1-box">
-			<table class="table1" border="1">
+			<table class="table2">
 				<colgroup>
 					<col width="100"/>
 					<col />
+					<col width="150"/>
 					<col width="200"/>
 					<col width="100"/>
 				</colgroup>
@@ -40,30 +42,40 @@
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
+						<th>날짜</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
+					<c:set var="cnt" value="0" />
 					<c:forEach items="${articles}" var="article">
-						<c:if test="${board.id == 3}">
-							<c:if test="${sortId == article.sortId}">
-								<tr>
-									<td>${article.id}</td>
-									<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
-									<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
-									<td>${article.hit}</td>
-								</tr>
-							</c:if>
-						</c:if>
-						<c:if test="${board.id != 3 || sortId == 0}">
-							<tr>
-								<td>${article.id}</td>
-								<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
-								<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
-								<td>${article.hit}</td>
-							</tr>
-						</c:if>
+						<c:set var="cnt" value="${cnt+1}"/>
+						<tr>
+							<td>${article.id}</td>
+							<td>
+								<c:if test="${board.id == 3}">
+									<c:if test="${article.sortId == 2}"><div class="buy">[삽니다]</div></c:if>
+									<c:if test="${article.sortId == 1}"><div class="sell">[팝니다]</div></c:if>
+									<c:if test="${article.sortId == 0}"><div class="dealComplete">[거래완료]</div></c:if>
+								</c:if>
+								<a href="${article.getDetailLink(board.code)}">${article.title}</a>
+							</td>
+							<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+							<td>${article.regDate}</td>
+							<td>${article.hit}</td>
+						</tr>
 					</c:forEach>
+					<c:if test="${cnt < 9}">
+						<c:forEach var="cnt2" begin="${cnt}" end="9">
+						<tr>
+							<td>&nbsp</td>
+							<td>&nbsp</td>
+							<td>&nbsp</td>
+							<td>&nbsp</td>
+							<td>&nbsp</td>
+						</tr>
+						</c:forEach>
+					</c:if>
 				</tbody>
 			</table>
 		</div>

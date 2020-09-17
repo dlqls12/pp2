@@ -226,4 +226,15 @@ public class ArticleController {
 	public String showSeekTag() {
 		return "article/seekTag";
 	}
+	
+	@RequestMapping("/usr/article/doDealComplete")
+	public String doDealComplete(int articleId, Model model) {
+		articleService.dealComplete(articleId);
+		
+		String redirectUrl = "deal-detail?id=" + articleId + "&page=1";
+		model.addAttribute("alertMsg", String.format("%d번 거래완료.", articleId));
+		model.addAttribute("redirectUrl", redirectUrl);
+		
+		return "common/redirect";
+	}
 }

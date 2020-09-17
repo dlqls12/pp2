@@ -77,7 +77,7 @@
 </div>
 <div class="con body-box">	
 	<div class="modify-mode-off">
-		<table class="table1" border="1">
+		<table class="table3" border="1">
 			<colgroup>
 				<col width="150">
 			</colgroup>
@@ -166,6 +166,7 @@
 			</table>
 		</form>
 	</div>
+	<div><a href="../article/listSortByMember?memberId=${loginedMemberId}">내가 쓴 글 보기</a></div>
 	<div>
 		<h3>쪽지함</h3>
 		<c:if test="${fullPage == 0}">

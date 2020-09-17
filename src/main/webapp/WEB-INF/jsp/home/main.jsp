@@ -3,6 +3,30 @@
 <c:set var="pageTitle" value="메인" />
 <%@ include file="../part/head.jspf"%>
 <div class="con body-box">
+	<form class="form1" action="listSortByTag" onsubmit="TagSeekForm__submit(this); return false;">
+		<input type="hidden" name="sortId" value="0" />
+		<table class="table1" border="1">
+			<colgroup>
+				<col width=200 />
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>검색</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchTag}"/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>찾기</th>
+					<td>
+						<button type="submit">찾기</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 	<div class="party-menu">
 		<section class="party-menu-item"><a href="./../party/createParty">[파티 만들기]</a></section>
 		<section class="party-menu-item"><a href="./../party/seekParty">[파티 찾기]</a></section>
@@ -14,6 +38,7 @@
 			<colgroup>
 				<col width="100"/>
 				<col />
+				<col width="150"/>
 				<col width="200"/>
 				<col width="100"/>
 			</colgroup>
@@ -22,6 +47,7 @@
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
+					<th>날짜</th>
 					<th>조회수</th>
 				</tr>
 			</thead>
@@ -31,6 +57,7 @@
 						<td>${article.id}</td>
 						<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
 						<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+						<td>${article.regDate}</td>
 						<td>${article.hit}</td>
 					</tr>
 				</c:forEach>
@@ -44,6 +71,7 @@
 			<colgroup>
 				<col width="100"/>
 				<col />
+				<col width="150"/>
 				<col width="200"/>
 				<col width="100"/>
 			</colgroup>
@@ -52,6 +80,7 @@
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
+					<th>날짜</th>
 					<th>조회수</th>
 				</tr>
 			</thead>
@@ -61,6 +90,7 @@
 						<td>${article.id}</td>
 						<td><a href="${article.getDetailLink(board.code)}">${article.title}</a></td>
 						<td><a href="./../member/memberPage?id=${article.memberId}">${article.extra.writer}</a></td>
+						<td>${article.regDate}</td>
 						<td>${article.hit}</td>
 					</tr>
 				</c:forEach>

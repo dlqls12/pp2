@@ -119,7 +119,7 @@
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
 <div class="con body-box">
-	<form method="POST" class="form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+	<form method="POST" class="form1 form2" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="/usr/member/login">
 		<input type="hidden" name="loginPwReal">
 		<table class="table1" border="1">
@@ -128,7 +128,7 @@
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>로그인 아이디</th>
+					<th>* 로그인 아이디</th>
 					<td>
 						<div class="form-control-box">
 							<input onkeyup="MemberJoinForm__checkLoginIdDup(this);" type="text" placeholder="로그인 아이디 입력해주세요." name="loginId" maxlength="30" />
@@ -137,7 +137,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>로그인 비번</th>
+					<th>* 로그인 비번</th>
 					<td>
 						<div class="form-control-box">
 							<input type="password" placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="30" />
@@ -145,7 +145,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>로그인 비번 확인</th>
+					<th>* 로그인 비번 확인</th>
 					<td>
 						<div class="form-control-box">
 							<input type="password" placeholder="로그인 비밀번호 확인을 입력해주세요." name="loginPwConfirm" maxlength="30" />
@@ -153,7 +153,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>이름</th>
+					<th>* 이름</th>
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="이름을 입력해주세요." name="name" maxlength="20" />
@@ -161,7 +161,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>활동명</th>
+					<th>* 활동명</th>
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="활동명 입력해주세요." name="nickname" maxlength="20" />
@@ -169,7 +169,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>이메일</th>
+					<th>* 이메일</th>
 					<td>
 						<div class="form-control-box">
 							<input type="email" placeholder="이메일 입력해주세요." name="email" maxlength="50" />
@@ -177,7 +177,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>휴대폰</th>
+					<th>* 휴대폰</th>
 					<td>
 						<div class="form-control-box">
 							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="phoneNo" maxlength="12" />

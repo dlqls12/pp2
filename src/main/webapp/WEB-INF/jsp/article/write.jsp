@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="${board.name} 게시판 글 작성" />
 <%@ include file="../part/head.jspf"%>
+<%@ include file="../part/toastUiEditor.jspf"%>
 <script>
 	var ArticleWriteForm__submitDone = false;
 	function ArticleWriteForm__submit(form) {
@@ -23,13 +24,23 @@
 			alert('제목을 입력해주세요.');
 			return;
 		}
+
+		var bodyEditor = $(form).find('.toast-editor.input-body').data('data-toast-editor');
+		var body = bodyEditor.getMarkdown().trim();
+		if (body.length == 0) {
+			bodyEditor.focus();
+			alert('내용을 입력해주세요.');
+			return;
+		}
 		
+		/*
 		form.body.value = form.body.value.trim();
 		if (form.body.value.length == 0) {
 			form.body.focus();
 			alert('내용을 입력해주세요.');
 			return;
 		}
+		*/
 		
 		var maxSizeMb = 50;
 		var maxSize = maxSizeMb * 1024 * 1024 //50MB
@@ -118,9 +129,10 @@
 					<th>내용</th>
 					<td>
 						<div class="form-control-box">
-							<textarea placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
+							<input type="hidden" name="body">
+							<div id="editor1"></div>
 						</div>
-					</td>
+					</td> 
 				</tr>
 				<tr>
 					<th>첨부 이미지</th>
@@ -152,3 +164,13 @@
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%>
+<script>
+	var editor1 = new toastui.Editor({
+		el : document.querySelector("#editor1"),
+		height : "500px",
+		initialEditType : "markdown",
+		previewStyle : "vertical",
+		initialValue : "# 내용을 입력해주세요...",
+		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
+	});
+</script>

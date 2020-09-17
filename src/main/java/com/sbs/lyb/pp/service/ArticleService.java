@@ -99,4 +99,8 @@ public class ArticleService {
 	public void addHit(int id) {
 		articleDao.addHit(id);
 	}
+
+	public void dealComplete(int articleId) {
+		articleDao.dealComplete(articleId);
+	}
 }

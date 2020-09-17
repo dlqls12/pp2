@@ -25,8 +25,8 @@
 </script>
 <div class="con body-box">
 	<form class="form1" action="listSortByTag" onsubmit="TagSeekForm__submit(this); return false;">
+		<input type="hidden" name="sortId" value="0" />
 		<table class="table1" border="1">
-			<input type="hidden" name="sortId" value="0" />
 			<colgroup>
 				<col width=200 />
 			</colgroup>

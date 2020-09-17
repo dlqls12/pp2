@@ -36,26 +36,15 @@
 </div>
 <div class="con body-box">
 	<div class="subTitle">
-		<div>제목:${article.title}</div>
-		<div>
-			날짜:${article.regDate} |
-			작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a> |
-			조회수:${article.hit}
-		</div> 
+		날짜:${article.regDate} |
+		작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a> |
+		조회수:${article.hit}
 	</div>
 	<table border="1" class="table1">
 		<colgroup>
 			<col width="100" />
 		</colgroup>
 		<tbody>
-			<tr>
-				<th>번호</th>
-				<td>${article.id}</td>
-			</tr>
-			<tr>
-				<th>날짜</th>
-				<td>${article.regDate}</td>
-			</tr>
 			<tr>
 				<th>제목</th>
 				<td>${article.title}</td>
@@ -76,12 +65,6 @@
 					</td>
 				</tr>
 			</c:if>
-			<tr>
-				<th>작성자</th>
-				<td>
-					<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>
-				</td>
-			</tr>
 			<c:if test="${tagList.size() != 0}">
 				<tr>
 					<th>태그</th>
@@ -92,18 +75,24 @@
 					</td>
 				</tr>
 			</c:if>
-			<tr>
-				<th>조회수</th>
-				<td>${article.hit}</td>
-			</tr>
 		</tbody>
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">
-		<div>
-			<a href="${article.getModifyLink(board.code)}">[수정]</a>
-			<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
-			<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
+		<div class="crud-box">
+			<div>
+				<a href="${article.getModifyLink(board.code)}">[수정]</a>
+				<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
+				<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
+			</div>
+			<c:if test="${board.id == 3 && article.sortId != 0}">
+				<div>
+					<a href="doDealComplete?articleId=${article.id}" onclick="if ( confirm('거래완료 후에는 되돌릴 수 없습니다. 정말 완료하시겠습니까?') == false ) return false;">[거래완료?]</a>
+				</div>
+			</c:if>
 		</div>
+		<c:if test="${board.id == 3 && article.sortId == 0}">
+			거래가 완료된 게시물입니다.
+		</c:if>
 	</c:if>
 	<script>
 		var ReplyWriteForm__submitDone = false;

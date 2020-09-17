@@ -57,7 +57,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>로그인 비번</th>
+					<th>로그인 비밀번호</th>
 					<td>
 						<div class="form-control-box">
 							<input type="password" placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="30" />
