@@ -57,6 +57,10 @@ spring:
   profiles: local
 server:
   port: 8085
+custom:
+  logging:
+    level: info
+    dir: log
 
 ---
 
@@ -69,4 +73,9 @@ spring:
     username: yongLocal
     password: lyb20513
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://market.ufm99.site:3306/pp?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/pp?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+custom:
+  logging:
+    level: info
+    dir : /tmp
+    

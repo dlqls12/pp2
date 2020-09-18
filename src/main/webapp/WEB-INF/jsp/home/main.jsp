@@ -2,8 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="메인" />
 <%@ include file="../part/head.jspf"%>
+<script>@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);</script>
 <div class="con body-box">
-	<form class="form1" action="listSortByTag" onsubmit="TagSeekForm__submit(this); return false;">
+	<form class="form1 main-form" action="listSortByTag" onsubmit="TagSeekForm__submit(this); return false;">
 		<input type="hidden" name="sortId" value="0" />
 		<table class="table1" border="1">
 			<colgroup>
@@ -27,15 +28,69 @@
 			</tbody>
 		</table>
 	</form>
-	<div class="party-menu">
-		<section class="party-menu-item"><a href="/usr/article/notice-list?page=1&sortId=0">공지사항</a></section>
-		<section class="party-menu-item"><a href="/usr/article/free-list?page=1&sortId=0">자유게시판</a></section>
-		<section class="party-menu-item"><a href="/usr/article/deal-list?page=1&sortId=0">거래게시판</a></section>
+	<div class="main-item">
+		<figure class="snip1445">
+		  <img src="/resource/img/main-item.png" alt="main-item" />
+		  <figcaption>
+		    <div>
+		      <h2>공지사항</h2>
+		      <h4>notice</h4>
+		    </div>
+		  </figcaption>
+		  <a href="/usr/article/notice-list?page=1&sortId=0"></a>
+		</figure>
+		<figure class="snip1445">
+		  <img src="/resource/img/main-item.png" alt="main-item" />
+		  <figcaption>
+		    <div>
+		      <h2>자유게시판</h2>
+		      <h4>free-Board</h4>
+		    </div>
+		  </figcaption>
+		  <a href="/usr/article/free-list?page=1&sortId=0"></a>
+		</figure>
+		<figure class="snip1445">
+		  <img src="/resource/img/main-item.png" alt="main-item" />
+		  <figcaption>
+		    <div>
+		      <h2>거래게시판</h2>
+		      <h4>deal-board</h4>
+		    </div>
+		  </figcaption>
+		  <a href="/usr/article/deal-list?page=1&sortId=0"></a>
+		</figure>
 	</div>
-	<div class="party-menu">
-		<section class="party-menu-item"><a href="./../party/createParty">파티 생성</a></section>
-		<section class="party-menu-item"><a href="./../party/seekParty">파티 찾기</a></section>
-		<section class="party-menu-item"><a href="./../article/seekTag">게시물 태그 검색</a></section>
+	<div class="main-item">
+		<figure class="snip1445">
+		  <img src="/resource/img/main-item.png" alt="main-item" />
+		  <figcaption>
+		    <div>
+		      <h2>파티 생성</h2>
+		      <h4>create-party</h4>
+		    </div>
+		  </figcaption>
+		  <a href="./../party/createParty"></a>
+		</figure>
+		<figure class="snip1445">
+		  <img src="/resource/img/main-item.png" alt="main-item" />
+		  <figcaption>
+		    <div>
+		      <h2>파티 찾기</h2>
+		      <h4>seek-party</h4>
+		    </div>
+		  </figcaption>
+		  <a href="./../party/seekParty"></a>
+		</figure>
+		<figure class="snip1445">
+		  <img src="/resource/img/main-item.png" alt="main-item" />
+		  <figcaption>
+		    <div>
+		      <h2>게시물 태그 검색</h2>
+		      <h4>search-tag</h4>
+		    </div>
+		  </figcaption>
+		  <a href="./../article/seekTag"></a>
+		</figure>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

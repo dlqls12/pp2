@@ -19,11 +19,11 @@
 				<th>날짜</th>
 				<td>${message.regDate}</td>
 			</tr>
-			<tr class="bodyarea">
+			<tr>
 				<th>제목</th>
 				<td>${message.title}</td>
 			</tr>
-			<tr>
+			<tr class="bodyarea">
 				<th>내용</th>
 				<td><pre>${message.body}</pre></td>
 			</tr>

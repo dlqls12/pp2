@@ -65,7 +65,7 @@
 					<th>태그</th>
 					<td>
 						<c:forEach items="${tagList}" var="tag">
-							<a href="listSortByTag?sortId=0&searchTag=${tag.body}">#${tag.body}</a>&nbsp
+							<a href="seekTag?searchTag=${tag.body}">#${tag.body}</a>&nbsp
 						</c:forEach>
 					</td>
 				</tr>

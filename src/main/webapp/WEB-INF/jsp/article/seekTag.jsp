@@ -52,7 +52,7 @@
 		결과를 찾을 수 없습니다.
 	</c:if>
 	<c:if test="${articleCount != 0}">
-		<c:if test="${partyCount == null}">
+		<c:if test="${articleCount == null}">
 			검색어를 입력해보세요.
 		</c:if>
 		<c:if test="${articleCount != null}">

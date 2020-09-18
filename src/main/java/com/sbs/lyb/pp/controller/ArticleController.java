@@ -179,6 +179,7 @@ public class ArticleController {
 			model.addAttribute("alertMsg", String.format("로그인 후 이용하실 수 있습니다."));
 			return "common/redirect";
 		}
+		
 		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr", "articleId", "id");
 		int id = Util.getAsInt(param.get("id"));
 		articleService.modify(newParam);
