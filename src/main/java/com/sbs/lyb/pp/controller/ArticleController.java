@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sbs.lyb.pp.dto.Article;
 import com.sbs.lyb.pp.dto.Board;
 import com.sbs.lyb.pp.dto.Member;
+import com.sbs.lyb.pp.dto.Party;
 import com.sbs.lyb.pp.dto.Reply;
 import com.sbs.lyb.pp.dto.Tag;
 import com.sbs.lyb.pp.service.ArticleService;
 import com.sbs.lyb.pp.service.MemberService;
+import com.sbs.lyb.pp.service.PartyService;
 import com.sbs.lyb.pp.service.ReplyService;
 import com.sbs.lyb.pp.service.TagService;
 import com.sbs.lyb.pp.util.Util;
@@ -34,6 +36,8 @@ public class ArticleController {
 	private TagService tagService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private PartyService partyService;
 
 	@RequestMapping("/usr/article/{boardCode}-list")
 	public String showList(Model model, @PathVariable("boardCode") String boardCode, int page, int sortId, String searchKeyword) {
@@ -256,5 +260,29 @@ public class ArticleController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		
 		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/article/listSortByParty")
+	public String showListSortByParty(int partyId, Model model) {
+		
+		List<Member> memberList = memberService.getMemberListByPartyId(partyId);		
+		List<Article> articleList = new ArrayList<>();
+		
+		for ( int i = 0; i < memberList.size(); i++ ) {
+			List<Article> articleList2 = articleService.getArticlesByMemberId(memberList.get(i).getId());
+			for ( int j = 0; j < articleList2.size(); j++ ) {
+				articleList.add(articleList2.get(j));
+			}
+		}
+		
+		Party party = partyService.getPartyById(partyId);
+		int articlesSize = articleList.size();
+		
+		model.addAttribute("party", party);
+		model.addAttribute("articleList", articleList);
+		model.addAttribute("articlesSize", articlesSize);
+		model.addAttribute("memberList", memberList);
+		
+		return "article/listSortByParty";
 	}
 }

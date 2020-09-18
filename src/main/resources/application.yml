@@ -45,11 +45,11 @@ server:
     include-message: always
     include-binding-errors: always
 custom:
-  logoText: 대학중고장터
+  logoText: UUMarket
   siteMainUrl: http://localhost:8085/usr/home/main
-  siteName: 대학중고장터
+  siteName: UUMarket
   emailFrom: dlqls12321@gmail.com
-  emailFromName: 대학중고장터
+  emailFromName: UUMarket
 
 ---
 

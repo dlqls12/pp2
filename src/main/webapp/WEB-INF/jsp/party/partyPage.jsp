@@ -28,6 +28,7 @@
 			</tr>	
 		</tbody>
 	</table>
+	<a href="./../article/listSortByParty?partyId=${party.id}">[파티게시물]</a>
 	<c:if test="${loginedMember.partyId != party.id }">
 		<a href="doJoinParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('정말로 ${party.name}그룹에 참여하시겠습니까?') == false ) return false;">[그룹 참여하기]</a>
 	</c:if>
