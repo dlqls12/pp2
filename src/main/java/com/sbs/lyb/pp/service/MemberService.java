@@ -129,4 +129,8 @@ public class MemberService {
 		memberDao.resetPartyId(id);
 		partyService.sizeDown(partyId);
 	}
+
+	public List<Member> getMemberList() {
+		return memberDao.getMemberList();
+	}
 }

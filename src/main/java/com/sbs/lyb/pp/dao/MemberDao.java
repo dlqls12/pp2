@@ -34,4 +34,6 @@ public interface MemberDao {
 	List<Member> getMemberListByPartyId(int id);
 
 	void resetPartyId(int id);
+
+	List<Member> getMemberList();
 }

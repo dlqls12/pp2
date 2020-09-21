@@ -17,7 +17,6 @@ public class Party {
 	private String delStatus;
 	private String name;
 	private String body;
-	private String code;
 	private int memberCount;
 	private Map<String, Object> extra;
 }

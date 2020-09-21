@@ -4,8 +4,7 @@
 <%@ include file="../part/head.jspf"%>
 <script>@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);</script>
 <div class="con body-box">
-	<form class="form1 main-form" action="listSortByTag" onsubmit="TagSeekForm__submit(this); return false;">
-		<input type="hidden" name="sortId" value="0" />
+	<form class="form1 main-form" action="../article/allSearchResult" onsubmit="SearchForm__submit(this); return false;">
 		<table class="table1" border="1">
 			<colgroup>
 				<col width=200 />

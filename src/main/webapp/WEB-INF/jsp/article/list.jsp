@@ -81,8 +81,9 @@
 		</div>
 		<div class="paging-box">
 			<c:forEach var="cnt" begin="1" end="${fullPage}">
-				<li class="${cnt==page ? "current" : "" }">
-					<a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a>
+				<li>
+					<c:if test="${cnt==page}"><div class="current"><a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a></div></c:if>
+					<c:if test="${cnt!=page}"><a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a></c:if>
 				</li>
 			</c:forEach>
 		</div>

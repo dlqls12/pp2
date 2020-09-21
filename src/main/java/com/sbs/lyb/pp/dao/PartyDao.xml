@@ -7,8 +7,7 @@
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		`name` = #{name},
-		`body` = #{body},
-		`code` = #{code}
+		`body` = #{body}
 	</insert>
 	
 	<select id="getPartyByName" resultType="Party">

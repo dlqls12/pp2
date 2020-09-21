@@ -30,7 +30,7 @@ public class PartyController {
 		Member member = (Member) req.getAttribute("loginedMember");
 		if ( member.getPartyId() > 0 ) {
 			model.addAttribute("historyBack", true);
-			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
+			model.addAttribute("alertMsg", String.format("이미 소속된 파티가 있습니다."));
 			return "/common/redirect";
 		}
 		return "/party/createParty";
@@ -45,13 +45,13 @@ public class PartyController {
 		Member member = (Member) req.getAttribute("loginedMember");
 		if ( member.getPartyId() > 0 ) {
 			model.addAttribute("historyBack", true);
-			model.addAttribute("alertMsg", String.format("소속된 그룹은 한개여야 합니다."));
+			model.addAttribute("alertMsg", String.format("이미 소속된 파티가 있습니다."));
 			return "/common/redirect";
 		}
 		
 		if ( party != null ) {
 			redirectUrl = "/usr/party/partyPage?id=" + party.getId();
-			model.addAttribute("alertMsg", String.format("해당 그룹은 이미 존재합니다."));
+			model.addAttribute("alertMsg", String.format("해당 파티는 이미 존재합니다."));
 			model.addAttribute("redirectUrl", redirectUrl);
 			return "/common/redirect";
 		}
@@ -59,7 +59,7 @@ public class PartyController {
 		int newPartyId = partyService.createParty(param);
 		memberService.joinParty(id, newPartyId);
 		redirectUrl = redirectUrl.replace("#id", newPartyId + "");
-		model.addAttribute("alertMsg", String.format("%s 그룹이 생성 되었습니다.", name));
+		model.addAttribute("alertMsg", String.format("%s 파티가 생성 되었습니다.", name));
 		model.addAttribute("redirectUrl", redirectUrl);
 		return "/common/redirect";
 	}
@@ -115,7 +115,7 @@ public class PartyController {
 		
 		if ( party.getMemberCount() == 1 ) {
 			memberService.resetPartyId(id, party.getId());
-			partyService.delete(party.getId(), party.getCode());
+			partyService.delete(party.getId());
 		}
 		else {
 			memberService.resetPartyId(id, party.getId());

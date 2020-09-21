@@ -21,14 +21,15 @@
 
 .reply-list>tbody>tr>td>div>form {
 	width: 100%;
-	display: block;
+	display: flex;
 }
 
 .reply-list>tbody>tr>td>div>form>textarea {
 	width: 100%;
-	box-sizing: border-box;
+	padding: 0;
 	display: block;
-	resize: none;
+	box-sizing: border-box;
+	resize:none;
 }
 </style>
 <div class="con">
@@ -214,7 +215,7 @@
 		<div>댓글이 없습니다. ㅠㅠ</div>
 	</c:if>
 	<c:if test="${fullPage != 0}">
-		<table class="table2">
+		<table class="table2 reply-list">
 			<colgroup>
 				<col width="100" />
 				<col />

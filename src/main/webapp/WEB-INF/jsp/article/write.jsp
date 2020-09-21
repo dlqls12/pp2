@@ -114,8 +114,7 @@
 					<th>제목</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="제목을 입력해주세요." name="title"
-								maxlength="100" />
+							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="100" />
 						</div>
 					</td>
 				</tr>
@@ -131,8 +130,7 @@
 					<th>첨부 이미지</th>
 					<td>
 						<div class="form-control-box">
-							<input type="file" accept="image/gif,image/jpeg,image/png"
-								name="file__article__0__common__attachment__1">
+							<input type="file" accept="image/gif,image/jpeg,image/png" name="file__article__0__common__attachment__1">
 						</div>
 					</td>
 				</tr>
@@ -141,8 +139,7 @@
 						<th>태그 추가하기</th>
 						<td>
 							<div class="form-control-box">
-								<input type="text" placeholder="태그를 입력해주세요. ex) #강아지" name="tag"
-									maxlength="100" />
+								<input type="text" placeholder="태그를 입력해주세요. ex) #강아지" name="tag" maxlength="100" />
 							</div>
 						</td>
 					</tr>

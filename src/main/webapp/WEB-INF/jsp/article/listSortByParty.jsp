@@ -25,8 +25,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:set var="code" value="deal"></c:set>
+			<c:set var="cnt" value="0" />
 			<c:forEach items="${articleList}" var="article">
+				<c:set var="cnt" value="${cnt+1}" />
+				<c:if test="${((page-1) * 10) < cnt && cnt <= ((page-1)*10) + 10}">
 					<tr>
 						<td>
 							<c:if test="${article.boardId == 1}">free</c:if>
@@ -42,18 +44,25 @@
 						<td>
 							<a href="./../member/memberPage?id=${article.memberId}">
 								<c:forEach items="${memberList}" var="member">
-									<c:if test="${member.id == article.memberId}">
-										${member.nickname}
-									</c:if>
+									<c:if test="${member.id == article.memberId}">${member.nickname}</c:if>
 								</c:forEach>
 							</a>
 						</td>
 						<td>${article.regDate}</td>
 						<td>${article.hit}</td>
 					</tr>
+				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="paging-box">
+		<c:forEach var="cnt" begin="1" end="${fullPage}">
+			<li>
+				<c:if test="${cnt==page}"><div class="current"><a href="?partyId=${party.id}&page=${cnt}" class="block">${cnt}</a></div></c:if>
+				<c:if test="${cnt!=page}"><a href="?partyId=${party.id}&page=${cnt}" class="block">${cnt}</a></c:if>
+			</li>
+		</c:forEach>
+	</div>
 </div>
 
 <%@ include file="../part/foot.jspf"%>

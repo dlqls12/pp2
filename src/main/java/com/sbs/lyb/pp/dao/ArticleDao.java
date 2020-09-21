@@ -31,4 +31,6 @@ public interface ArticleDao {
 	void addHit(int id);
 
 	void dealComplete(int articleId);
+
+	List<Article> getArticles(String searchKeyword);
 }

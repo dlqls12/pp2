@@ -60,17 +60,15 @@
 			<table class="table2">
 				<colgroup>
 					<col width="100"/>
+					<col />
 					<col width="200"/>
-					<col />
-					<col />
 					<col width="100"/>
 				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th> 
-						<th>생성날짜</th>
 						<th>파티명</th>
-						<th>코드</th>
+						<th>생성날짜</th>
 						<th>회원수</th>
 					</tr>
 				</thead>
@@ -78,9 +76,8 @@
 					<c:forEach items="${partyList}" var="party">
 						<tr>
 							<td>${party.id}</td>
-							<td>${party.regDate}</td>
 							<td><a href="partyPage?id=${party.id}">${party.name}</a></td>
-							<td>${party.code}</td>
+							<td>${party.regDate}</td>
 							<td>${party.memberCount}</td>
 						</tr>
 					</c:forEach>

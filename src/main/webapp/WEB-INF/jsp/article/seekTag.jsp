@@ -74,7 +74,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:set var="code" value="deal"></c:set>
 					<c:forEach items="${articleList}" var="article">
 						<tr>
 							<td>${article.id}</td>

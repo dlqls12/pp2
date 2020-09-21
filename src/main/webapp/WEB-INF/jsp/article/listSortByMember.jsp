@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="pageTitle" value="게시물리스트" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="con body-box">
 	<div class="pageTitle">
-		<div>${memberNickname}님이 작성한 게시물입니다.</div>
+		<div>${member.nickname}님이 작성한 게시물입니다.</div>
 		<div>총 게시물 수 : ${articlesSize}</div>
 	</div>
 	<table class="table2">
@@ -23,7 +24,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:set var="cnt" value="0" />
 			<c:forEach items="${articleList}" var="article">
+				<c:set var="cnt" value="${cnt+1}" />
+				<c:if test="${((page-1) * 10) < cnt && cnt <= ((page-1)*10) + 10}">
 					<tr>
 						<td>${article.extra.name}</td>
 						<td class="title">
@@ -35,9 +39,18 @@
 						<td>${article.regDate}</td>
 						<td>${article.hit}</td>
 					</tr>
+				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="paging-box">
+		<c:forEach var="cnt" begin="1" end="${fullPage}">
+			<li>
+				<c:if test="${cnt==page}"><div class="current"><a href="?memberId=${member.id}&page=${cnt}" class="block">${cnt}</a></div></c:if>
+				<c:if test="${cnt!=page}"><a href="?memberId=${member.id}&page=${cnt}" class="block">${cnt}</a></c:if>
+			</li>
+		</c:forEach>
+	</div>
 </div>
 
 <%@ include file="../part/foot.jspf"%>

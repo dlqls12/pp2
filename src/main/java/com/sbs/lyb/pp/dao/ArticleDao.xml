@@ -36,6 +36,19 @@
 		ORDER BY A.id DESC
 		LIMIT #{limitFrom}, #{itemsInAPage}
 	</select>
+	
+	<select id="getArticles" resultMap="article">
+		SELECT A.*,
+		B.code AS extra__name
+		FROM article AS A
+		INNER JOIN board AS B
+		ON A.boardId = B.id
+		WHERE A.displayStatus = 1
+		<if test="searchKeyword != null">
+			AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		ORDER BY A.id DESC
+	</select>
 
 	<select id="getForPrintArticleById" resultMap="article">
 		SELECT A.*,

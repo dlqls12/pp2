@@ -216,14 +216,24 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/listSortByMember")
-	public String showListSortByMember(int memberId, Model model) {
+	public String showListSortByMember(int memberId, int page, Model model) {
 		List<Article> articleList = articleService.getArticlesByMemberId(memberId);
 		Member member = memberService.getMemberById(memberId);
 		int articlesSize = articleList.size();
 		
+		model.addAttribute("page", page);
 		model.addAttribute("articlesSize", articlesSize);
 		model.addAttribute("articleList", articleList);
-		model.addAttribute("memberNickname", member.getNickname());
+		model.addAttribute("member", member);
+		
+		int fullPage = 0;
+		if (articlesSize % 10 == 0) {
+			fullPage = articlesSize / 10;
+		} else {
+			fullPage = articlesSize / 10 + 1;
+		}
+		model.addAttribute("fullPage", fullPage);
+		
 		return "article/listSortByMember";
 	}
 	
@@ -263,7 +273,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/listSortByParty")
-	public String showListSortByParty(int partyId, Model model) {
+	public String showListSortByParty(int partyId, int page, Model model) {
 		
 		List<Member> memberList = memberService.getMemberListByPartyId(partyId);		
 		List<Article> articleList = new ArrayList<>();
@@ -278,11 +288,55 @@ public class ArticleController {
 		Party party = partyService.getPartyById(partyId);
 		int articlesSize = articleList.size();
 		
+		model.addAttribute("page", page);
 		model.addAttribute("party", party);
 		model.addAttribute("articleList", articleList);
 		model.addAttribute("articlesSize", articlesSize);
 		model.addAttribute("memberList", memberList);
 		
+		int fullPage = 0;
+		if (articlesSize % 10 == 0) {
+			fullPage = articlesSize / 10;
+		} else {
+			fullPage = articlesSize / 10 + 1;
+		}
+		model.addAttribute("fullPage", fullPage);
+		
 		return "article/listSortByParty";
+	}
+	
+	@RequestMapping("/usr/article/allSearchResult")
+	public String showAllSearchResult(String searchKeyword, Model model) {
+		List<Article> articleList = articleService.getArticles(searchKeyword);
+		int articlesSize = articleList.size();
+		
+		model.addAttribute("articleList", articleList);
+		model.addAttribute("articlesSize", articlesSize);
+		
+		List<Party> partyList = partyService.getPartyListBySearchKeyword(searchKeyword);
+		int partySize = partyList.size();
+		
+		model.addAttribute("partyList", partyList);
+		model.addAttribute("partySize", partySize);
+
+		List<Article> articleList2 = new ArrayList<Article>(); 		
+		Article article = null;
+		List<Tag> tagList = tagService.getTagListByBody(searchKeyword);
+		
+		for ( int i = 0; i < tagList.size(); i++ ) {
+			article = articleService.getForPrintArticleById(tagList.get(i).getArticleId());
+			articleList2.add(article);
+		}
+		
+		int articlesSize2 = articleList2.size();
+		
+		model.addAttribute("articlesSize2", articlesSize2);
+		model.addAttribute("articleList2", articleList2);
+		
+		List<Member> memberList = memberService.getMemberList();
+		
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("searchKeyword", searchKeyword);
+		return "article/allSearch";
 	}
 }

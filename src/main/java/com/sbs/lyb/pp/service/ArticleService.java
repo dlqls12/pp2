@@ -103,4 +103,8 @@ public class ArticleService {
 	public void dealComplete(int articleId) {
 		articleDao.dealComplete(articleId);
 	}
+
+	public List<Article> getArticles(String searchKeyword) {
+		return articleDao.getArticles(searchKeyword);
+	}
 }

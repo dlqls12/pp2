@@ -28,7 +28,7 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="/usr/article/listSortByMember?memberId=${member.id}">[${member.nickname}님이 작성한 글 보러가기]</a>
+	<a href="/usr/article/listSortByMember?memberId=${member.id}&page=1">[${member.nickname}님이 작성한 글 보러가기]</a>
 	<c:if test="${loginedMemberId != member.id}">
 		<a href="/usr/message/sendMessage?getterId=${member.id}">[쪽지보내기]</a>
 	</c:if>

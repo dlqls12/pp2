@@ -91,4 +91,9 @@
 		partyId = 0
 		WHERE id = #{id}
 	</update>
+	
+	<select id="getMemberList" resultType="Member">
+		SELECT *
+		FROM member
+	</select>
 </mapper>

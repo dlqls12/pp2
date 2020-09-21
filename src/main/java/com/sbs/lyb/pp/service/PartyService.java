@@ -32,7 +32,7 @@ public class PartyService {
 		return partyDao.getPartyById(id);
 	}
 
-	public void delete(int id, String code) {
+	public void delete(int id) {
 		partyDao.delete(id);
 	}
 
