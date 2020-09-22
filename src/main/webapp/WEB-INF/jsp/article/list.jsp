@@ -5,13 +5,13 @@
 
 <div class="con body-box">
 	<div class="pageTitle">
-		<div>${board.name}게시판</div>
+		<h1>${board.name}게시판</h1>
 		<div>
 			<c:if test="${board.id != 2}">
-				<div><a href="${board.code}-write">글쓰기</a></div>
+				<h1><a href="${board.code}-write">글쓰기</a></h1>
 			</c:if>
 			<c:if test="${board.id == 2 && loginedMemberId == 1}">
-				<div><a href="${board.code}-write">글쓰기</a></div>
+				<h1><a href="${board.code}-write">글쓰기</a></h1>
 			</c:if>
 		</div>
 	</div>

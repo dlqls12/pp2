@@ -5,16 +5,19 @@
 <script>@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);</script>
 <div class="con body-box">
 	<form class="form1 main-form" action="../article/allSearchResult" onsubmit="SearchForm__submit(this); return false;">
+		<input type="hidden" name="page1" value="1" />
+		<input type="hidden" name="page2" value="1" />
+		<input type="hidden" name="page3" value="1" />
 		<table class="table1" border="1">
 			<colgroup>
 				<col width=200 />
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>검색</th>
+					<th>통합검색</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchTag}"/>
+							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchTag}" required/>
 						</div>
 					</td>
 				</tr>

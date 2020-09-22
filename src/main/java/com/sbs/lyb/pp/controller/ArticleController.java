@@ -306,7 +306,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/allSearchResult")
-	public String showAllSearchResult(String searchKeyword, Model model) {
+	public String showAllSearchResult(String searchKeyword, int page1, int page2, int page3, Model model) {
 		List<Article> articleList = articleService.getArticles(searchKeyword);
 		int articlesSize = articleList.size();
 		
@@ -337,6 +337,9 @@ public class ArticleController {
 		
 		model.addAttribute("memberList", memberList);
 		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("page1", page1);
+		model.addAttribute("page2", page2);
+		model.addAttribute("page3", page3);
 		return "article/allSearch";
 	}
 }

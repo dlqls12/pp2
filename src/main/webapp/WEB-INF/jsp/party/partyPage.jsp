@@ -30,14 +30,14 @@
 	</table>
 	<a href="./../article/listSortByParty?partyId=${party.id}&page=1">[파티게시물]</a>
 	<c:if test="${loginedMember.partyId != party.id }">
-		<a href="doJoinParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('정말로 ${party.name}그룹에 참여하시겠습니까?') == false ) return false;">[그룹 참여하기]</a>
+		<a href="doJoinParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('정말로 ${party.name}그룹에 참여하시겠습니까?') == false ) return false;">[파티 참여하기]</a>
 	</c:if>
 	<c:if test="${loginedMember.partyId == party.id }">
 		<c:if test="${party.memberCount == 1}">
-			<a href="doSignOutParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('회원수가 0이 되어 해당 그룹은 자동으로 삭제됩니다. 정말 탈퇴하시겠습니까?') == false ) return false;">[그룹 탈퇴하기]</a>
+			<a href="doSignOutParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('회원수가 0이 되어 해당 그룹은 자동으로 삭제됩니다. 정말 탈퇴하시겠습니까?') == false ) return false;">[파티 탈퇴하기]</a>
 		</c:if>
 		<c:if test="${party.memberCount > 1}">
-			<a href="doSignOutParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('정말로 ${party.name}그룹에서 나가시겠습니까?') == false ) return false;">[그룹 탈퇴하기]</a>
+			<a href="doSignOutParty?id=${loginedMemberId}&partyId=${party.id}" onclick="if ( confirm('정말로 ${party.name}그룹에서 나가시겠습니까?') == false ) return false;">[파티 탈퇴하기]</a>
 		</c:if>
 	</c:if>
 </div>

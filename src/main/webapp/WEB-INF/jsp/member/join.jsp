@@ -184,14 +184,11 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<th>가입</th>
-					<td>
-						<button type="submit">가입</button>
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		<div class="button-box">
+			<button type="submit">가입</button>
+		</div>
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%> 

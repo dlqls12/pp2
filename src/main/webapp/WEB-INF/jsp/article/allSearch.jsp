@@ -5,16 +5,19 @@
 
 <div class="con body-box">
 	<form class="form1 main-form" action="allSearchResult" onsubmit="SearchForm__submit(this); return false;">
+		<input type="hidden" name="page1" value="1" />
+		<input type="hidden" name="page2" value="1" />
+		<input type="hidden" name="page3" value="1" />
 		<table class="table1" border="1">
 			<colgroup>
 				<col width=200 />
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>검색</th>
+					<th>통합검색</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchTag}"/>
+							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchKeyword}" required/>
 						</div>
 					</td>
 				</tr>
@@ -52,8 +55,11 @@
 					<th>조회수</th>
 				</tr>
 			</thead>
+			<c:set var="cnt" value="0" />
 			<tbody>
 				<c:forEach items="${articleList}" var="article">
+					<c:set var="cnt" value="${cnt+1}"/>
+					<c:if test="${((page1-1) * 10) < cnt && cnt <= ((page1-1)*10) + 10}">
 					<tr>
 						<td>${article.extra.name}</td>
 						<td class="title">
@@ -72,9 +78,24 @@
 						<td>${article.regDate}</td>
 						<td>${article.hit}</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${articlesSize % 10 == 0}">
+			<c:set var="fullPage" value = "${articlesSize/10}" />
+		</c:if>
+		<c:if test="${articlesSize % 10 != 0}">
+			<c:set var="fullPage" value = "${articlesSize / 10 + 1}" />
+		</c:if>
+		<div class="paging-box">
+			<c:forEach var="cnt2" begin="1" end="${fullPage}">
+				<li>
+					<c:if test="${cnt2==page1}"><div class="current"><a href="?searchKeyword=${param.searchKeyword}&page1=${cnt2}&page2=${page2}&page3=${page3}" class="block">${cnt2}</a></div></c:if>
+					<c:if test="${cnt2!=page1}"><a href="?searchKeyword=${param.searchKeyword}&page1=${cnt2}&page2=${page2}&page3=${page3}" class="block">${cnt2}</a></c:if>
+				</li>
+			</c:forEach>
+		</div>
 	</c:if>
 
 	<c:if test="${partySize == 0}">
@@ -100,17 +121,35 @@
 					<th>회원수</th>
 				</tr>
 			</thead>
+			<c:set var="cnt" value="0" />
 			<tbody>
 				<c:forEach items="${partyList}" var="party">
+					<c:set var="cnt" value="${cnt+1}"/>
+					<c:if test="${((page2-1) * 10) < cnt && cnt <= ((page2-1)*10) + 10}">
 					<tr>
 						<td>${party.id}</td>
-						<td><a href="partyPage?id=${party.id}">${party.name}</a></td>
+						<td><a href="../party/partyPage?id=${party.id}">${party.name}</a></td>
 						<td>${party.regDate}</td>
 						<td>${party.memberCount}</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${articlesSize % 10 == 0}">
+			<c:set var="fullPage" value = "${partySize / 10}" />
+		</c:if>
+		<c:if test="${articlesSize % 10 != 0}">
+			<c:set var="fullPage" value = "${partySize / 10 + 1}" />
+		</c:if>
+		<div class="paging-box">
+			<c:forEach var="cnt2" begin="1" end="${fullPage}">
+				<li>
+					<c:if test="${cnt2==page2}"><div class="current"><a href="?searchKeyword=${param.searchKeyword}&page1=${page1}&page2=${cnt2}&page3=${page3}" class="block">${cnt2}</a></div></c:if>
+					<c:if test="${cnt2!=page2}"><a href="?searchKeyword=${param.searchKeyword}&page1=${page1}&page2=${cnt2}&page3=${page3}" class="block">${cnt2}</a></c:if>
+				</li>
+			</c:forEach>
+		</div>
 	</c:if>
 	
 	<c:if test="${articlesSize2 == 0}">
@@ -138,8 +177,11 @@
 					<th>조회수</th>
 				</tr>
 			</thead>
+			<c:set var="cnt" value="0" />
 			<tbody>
 				<c:forEach items="${articleList2}" var="article">
+					<c:set var="cnt" value="${cnt+1}"/>
+					<c:if test="${((page3-1) * 10) < cnt && cnt <= ((page3-1)*10) + 10}">
 					<tr>
 						<td>${article.id}</td>
 						<td class="title">
@@ -152,9 +194,24 @@
 						<td>${article.regDate}</td>
 						<td>${article.hit}</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${articlesSize % 10 == 0}">
+			<c:set var="fullPage" value = "${articlesSize2 / 10}" />
+		</c:if>
+		<c:if test="${articlesSize % 10 != 0}">
+			<c:set var="fullPage" value = "${articlesSize2 / 10 + 1}" />
+		</c:if>
+		<div class="paging-box">
+			<c:forEach var="cnt2" begin="1" end="${fullPage}">
+				<li>
+					<c:if test="${cnt2==page3}"><div class="current"><a href="?searchKeyword=${param.searchKeyword}&page1=${page1}&page2=${page2}&page3=${cnt2}" class="block">${cnt2}</a></div></c:if>
+					<c:if test="${cnt2!=page3}"><a href="?searchKeyword=${param.searchKeyword}&page1=${page1}&page2=${page2}&page3=${cnt2}" class="block">${cnt2}</a></c:if>
+				</li>
+			</c:forEach>
+		</div>
 	</c:if>
 </div>
 

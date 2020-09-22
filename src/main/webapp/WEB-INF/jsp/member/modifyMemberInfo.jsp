@@ -166,7 +166,7 @@
 			</table>
 		</form>
 	</div>
-	<div><a href="../article/listSortByMember?memberId=${loginedMemberId}">내가 쓴 글 보기</a></div>
+	<div><a href="../article/listSortByMember?memberId=${loginedMemberId}&page=1">내가 쓴 글 보기</a></div>
 	<div>
 		<h3>쪽지함</h3>
 		<c:if test="${fullPage == 0}">
