@@ -113,8 +113,98 @@
 			}, 'json' );
 	}
 
+	function MemberJoinForm__sendEmailDup(input) {
+		$('html').addClass('auth-mode-actived');
+		var form = input.form;
+
+		form.email.value = form.email.value.trim();
+
+		if (form.email.value.length == 0) {
+			$(form.email).next().empty();
+			return;
+		}
+		
+		$.get('getEmailDup', {
+				email: form.email.value
+			},
+			function(data) {
+				var $message = $(form.email).next();
+				if (data.resultCode.substr(0, 2) == 'S-') {
+					alert(data.msg);
+				}
+				else {
+					alert(data.msg);
+				}
+			}, 'json' );
+	}
+
+	function MemberJoinForm__emailAuth(input) {
+		var form = input.form;
+
+		form.authCode.value = form.authCode.value.trim();
+		form.email.value = form.email.value.trim();
+
+		if (form.authCode.value.length == 0) {
+			$(form.authCode).next().empty();
+			return;
+		}
+		
+		$.get('checkAuthCode', {
+				authCode: form.authCode.value,
+				email: form.email.value
+			},
+			function(data) {
+				var $message = $(form.authCode).next();
+				if (data.resultCode.substr(0, 2) == 'S-') {
+					$('html').addClass('hideSendMailButton');
+					$('html').removeClass('auth-mode-actived');
+					alert(data.msg);
+				} 
+				else {
+					alert(data.msg);
+				}
+			}, 'json' );
+	}	
+
 	MemberJoinForm__checkLoginIdDup = _.debounce(MemberJoinForm__checkLoginIdDup, 2000);
 </script>
+<style>
+.authComplete {
+	display:none;
+}
+
+.hideSendMailButton .authComplete {
+	display:block;
+	color:green;
+}
+
+.auth-mode-on {
+	display:none;
+}
+
+.auth-mode-actived .auth-mode-on {
+	display:block;
+}
+
+.hideSendMailButton .sendMailButton {
+	display:none;
+}
+
+.sendMailButton > button {
+	padding:6.5px;
+}
+
+.auth-mode-on > input {
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.auth-mode-on > button {
+	padding:6.5px;
+}
+</style>
 <div class="con">
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
@@ -161,10 +251,10 @@
 					</td>
 				</tr>
 				<tr>
-					<th>* 활동명</th>
+					<th>* 닉네임</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="활동명 입력해주세요." name="nickname" maxlength="20" />
+							<input type="text" placeholder="닉네임을 입력해주세요." name="nickname" maxlength="20" />
 						</div>
 					</td>
 				</tr>
@@ -173,6 +263,15 @@
 					<td>
 						<div class="form-control-box">
 							<input type="email" placeholder="이메일 입력해주세요." name="email" maxlength="50" />
+							<div class="message"></div>
+							<div class="sendMailButton">
+								<button onclick="MemberJoinForm__sendEmailDup(this);">인증메일 보내기</button>
+							</div>
+							<div class="auth-mode-on">
+								<input type="text" name="authCode" placeholder="인증코드" />
+								<button onclick="MemberJoinForm__emailAuth(this);">인증</button>
+							</div>
+							<div class="authComplete">인증완료</div>
 						</div>
 					</td>
 				</tr>

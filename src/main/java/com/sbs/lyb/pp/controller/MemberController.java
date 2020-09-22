@@ -317,7 +317,7 @@ public class MemberController {
 			return "common/redirect";
 		}
 		String tmpPw = Util.numberGen(6, 2);
-		System.out.println(tmpPw);
+		
 		memberService.modifyMemberPwTemp(tmpPw, member.getId());
 		String title = "비밀번호 찾기 결과입니다.";
 		String body = String.format("임시 비밀번호를 발급합니다.\n 임시 비밀번호는 [%s] 입니다.", tmpPw);
@@ -337,6 +337,37 @@ public class MemberController {
 			return new ResultData("S-1", String.format("입력하신 아이디는 사용하실 수 있습니다."), loginId);
 		}
 		return new ResultData("F-1", String.format("입력하신 아이디가 이미 존재합니다."), loginId);
+	}
+	
+	@RequestMapping("/usr/member/getEmailDup")
+	@ResponseBody
+	public ResultData doGetEmailDup(@RequestParam Map<String, Object> param) {
+		String email = Util.getAsStr(param.get("email"));
+		Member member = memberService.getMemberByEmail(email);
+		
+		if ( member == null ) {
+			String authCode = Util.numberGen(6, 2);
+			String title = "이메일 인증";
+			String body = String.format("이메일 인증코드 : [%s]", authCode);
+			memberService.setAuthCode(authCode, email);
+			memberService.sendMail(email, title, body);
+			return new ResultData("S-1", String.format("인증 메일을 발송했습니다. 이메일을 확인해주세요."), email);
+		}
+		return new ResultData("F-1", String.format("입력하신 이메일이 이미 존재합니다."), email);
+	}
+	
+	@RequestMapping("/usr/member/checkAuthCode")
+	@ResponseBody
+	public ResultData doCheckAuthCode(@RequestParam Map<String, Object> param) {
+		String authCode = Util.getAsStr(param.get("authCode"));
+		String email = Util.getAsStr(param.get("email"));
+		
+		String authCode2 = memberService.getJoinMailAuthCode(email);
+		
+		if ( authCode.equals(authCode2) ) {
+			return new ResultData("S-1", String.format("인증이 완료되었습니다."), authCode);
+		}
+		return new ResultData("F-1", String.format("인증번호가 일치하지 않습니다."), authCode);
 	}
 	
 	@RequestMapping("/usr/member/memberPage")

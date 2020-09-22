@@ -3,6 +3,136 @@
 <c:set var="pageTitle" value="메인" />
 <%@ include file="../part/head.jspf"%>
 <script>@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);</script>
+<style>
+/* hover-action */
+.snip1445 {
+	font-family: 'Raleway', Arial, sans-serif;
+	position: relative;
+	overflow: hidden;
+	margin: 10px 0;
+	min-width: 275px;
+	max-width: 400px;
+	width: 100%;
+	color: #EBE7D9;
+	text-align: center;
+	font-size: 16px;
+	background-color: #0F222D;
+	border:1px solid #F55139;
+}
+
+.snip1445 *, .snip1445 *:before, .snip1445 *:after {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.55s ease;
+	transition: all 0.55s ease;
+}
+
+.snip1445 img {
+	max-width: 100%;
+	backface-visibility: hidden;
+	vertical-align: top;
+}
+
+.snip1445 figcaption {
+	position: absolute;
+	bottom: 25px;
+	right: 25px;
+	padding: 5px 10px 10px;
+}
+
+.snip1445 figcaption:before, .snip1445 figcaption:after {
+	height: 2px;
+	width: 400px;
+	position: absolute;
+	content: '';
+	background-color: #EBE7D9;
+}
+
+.snip1445 figcaption:before {
+	top: 0;
+	left: 0;
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+}
+
+.snip1445 figcaption:after {
+	bottom: 0;
+	right: 0;
+	-webkit-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+
+.snip1445 figcaption div:before, .snip1445 figcaption div:after {
+	width: 2px;
+	height: 300px;
+	position: absolute;
+	content: '';
+	background-color: #EBE7D9;
+}
+
+.snip1445 figcaption div:before {
+	top: 0;
+	left: 0;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+.snip1445 figcaption div:after {
+	bottom: 0;
+	right: 0;
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.snip1445 h2, .snip1445 h4 {
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.snip1445 h2 {
+	font-weight: 400;
+	color:#EBE7D9;
+}
+
+.snip1445 h4 {
+	display: block;
+	font-weight: 700;
+	background-color: #EBE7D9;
+	padding: 5px 10px;
+	color: #0F222D;
+}
+
+.snip1445 a {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.snip1445:hover img, .snip1445.hover img {
+	zoom: 1;
+	filter: alpha(opacity = 50);
+	-webkit-opacity: 0.5;
+	opacity: 0.5;
+}
+
+.snip1445:hover figcaption:before, .snip1445.hover figcaption:before,
+	.snip1445:hover figcaption:after, .snip1445.hover figcaption:after,
+	.snip1445:hover figcaption div:before, .snip1445.hover figcaption div:before,
+	.snip1445:hover figcaption div:after, .snip1445.hover figcaption div:after
+	{
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.snip1445:hover figcaption:before, .snip1445.hover figcaption:before,
+	.snip1445:hover figcaption:after, .snip1445.hover figcaption:after {
+	-webkit-transition-delay: 0.15s;
+	transition-delay: 0.15s;
+}
+/* hover-action 끝 */
+</style>
 <div class="con body-box">
 	<form class="form1 main-form" action="../article/allSearchResult" onsubmit="SearchForm__submit(this); return false;">
 		<input type="hidden" name="page1" value="1" />

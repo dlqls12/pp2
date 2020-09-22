@@ -133,4 +133,13 @@ public class MemberService {
 	public List<Member> getMemberList() {
 		return memberDao.getMemberList();
 	}
+
+	public void setAuthCode(String authCode, String email) {
+		attrService.setValue("member__0__" + email + "__joinEmailAuthCode", authCode, Util.getDateStrLater(60*2));
+	}
+
+	public String getJoinMailAuthCode(String email) {
+		String authCode = attrService.getValue("member__0__" + email + "__joinEmailAuthCode");
+		return authCode;
+	}
 }

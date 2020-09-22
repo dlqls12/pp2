@@ -66,7 +66,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-detail")
-	public String showDetail(Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, String listUrl, int page) {
+	public String showDetail(Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, String listUrl, int page, HttpServletRequest req) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
 		}
@@ -91,7 +91,11 @@ public class ArticleController {
 		}
 		List<Reply> replies = replyService.getForPrintReplies(id, itemsInAPage, limitFrom);
 		
-		articleService.addHit(id);
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		
+		if ( article.getMemberId() != loginedMemberId ) {
+			articleService.addHit(id);
+		}
 		
 		model.addAttribute("replies", replies);
 		model.addAttribute("article", article);

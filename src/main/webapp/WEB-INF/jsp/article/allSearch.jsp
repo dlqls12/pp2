@@ -185,7 +185,7 @@
 					<tr>
 						<td>${article.id}</td>
 						<td class="title">
-							<c:if test="${article.sortId == 2}"> <div class="buy">[삽니다]</div></c:if>
+							<c:if test="${article.sortId == 2}"><div class="buy">[삽니다]</div></c:if>
 							<c:if test="${article.sortId == 1}"><div class="sell">[팝니다]</div></c:if>
 							<c:if test="${article.sortId == 0}"><div class="dealComplete">[거래완료]</div></c:if>
 							<a href="deal-detail?id=${article.id}&page=1">${article.title}</a>
