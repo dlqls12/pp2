@@ -62,6 +62,14 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
+		String authCode = (String)param.get("authCode");
+		
+		if ( authCode == null || authCode.trim().length() == 0 ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "인증코드를 입력해주세요.");
+			return "common/redirect";
+		}
+		
 		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
 
 		if (checkLoginIdJoinableResultData.isFail()) {

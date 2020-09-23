@@ -20,7 +20,7 @@
 		<h4><button type="button" onclick="history.back();">돌아가기</button></h4>
 	</c:if>
 	<c:if test="${fullPage!=0}">
-		<c:if test="${board.id > 2}">
+		<c:if test="${board.id == 3}">
 			<select onchange="location.href = '?page=1&sortId=' + this.value;">
 			    <option value="none">=== select ===</option>
 			    <option value="0">all</option>
