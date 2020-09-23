@@ -259,27 +259,27 @@
 					</td>
 				</tr>
 				<tr>
+					<th>* 휴대폰</th>
+					<td>
+						<div class="form-control-box">
+							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="phoneNo" maxlength="12" />
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<th>* 이메일</th>
 					<td>
 						<div class="form-control-box">
 							<input type="email" placeholder="이메일 입력해주세요." name="email" maxlength="50" />
 							<div class="message"></div>
 							<div class="sendMailButton">
-								<button onclick="MemberJoinForm__sendEmailDup(this);">인증메일 보내기</button>
+								<button type="button" onclick="MemberJoinForm__sendEmailDup(this);">인증메일 보내기</button>
 							</div>
 							<div class="auth-mode-on">
 								<input type="text" name="authCode" placeholder="인증코드" />
-								<button onclick="MemberJoinForm__emailAuth(this);">인증</button>
+								<button type="button" onclick="MemberJoinForm__emailAuth(this);">인증</button>
 							</div>
 							<div class="authComplete">인증완료</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>* 휴대폰</th>
-					<td>
-						<div class="form-control-box">
-							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="phoneNo" maxlength="12" />
 						</div>
 					</td>
 				</tr>

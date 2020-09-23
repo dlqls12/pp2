@@ -314,6 +314,21 @@ html>head+body:nth-child(2) .height-300 {
 	justify-content: flex-end;
 }
 
+.membership-box > a {
+	font-size:1.4rem;
+	font-weight:bold;
+	padding:2px;
+}
+
+.membership-box > span {
+	font-size:1.4rem;
+	margin-top:5px;
+}
+
+.membership-box > a:hover {
+	color:#F55139;
+}
+
 .bodyarea {
 	height: 300px;
 }

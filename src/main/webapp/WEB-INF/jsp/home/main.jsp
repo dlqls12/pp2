@@ -217,11 +217,11 @@
 		  <img src="/resource/img/main-item.png" alt="main-item" />
 		  <figcaption>
 		    <div>
-		      <h2>게시물 태그 검색</h2>
-		      <h4>search-tag</h4>
+		      <h2>건의사항</h2>
+		      <h4>Suggestions</h4>
 		    </div>
 		  </figcaption>
-		  <a href="./../article/seekTag"></a>
+		  <a href="./../article/suggestion-list?page=1&sortId=0"></a>
 		</figure>
 	</div>
 </div>

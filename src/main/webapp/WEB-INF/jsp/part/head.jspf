@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,42 +11,185 @@
 
 <!-- 구글 폰트 불러오기 -->
 <!-- rotobo(400/700/900), notosanskr(400/600/900) -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap"
+	rel="stylesheet">
 
 <!-- 폰트어썸 불러오기 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 
 <!-- 제이쿼리 불러오기 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- 공통(라이브러리) CSS -->
 <link rel="stylesheet" href="/resource/common.css" />
 <!-- 공통(라이브러리) JS -->
 <script src="/resource/common.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="/resource/app.css" />
 
 </head>
+<style>
+/* layer-popup */
+.pop-layer .pop-container {
+	padding: 20px 25px;
+}
+
+.pop-layer p.ctxt {
+	color: #0F222D;
+	line-height: 25px;
+}
+
+.pop-layer .btn-r {
+	width: 100%;
+	margin: 10px 0 20px;
+	padding-top: 10px;
+	border-top: 1px solid #F55139;
+	text-align: right;
+}
+
+.pop-layer {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 590px;
+	height: auto;
+	background-color: #EBE7D9;
+	border: 5px solid #F55139;
+	z-index: 10;
+}
+
+.dim-layer {
+	display: none;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+.dim-layer .dimBg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+}
+
+.dim-layer .pop-layer {
+	display: block;
+}
+
+a.btn-layerClose {
+	display: inline-block;
+	height: 25px;
+	padding: 0 14px 0;
+	background-color: #0F222D;
+	font-size: 13px;
+	color: white;
+	line-height: 25px;
+}
+
+a.btn-layerClose:hover {
+	background-color: #1f326a;
+	color: white;
+}
+/* layer-popup 끝 */
+</style>
 <body>
-	<div class="top-bar con">
-		<div class="membership-box">
-			<c:if test="${isLogined == false}">
-				<a href="/usr/member/login">[Login]</a>
-				<a href="/usr/member/join">[Join]</a>
+	<div class="membership-box">
+		<c:if test="${isLogined == false}">
+			<a href="/usr/member/login">[Login]</a>&nbsp&nbsp
+				<a href="/usr/member/join">[Join]</a>&nbsp&nbsp
 			</c:if>
-			<c:if test="${isLogined}">
-				${loginedMember.nickname}님 환영합니다.^^
-				<a href="/usr/member/doLogout">[Logout]</a>
-				<a href="/usr/member/checkPw">[My Page]</a>
-				<a href="/usr/member/signOut?id=${loginedMemberId}">[Sign Out]</a>
+		<c:if test="${isLogined}">
+			<span>${loginedMember.nickname}님 환영합니다.^^</span>&nbsp&nbsp
+				<a href="/usr/member/doLogout">[Logout]</a>&nbsp&nbsp
+				<a href="/usr/member/checkPw">[My Page]</a>&nbsp&nbsp
+				<a href="/usr/member/signOut?id=${loginedMemberId}">[Sign Out]</a>&nbsp&nbsp
 			</c:if>
+		<a href="#layer2" class="btn-example">[help]</a>
+		<div class="dim-layer">
+			<div class="dimBg"></div>
+			<div id="layer2" class="pop-layer">
+				<div class="pop-container">
+					<div class="pop-conts">
+						<!--content //-->
+						<p class="ctxt mb20">
+							<strong>UUMarket</strong>에 방문해주셔서 감사합니다.<br>
+							이 사이트는 대학생을 대상으로 한 <strong>중고거래 사이트</strong>입니다.<br>
+							거래 게시판을 이용해 글을 작성하고 필요한 물품을 찾아 볼 수 있습니다.<br>
+							<strong>파티</strong>는 대학 또는 그 대학의 학과 처럼 규모에 상관없이 그룹화 하기 위해 만든 기능입니다.<br>
+							사용자는 <strong>파티</strong>를 생성할 수도 가입할 수도 있고 해당 <strong>파티</strong>에 속한 사용자들이 작성한 게시물들만 따로 볼 수도 있습니다.
+							<br><br>
+							Hope to see you soon!
+						</p>
+
+						<div class="btn-r">
+							<a href="#" class="btn-layerClose">닫기</a>
+						</div>
+						<!--// content-->
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
+	<div class="top-bar con">
 		<div class="menu-box-1">
 			<div class="logo">
-				<a href="/usr/home/main">
-					<img src="/resource/img/logo.png" alt="logo" />
+				<a href="/usr/home/main"> <img src="/resource/img/logo.png"
+					alt="logo" />
 				</a>
 			</div>
 		</div>
 	</div>
+	<script>
+		$('.btn-example').click(function() {
+			var $href = $(this).attr('href');
+			layer_popup($href);
+		});
+		function layer_popup(el) {
+
+			var $el = $(el); //레이어의 id를 $el 변수에 저장
+			var isDim = $el.prev().hasClass('dimBg'); //dimmed 레이어를 감지하기 위한 boolean 변수
+
+			isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+			var $elWidth = ~~($el.outerWidth()), $elHeight = ~~($el
+					.outerHeight()), docWidth = $(document).width(), docHeight = $(
+					document).height();
+
+			// 화면의 중앙에 레이어를 띄운다.
+			if ($elHeight < docHeight || $elWidth < docWidth) {
+				$el.css({
+					marginTop : -$elHeight / 2,
+					marginLeft : -$elWidth / 2
+				})
+			} else {
+				$el.css({
+					top : 0,
+					left : 0
+				});
+			}
+
+			$el.find('a.btn-layerClose').click(function() {
+				isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+				return false;
+			});
+
+			$('.layer .dimBg').click(function() {
+				$('.dim-layer').fadeOut();
+				return false;
+			});
+		}
+	</script>
