@@ -8,7 +8,7 @@
 <div class="con body-box">
 	<table border="1" class="table1">
 		<colgroup>
-			<col width="200" />
+			<col width="15%" />
 		</colgroup>
 		<tbody>
 			<tr>

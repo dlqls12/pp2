@@ -30,12 +30,12 @@
 	display: block;
 	box-sizing: border-box;
 	resize:none;
-	white-space:pre-wrap;
 }
 
 pre {
-	max-width:750px;
-	white-space: pre-wrap;
+	max-width: 750px;
+	word-wrap: break-word;      /* IE 5.5-7 */
+	white-space: pre-wrap;      /* current browsers */
 }
 </style>
 <div class="con">
@@ -53,7 +53,7 @@ pre {
 			</tr>
 			<tr class="bodyarea">
 				<th>내용</th>
-				<td><pre class="pre">${article.body}</pre></td>
+				<td><pre>${article.body}</pre></td>
 			</tr>
 			<c:set var="fileNo" value="${String.valueOf(1)}" />
 			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />

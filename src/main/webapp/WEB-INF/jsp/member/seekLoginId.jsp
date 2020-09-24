@@ -37,6 +37,9 @@
 	<form method="POST" class="form1" action="doSeekLoginId" onsubmit="MemberSeekLoginIdForm__submit(this); return false;">
 		<input type="hidden" name="redirectUrl" value="usr/member/login">
 		<table class="table1" border="1">
+			<colgroup>
+				<col width="15%"/>
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>이름</th>

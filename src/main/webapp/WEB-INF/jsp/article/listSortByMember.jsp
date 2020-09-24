@@ -10,10 +10,10 @@
 	</div>
 	<table class="table2">
 		<colgroup>
-			<col width="100" />
+			<col width="15%" />
 			<col />
-			<col width="200" />
-			<col width="100" />
+			<col width="15%" />
+			<col width="15%" />
 		</colgroup>
 		<thead>
 			<tr>

@@ -140,7 +140,7 @@
 		<input type="hidden" name="page3" value="1" />
 		<table class="table1" border="1">
 			<colgroup>
-				<col width=200 />
+				<col width=15% />
 			</colgroup>
 			<tbody>
 				<tr>

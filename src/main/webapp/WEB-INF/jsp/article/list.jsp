@@ -49,11 +49,11 @@ select::-ms-expand {
 		<div class="table1-box">
 			<table class="table2 visible-on-md-up">
 				<colgroup>
-					<col width="100"/>
+					<col width="10%"/>
 					<col />
-					<col width="150"/>
-					<col width="200"/>
-					<col width="100"/>
+					<col width="15%"/>
+					<col width="15%"/>
+					<col width="15%"/>
 				</colgroup>
 				<thead>
 					<tr>

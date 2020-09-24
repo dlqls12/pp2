@@ -37,6 +37,9 @@
 		<input type="hidden" name="writerId" value="${loginedMemberId}">
 		<input type="hidden" name="getterId" value="${getterId}">
 		<table class="table1" border="1">
+			<colgroup>
+				<col width="15%"/>
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>받는사람</th>

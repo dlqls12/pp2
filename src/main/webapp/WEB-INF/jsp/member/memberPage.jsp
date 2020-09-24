@@ -11,7 +11,7 @@
 <div class="con body-box">
 	<table class="table1" border="1">
 		<colgroup>
-			<col width="150">
+			<col width="15%">
 		</colgroup>
 		<tbody>
 			<tr>

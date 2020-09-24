@@ -49,7 +49,7 @@
 		<input type="hidden" name="id" value="${loginedMember.id}">
 		<table class="table1" border="1">
 			<colgroup>
-				<col width="150" />
+				<col width="15%" />
 			</colgroup>
 			<tbody>
 				<tr>

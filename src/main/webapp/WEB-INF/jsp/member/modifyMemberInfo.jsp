@@ -79,7 +79,7 @@
 	<div class="modify-mode-off">
 		<table class="table3" border="1">
 			<colgroup>
-				<col width="200">
+				<col width="15%">
 			</colgroup>
 			<tbody>
 				<tr>
@@ -120,7 +120,7 @@
 			<input type="hidden" name="id" value="${loginedMember.id}">
 			<table class="table1" border="1">
 				<colgroup>
-					<col width="150">
+					<col width="15%">
 				</colgroup>
 				<tbody>
 					<tr>
@@ -175,11 +175,11 @@
 		<c:if test="${fullPage != 0}">
 			<table class="table2 reply-list" border="1">
 				<colgroup>
-					<col width="100" />
+					<col width="15%" />
 					<col />
-					<col width="150" />
-					<col width="200" />
-					<col width="100" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
 				</colgroup>
 				<thead>
 					<tr>
