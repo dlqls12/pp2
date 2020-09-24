@@ -30,6 +30,12 @@
 	display: block;
 	box-sizing: border-box;
 	resize:none;
+	white-space:pre-wrap;
+}
+
+pre {
+	max-width:750px;
+	white-space: pre-wrap;
 }
 </style>
 <div class="con">
@@ -38,7 +44,7 @@
 <div class="con body-box">
 	<table border="1" class="table1">
 		<colgroup>
-			<col width="200" />
+			<col width="15%" />
 		</colgroup>
 		<tbody>
 			<tr>
@@ -47,7 +53,7 @@
 			</tr>
 			<tr class="bodyarea">
 				<th>내용</th>
-				<td><pre>${article.body}</pre></td>
+				<td><pre class="pre">${article.body}</pre></td>
 			</tr>
 			<c:set var="fileNo" value="${String.valueOf(1)}" />
 			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
@@ -66,7 +72,7 @@
 					<th>태그</th>
 					<td>
 						<c:forEach items="${tagList}" var="tag">
-							<a href="seekTag?searchTag=${tag.body}">#${tag.body}</a>&nbsp
+							<a href="allSearchResult?page1=1&page2=1&page3=1&searchKeyword=${tag.body}">#${tag.body}</a>&nbsp
 						</c:forEach>
 					</td>
 				</tr>
@@ -87,7 +93,7 @@
 		</tbody>
 	</table>
 	<c:if test="${loginedMemberId == article.memberId}">
-		<div class="crud-box">
+		<div class="crud-box visible-on-md-up">
 			<div>
 				<a href="${article.getModifyLink(board.code)}">[수정]</a>
 				<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
@@ -95,6 +101,16 @@
 			</div>
 			<div class="subTitle">
 				날짜:${article.regDate} | 작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>&nbsp| 조회수:${article.hit}
+			</div>
+		</div>
+		<div class="mobile-crud-box visible-on-sm-down">
+			<div class="subTitle">
+				날짜:${article.regDate} | 작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>&nbsp| 조회수:${article.hit}
+			</div>
+			<div>
+				<a href="${article.getModifyLink(board.code)}">[수정]</a>
+				<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
+				<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
 			</div>
 		</div>
 	</c:if>
@@ -188,7 +204,7 @@
 			<input type="hidden" name="memberId" value="${loginedMemberId}" />
 			<table class="table1" border="1">
 				<colgroup>
-					<col width="200" />
+					<col width="15%" />
 				</colgroup>
 				<tbody>
 					<tr>
@@ -217,11 +233,11 @@
 	<c:if test="${fullPage != 0}">
 		<table class="table2 reply-list">
 			<colgroup>
-				<col width="100" />
+				<col width="10%" />
 				<col />
-				<col width="200" />
-				<col width="200" />
-				<col width="200" />
+				<col width="15%" />
+				<col width="15%" />
+				<col width="15%" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -239,7 +255,7 @@
 					<tr>
 						<td>${reply.id}</td>
 						<td>
-							<div class="modify-mode-off">${reply.body}</div>
+							<div class="modify-mode-off"><pre class="pre">${reply.body}</pre></div>
 							<div class="modify-mode-on">
 								<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
 									<input type="hidden" name="id" value="${reply.id}" />

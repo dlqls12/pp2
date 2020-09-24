@@ -28,16 +28,25 @@ label[for] {
 	cursor: pointer;
 	user-select: none;
 }
+/* 커스텀 */
+@media ( max-width :799px) {
+	.visible-on-md-up {
+		display: none !important;
+	}
+}
 
+@media ( min-width :800px) {
+	.visible-on-sm-down {
+		display: none !important;
+	}
+}
+
+@media ( max-width :799px ) {
+	.form1 .form-row {
+		display: block;
+	}
+}
 /* 라이브러리 */
-.block {
-	display: block;
-}
-
-.inline-block {
-	display: inline-block;
-}
-
 .con {
 	max-width: 1200px;
 }
@@ -45,10 +54,6 @@ label[for] {
 .con {
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.border-red {
-	border: 10px solid red;
 }
 
 html>head+body:nth-child(2) .height-300 {
@@ -239,6 +244,19 @@ html>head+body:nth-child(2) .height-300 {
 	border-top: 3px solid #F55139;
 	color: #EBE7D9;
 	font-size: 1.5rem;
+	margin: 20px 0;
+}
+
+.mobile-bottom > div {
+	margin:10px 10px;
+}
+
+.mobile-bottom {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	border-top: 3px solid #F55139;
+	color: #EBE7D9;
 	margin: 10px 0;
 }
 
@@ -274,7 +292,6 @@ html>head+body:nth-child(2) .height-300 {
 .pageTitle {
 	display: flex;
 	justify-content: space-between;
-	margin: 15px 0;
 }
 
 .subTitle {
@@ -305,8 +322,27 @@ html>head+body:nth-child(2) .height-300 {
 	justify-content: space-between;
 }
 
+.mobile-crud-box > div {
+	display:block;
+	text-align:right;
+}
+
 .title {
 	font-weight: bold;
+}
+
+.mobile-membership-box {
+	display:flex;
+	justify-content: flex-end;
+}
+
+.mobile-membership-box > a {
+	font-weight:bold;
+	padding-top:2px;
+}
+
+.mobile-membership-box > span {
+	margin-top:3px;
 }
 
 .membership-box {
@@ -333,14 +369,56 @@ html>head+body:nth-child(2) .height-300 {
 	height: 300px;
 }
 
+.visible-on-sm-down .main-item {
+	display:flex;
+	justify-content:space-between;
+	width:800px;
+	margin-top:20px;
+}
+
 .main-item {
 	display:flex;
 	justify-content:space-between;
 	margin-top:20px;
 }
 
-.main-form {
-	margin-bottom:30px;
+.mobile-main-item-box {
+	display:flex;
+	justify-content:space-between;
+	margin-top:40px;
+}
+
+.mobile-main-item {
+	border:1px solid #F55139;
+	width:30%;
+	height:150px;
+}
+
+.mobile-main-item a {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:100%;
+}
+
+.mobile-main-item > a > span {
+	display:flex;
+	justify-content:center;
+	flex-wrap:wrap;
+}
+
+.mobile-main-item span>span:first-child {
+	width:100%;
+	text-align:center;
+}
+
+.mobile-main-item span>span:last-child {
+	display:block;
+	text-align:center;
+	background-color:#EBE7D9;
+	color:#0F222D;
+	font-weight:bold;
 }
 
 .button-box {

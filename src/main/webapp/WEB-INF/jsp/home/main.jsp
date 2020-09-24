@@ -160,69 +160,125 @@
 			</tbody>
 		</table>
 	</form>
-	<div class="main-item">
-		<figure class="snip1445">
-		  <img src="/resource/img/main-item.png" alt="main-item" />
-		  <figcaption>
-		    <div>
-		      <h2>공지사항</h2>
-		      <h4>notice</h4>
-		    </div>
-		  </figcaption>
-		  <a href="/usr/article/notice-list?page=1&sortId=0"></a>
-		</figure>
-		<figure class="snip1445">
-		  <img src="/resource/img/main-item.png" alt="main-item" />
-		  <figcaption>
-		    <div>
-		      <h2>자유게시판</h2>
-		      <h4>free-Board</h4>
-		    </div>
-		  </figcaption>
-		  <a href="/usr/article/free-list?page=1&sortId=0"></a>
-		</figure>
-		<figure class="snip1445">
-		  <img src="/resource/img/main-item.png" alt="main-item" />
-		  <figcaption>
-		    <div>
-		      <h2>거래게시판</h2>
-		      <h4>deal-board</h4>
-		    </div>
-		  </figcaption>
-		  <a href="/usr/article/deal-list?page=1&sortId=0"></a>
-		</figure>
+	<div class="visible-on-md-up">
+		<div class="main-item">
+			<figure class="snip1445">
+			  <img src="/resource/img/main-item.png" alt="main-item" />
+			  <figcaption>
+			    <div>
+			      <h2>공지사항</h2>
+			      <h4>notice</h4>
+			    </div>
+			  </figcaption>
+			  <a href="/usr/article/notice-list?page=1&sortId=0"></a>
+			</figure>
+			<figure class="snip1445">
+			  <img src="/resource/img/main-item.png" alt="main-item" />
+			  <figcaption>
+			    <div>
+			      <h2>자유게시판</h2>
+			      <h4>free-Board</h4>
+			    </div>
+			  </figcaption>
+			  <a href="/usr/article/free-list?page=1&sortId=0"></a>
+			</figure>
+			<figure class="snip1445">
+			  <img src="/resource/img/main-item.png" alt="main-item" />
+			  <figcaption>
+			    <div>
+			      <h2>거래게시판</h2>
+			      <h4>deal-board</h4>
+			    </div>
+			  </figcaption>
+			  <a href="/usr/article/deal-list?page=1&sortId=0"></a>
+			</figure>
+		</div>
+		<div class="main-item">
+			<figure class="snip1445">
+			  <img src="/resource/img/main-item.png" alt="main-item" />
+			  <figcaption>
+			    <div>
+			      <h2>파티 생성</h2>
+			      <h4>create-party</h4>
+			    </div>
+			  </figcaption>
+			  <a href="./../party/createParty"></a>
+			</figure>
+			<figure class="snip1445">
+			  <img src="/resource/img/main-item.png" alt="main-item" />
+			  <figcaption>
+			    <div>
+			      <h2>파티 검색</h2>
+			      <h4>search-party</h4>
+			    </div>
+			  </figcaption>
+			  <a href="./../party/seekParty"></a>
+			</figure>
+			<figure class="snip1445">
+			  <img src="/resource/img/main-item.png" alt="main-item" />
+			  <figcaption>
+			    <div>
+			      <h2>건의사항</h2>
+			      <h4>Suggestions</h4>
+			    </div>
+			  </figcaption>
+			  <a href="./../article/suggestion-list?page=1&sortId=0"></a>
+			</figure>
+		</div>
 	</div>
-	<div class="main-item">
-		<figure class="snip1445">
-		  <img src="/resource/img/main-item.png" alt="main-item" />
-		  <figcaption>
-		    <div>
-		      <h2>파티 생성</h2>
-		      <h4>create-party</h4>
-		    </div>
-		  </figcaption>
-		  <a href="./../party/createParty"></a>
-		</figure>
-		<figure class="snip1445">
-		  <img src="/resource/img/main-item.png" alt="main-item" />
-		  <figcaption>
-		    <div>
-		      <h2>파티 찾기</h2>
-		      <h4>seek-party</h4>
-		    </div>
-		  </figcaption>
-		  <a href="./../party/seekParty"></a>
-		</figure>
-		<figure class="snip1445">
-		  <img src="/resource/img/main-item.png" alt="main-item" />
-		  <figcaption>
-		    <div>
-		      <h2>건의사항</h2>
-		      <h4>Suggestions</h4>
-		    </div>
-		  </figcaption>
-		  <a href="./../article/suggestion-list?page=1&sortId=0"></a>
-		</figure>
+	<div class="visible-on-sm-down">
+		<div class="mobile-main-item-box">
+			<div class="mobile-main-item">
+				<a href="/usr/article/notice-list?page=1&sortId=0">
+					<span>
+						<span>공지사항</span>
+						<span>NOTICE</span>
+					</span>
+				</a>
+			</div>
+			<div class="mobile-main-item">
+				<a href="/usr/article/free-list?page=1&sortId=0">
+					<span>
+						<span>자유게시판</span>
+						<span>FREE-BOARD</span>
+					</span>
+				</a>
+			</div>
+			<div class="mobile-main-item">
+				<a href="/usr/article/deal-list?page=1&sortId=0">
+					<span>
+						<span>거래게시판</span>
+						<span>DEAL-BOARD</span>
+					</span>
+				</a>
+			</div>
+		</div>
+		<div class="mobile-main-item-box">
+			<div class="mobile-main-item">
+				<a href="/usr/article/suggestion-list?page=1&sortId=0">
+					<span>
+						<span>건의사항</span>
+						<span>SUGGESTIONS</span>
+					</span>
+				</a>
+			</div>
+			<div class="mobile-main-item">
+				<a href="./../party/createParty">
+					<span>
+						<span>파티 생성</span>
+						<span>CREATE-PARTY</span>
+					</span>
+				</a>
+			</div>
+			<div class="mobile-main-item">
+				<a href="./../party/seekParty">
+					<span>
+						<span>파티 검색</span>
+						<span>SEARCH-PARTY</span>
+					</span>
+				</a>
+			</div>
+		</div>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

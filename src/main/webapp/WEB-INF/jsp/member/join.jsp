@@ -114,15 +114,17 @@
 	}
 
 	function MemberJoinForm__sendEmailDup(input) {
-		$('html').addClass('auth-mode-actived');
 		var form = input.form;
 
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {
-			$(form.email).next().empty();
+			form.email.focus();
+			alert('이메일을 입력해주세요.');
 			return;
 		}
+
+		$('html').addClass('auth-mode-actived');
 		
 		$.get('getEmailDup', {
 				email: form.email.value
