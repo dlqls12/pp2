@@ -27,7 +27,7 @@
 	<form class="form1" action="?searchKeyword=${searchKeyword}" onsubmit="PartySeekForm__submit(this); return false;">
 		<table class="table1" border="1">
 			<colgroup>
-				<col width=200 />
+				<col width=15% />
 			</colgroup>
 			<tbody>
 				<tr>
@@ -59,10 +59,10 @@
 		<c:if test="${partyCount != null}">
 			<table class="table2">
 				<colgroup>
-					<col width="100"/>
+					<col width="15%"/>
 					<col />
-					<col width="200"/>
-					<col width="100"/>
+					<col width="15%"/>
+					<col width="15%"/>
 				</colgroup>
 				<thead>
 					<tr>

@@ -22,16 +22,8 @@ select::-ms-expand {
 }
 </style>
 <div class="con body-box">
-	<div class="pageTitle">
-		<h3>${board.name}게시판</h3>
-		<div>
-			<c:if test="${board.id != 2}">
-				<h3><a href="${board.code}-write">글쓰기</a></h3>
-			</c:if>
-			<c:if test="${board.id == 2 && loginedMemberId == 1}">
-				<h3><a href="${board.code}-write">글쓰기</a></h3>
-			</c:if>
-		</div>
+	<div class="con">
+		<h1 class="page-title-box">${pageTitle}</h1>
 	</div>
 	<c:if test="${fullPage==0}">
 		게시물이 존재하지 않습니다.
@@ -97,8 +89,8 @@ select::-ms-expand {
 				</tbody>
 			</table>
 		</div>
-		<div class="table1-box visible-on-sm-down">
-			<table class="table2">
+		<div class="table1-box">
+			<table class="table2 visible-on-sm-down">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -137,6 +129,14 @@ select::-ms-expand {
 					</c:if>
 				</tbody>
 			</table>
+			<div class="writebutton">
+				<c:if test="${board.id != 2}">
+					<h2><a href="${board.code}-write">[write]</a></h2>
+				</c:if>
+				<c:if test="${board.id == 2 && loginedMemberId == 1}">
+					<h2><a href="${board.code}-write">[write]</a></h2>
+				</c:if>
+			</div>
 		</div>
 		<div class="paging-box">
 			<c:forEach var="cnt" begin="1" end="${fullPage}">

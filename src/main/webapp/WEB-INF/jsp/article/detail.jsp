@@ -33,6 +33,7 @@
 }
 
 pre {
+	min-width:400px;
 	max-width: 750px;
 	word-wrap: break-word;      /* IE 5.5-7 */
 	white-space: pre-wrap;      /* current browsers */

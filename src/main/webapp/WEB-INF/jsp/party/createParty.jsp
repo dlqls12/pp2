@@ -36,7 +36,7 @@
 		<input type="hidden" name="id" value="${loginedMemberId}">
 		<table class="table1" border="1">
 			<colgroup>
-				<col width=200 />
+				<col width=15% />
 			</colgroup>
 			<tbody>
 				<tr>
@@ -55,14 +55,11 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<th>파티생성</th>
-					<td>
-						<button type="submit" onclick="if ( confirm('정말 해당 내용으로 파티를 생성하시겠습니까?') == false ) return false;">만들기</button>
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		<div class="button-box">
+			<button type="submit" onclick="if ( confirm('정말 해당 내용으로 파티를 생성하시겠습니까?') == false ) return false;">만들기</button>
+		</div>
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%>

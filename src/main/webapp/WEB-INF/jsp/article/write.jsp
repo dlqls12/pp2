@@ -144,14 +144,12 @@
 						</td>
 					</tr>
 				</c:if>
-				<tr>
-					<th>작성</th>
-					<td>
-						<button type="submit">작성</button> <a href="${listUrl}">리스트</a>
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		<div class="button-box">
+			<button type="submit">작성</button>
+		</div>
+		<a href="${listUrl}">[리스트]</a>
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%>

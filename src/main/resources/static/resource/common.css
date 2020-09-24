@@ -197,15 +197,10 @@ html>head+body:nth-child(2) .height-300 {
 .paging-box {
 	display: flex;
 	justify-content: center;
-	margin: 5px;
 }
 
 .paging-box .current {
 	color: #F55139;
-}
-
-.paging-box>li {
-	margin: 0 5px;
 }
 
 .paging-box>li {
@@ -429,4 +424,13 @@ html>head+body:nth-child(2) .height-300 {
 .button-box > button {
 	margin:10px;
 	padding:10px;
+}
+
+.writebutton {
+	display:flex;
+	justify-content:flex-end;
+}
+
+.writebutton > h2 {
+	margin:0;
 }
