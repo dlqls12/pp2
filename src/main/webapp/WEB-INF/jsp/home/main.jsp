@@ -138,23 +138,22 @@
 		<input type="hidden" name="page1" value="1" />
 		<input type="hidden" name="page2" value="1" />
 		<input type="hidden" name="page3" value="1" />
-		<table class="table1" border="1">
+		<table class="table1">
 			<colgroup>
-				<col width=15% />
+				<col width=10%/>
+				<col />
+				<col width=10% />
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>통합검색</th>
+					<td style="text-align:center; font-weight:bold;">통합검색</td>
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchTag}" required/>
 						</div>
 					</td>
-				</tr>
-				<tr>
-					<th>찾기</th>
-					<td>
-						<button type="submit">찾기</button>
+					<td style="text-align:center;">
+						<button class="button2" type="submit"><img src="/resource/img/search.png" alt="search" /></button>
 					</td>
 				</tr>
 			</tbody>

@@ -49,13 +49,9 @@ label[for] {
 /* 라이브러리 */
 .con {
 	max-width: 1200px;
-}
-
-.con {
 	margin-left: auto;
 	margin-right: auto;
 }
-
 html>head+body:nth-child(2) .height-300 {
 	min-height: 100px;
 }
@@ -71,6 +67,13 @@ html>head+body:nth-child(2) .height-300 {
 
 .flex-jc-c {
 	justify-content: center;
+}
+
+.button2 {
+	width:100%;
+	height:100%;
+	border:1px solid #EBE7D9;
+	background-color:#EBE7D9;
 }
 
 /* 폼 관련 */
@@ -123,15 +126,6 @@ html>head+body:nth-child(2) .height-300 {
 	text-align: center;
 }
 
-/* 검색 폼 */
-.search-box-el {
-	display: flex;
-}
-
-.search-box-el>input {
-	margin: 0 10px;
-}
-
 /* 테이블 관련 */
 .table1, .table2, .table3 {
 	width: 100%;
@@ -167,10 +161,6 @@ html>head+body:nth-child(2) .height-300 {
 	padding: 10px;
 }
 
-.table2>tbody>tr:nth-child(2n) {
-	background-color: #dfdfdf;
-}
-
 .table2>tbody>tr td:first-child, .table2>tbody>tr td:last-child, .table2>tbody>tr td:nth-child(3),
 	.table2>tbody>tr td:nth-child(4) {
 	text-align: center;
@@ -180,32 +170,56 @@ html>head+body:nth-child(2) .height-300 {
 	padding: 10px;
 }
 
-.table3>thead>tr th {
-	text-align: center;
-	background-color: #dfdfdf;
-}
-
 .table3>tbody>tr th {
 	text-align: center;
 }
 
-.search-box {
-	display: flex;
-	justify-content: center;
+.article-box {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	border-bottom:1px solid #F55139;
 }
+
+.article-box > div:first-child {
+	font-weight:bold;
+	font-size:1.5rem;
+}
+
+.crud-box, .crud-box2 {
+	border-top:1px solid #F55139;
+}
+/* 테이블 관련 끝 */
 
 .paging-box {
 	display: flex;
 	justify-content: center;
+	width:34%;
 }
 
 .paging-box .current {
 	color: #F55139;
 }
 
-.paging-box>li {
+.paging-box2 {
+	display: flex;
+	justify-content: center;
+}
+
+.paging-box2 .current {
+	color: #F55139;
+}
+
+.paging-box2 > li, .paging-box2 > a {
 	font-size: 1.4rem;
 	font-weight: bold;
+	margin:0 5px;
+}
+
+.paging-box>li, .paging-box>a {
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin:0 5px;
 }
 
 .logo {
@@ -289,11 +303,6 @@ html>head+body:nth-child(2) .height-300 {
 	justify-content: space-between;
 }
 
-.subTitle {
-	display: flex;
-	justify-content: flex-end;
-}
-
 .sell {
 	display: inline-block;
 	color: red;
@@ -317,9 +326,9 @@ html>head+body:nth-child(2) .height-300 {
 	justify-content: space-between;
 }
 
-.mobile-crud-box > div {
-	display:block;
-	text-align:right;
+.crud-box2 {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .title {
@@ -358,10 +367,6 @@ html>head+body:nth-child(2) .height-300 {
 
 .membership-box > a:hover {
 	color:#F55139;
-}
-
-.bodyarea {
-	height: 300px;
 }
 
 .visible-on-sm-down .main-item {
@@ -429,8 +434,33 @@ html>head+body:nth-child(2) .height-300 {
 .writebutton {
 	display:flex;
 	justify-content:flex-end;
+	width:33%;
+}
+
+.writebutton a {
+	display:flex;
+	align-items:center;
+	font-weight:bold;
+	background-color:#EBE7D9;
+	color:#0F222D;
+	border:1px solid #0F222D;
+	padding:3px;
+}
+
+.writebutton a:hover {
+	color:#F55139;
+	border:1px solid #F55139;
 }
 
 .writebutton > h2 {
 	margin:0;
+}
+
+.pageAndButton {
+	display:flex;
+	margin:20px 0;
+}
+
+.fake {
+	width:33.3%;
 }

@@ -43,7 +43,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="paging-box">
+	<div class="paging-box2">
 		<c:forEach var="cnt" begin="1" end="${fullPage}">
 			<li>
 				<c:if test="${cnt==page}"><div class="current"><a href="?memberId=${member.id}&page=${cnt}" class="block">${cnt}</a></div></c:if>

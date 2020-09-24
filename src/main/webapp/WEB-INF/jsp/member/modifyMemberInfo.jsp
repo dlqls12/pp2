@@ -207,7 +207,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="paging-box">
+			<div class="paging-box2">
 				<c:forEach var="cnt" begin="1" end="${fullPage}">
 					<li class="${cnt == page ? "current" : "" }">
 						<a href="?page=${cnt}&uuid=${uuid}" class="block">${cnt}</a>

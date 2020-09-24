@@ -20,6 +20,37 @@ select {
 select::-ms-expand {
     display: none;
 }
+
+.search-box {
+	display:flex;
+	justify-content:center;
+}
+
+.search-form {
+	width:50%;
+}
+
+.search-box-el {
+	display:flex;
+	justify-content:center;
+	width:100%;
+	background-color:#EBE7D9;
+	border:1px solid #F55139;
+	padding:5px;
+}
+
+.search-box-el>input {
+	width:80%;
+	margin: 0 10px;
+	padding: 10px;
+}
+
+.button1 {
+	width:20%;
+	height:100%;
+	border:1px solid #EBE7D9;
+	background-color:#EBE7D9;
+}
 </style>
 <div class="con body-box">
 	<div class="con">
@@ -129,30 +160,39 @@ select::-ms-expand {
 					</c:if>
 				</tbody>
 			</table>
+		</div>
+		<div class="pageAndButton">
+			<div class="fake"></div>
+			<div class="paging-box">
+				<c:if test="${page != 1}">
+					<a href="?page=${page-1}&sortId=${sortId}" class="block">◀</a>
+				</c:if>
+				<c:forEach var="cnt" begin="1" end="${fullPage}">
+					<li>
+						<c:if test="${cnt==page}"><div class="current"><a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a></div></c:if>
+						<c:if test="${cnt!=page}"><a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a></c:if>
+					</li>
+				</c:forEach>
+				<c:if test="${page != fullPage}">
+					<a href="?page=${page+1}&sortId=${sortId}" class="block">▶</a>
+				</c:if>
+			</div>
 			<div class="writebutton">
 				<c:if test="${board.id != 2}">
-					<h2><a href="${board.code}-write">[write]</a></h2>
+					<a href="${board.code}-write">글쓰기</a>
 				</c:if>
 				<c:if test="${board.id == 2 && loginedMemberId == 1}">
-					<h2><a href="${board.code}-write">[write]</a></h2>
+					<a href="${board.code}-write">글쓰기</a>
 				</c:if>
 			</div>
 		</div>
-		<div class="paging-box">
-			<c:forEach var="cnt" begin="1" end="${fullPage}">
-				<li>
-					<c:if test="${cnt==page}"><div class="current"><a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a></div></c:if>
-					<c:if test="${cnt!=page}"><a href="?page=${cnt}&sortId=${sortId}" class="block">${cnt}</a></c:if>
-				</li>
-			</c:forEach>
-		</div>
 		<div class="search-box">
-			<form class="form2" action="${board.code}-list">
+			<form class="form2 search-form" action="${board.code}-list">
 				<div class="search-box-el">
 					<input type="hidden" name="page" value="1" />
 					<input type="hidden" name="sortId" value="${param.sortId}" />
 					<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
-					<button type="submit">검색</button>
+					<button class="button1" type="submit"><img src="/resource/img/search.png" alt="search" /></button>
 				</div>
 			</form>
 		</div>

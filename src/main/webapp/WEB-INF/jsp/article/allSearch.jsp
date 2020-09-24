@@ -2,39 +2,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="통합검색" />
 <%@ include file="../part/head.jspf"%>
-
 <div class="con body-box">
-	<form class="form1 main-form" action="allSearchResult" onsubmit="SearchForm__submit(this); return false;">
+	<form class="form1 main-form" action="../article/allSearchResult" onsubmit="SearchForm__submit(this); return false;">
 		<input type="hidden" name="page1" value="1" />
 		<input type="hidden" name="page2" value="1" />
 		<input type="hidden" name="page3" value="1" />
-		<table class="table1" border="1">
+		<table class="table1">
 			<colgroup>
-				<col width=15% />
+				<col width=10%/>
+				<col />
+				<col width=10% />
 			</colgroup>
 			<tbody>
 				<tr>
-					<th>통합검색</th>
+					<td style="text-align:center; font-weight:bold;">통합검색</td>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchKeyword}" required/>
+							<input type="text" placeholder="검색어를 입력해주세요." name="searchKeyword" maxlength="30" value="${param.searchTag}" required/>
 						</div>
 					</td>
-				</tr>
-				<tr>
-					<th>찾기</th>
-					<td>
-						<button type="submit">찾기</button>
+					<td style="text-align:center;">
+						<button class="button2" type="submit"><img src="/resource/img/search.png" alt="search" /></button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</form>
 	<c:if test="${articlesSize == 0}">
-		<div>"${searchKeyword}" [게시물] 검색 결과를 찾을 수 없습니다.</div>
+		<div style="margin-top:20px;">"${searchKeyword}" [게시물] 검색 결과를 찾을 수 없습니다.</div>
 	</c:if>
 	<c:if test="${articlesSize != 0}">
-		<div class="pageTitle">
+		<div class="pageTitle" style="margin-top:20px;">
 			<div>"${searchKeyword}" [게시물] 검색 결과입니다.</div>
 			<div>게시물 수 : ${articlesSize}</div>
 		</div>
@@ -88,7 +86,7 @@
 		<c:if test="${articlesSize % 10 != 0}">
 			<c:set var="fullPage" value = "${articlesSize / 10 + 1}" />
 		</c:if>
-		<div class="paging-box">
+		<div class="paging-box2">
 			<c:forEach var="cnt2" begin="1" end="${fullPage}">
 				<li>
 					<c:if test="${cnt2==page1}"><div class="current"><a href="?searchKeyword=${param.searchKeyword}&page1=${cnt2}&page2=${page2}&page3=${page3}" class="block">${cnt2}</a></div></c:if>
@@ -99,19 +97,19 @@
 	</c:if>
 
 	<c:if test="${partySize == 0}">
-		<div>"${searchKeyword}" [파티] 검색 결과를 찾을 수 없습니다.</div>
+		<div style="margin-top:20px;">"${searchKeyword}" [파티] 검색 결과를 찾을 수 없습니다.</div>
 	</c:if>
 	<c:if test="${partySize != 0}">
-		<div class="pageTitle">
+		<div class="pageTitle" style="margin-top:20px;">
 			<div>"${searchKeyword}" [파티] 검색 결과입니다.</div>
 			<div>파티 수 : ${partySize}</div>
 		</div>
 		<table class="table2">
 			<colgroup>
-				<col width="100" />
+				<col width="15%" />
 				<col />
-				<col width="200" />
-				<col width="100" />
+				<col width="15%" />
+				<col width="15%" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -142,7 +140,7 @@
 		<c:if test="${articlesSize % 10 != 0}">
 			<c:set var="fullPage" value = "${partySize / 10 + 1}" />
 		</c:if>
-		<div class="paging-box">
+		<div class="paging-box2">
 			<c:forEach var="cnt2" begin="1" end="${fullPage}">
 				<li>
 					<c:if test="${cnt2==page2}"><div class="current"><a href="?searchKeyword=${param.searchKeyword}&page1=${page1}&page2=${cnt2}&page3=${page3}" class="block">${cnt2}</a></div></c:if>
@@ -153,20 +151,20 @@
 	</c:if>
 	
 	<c:if test="${articlesSize2 == 0}">
-		<div>"${searchKeyword}" [태그] 검색 결과를 찾을 수 없습니다.</div>
+		<div style="margin-top:20px;">"${searchKeyword}" [태그] 검색 결과를 찾을 수 없습니다.</div>
 	</c:if>
 	<c:if test="${articlesSize2 != 0}">
-	<div class="pageTitle">
+	<div class="pageTitle" style="margin-top:20px;">
 		<div>"${searchKeyword}" [태그] 검색 결과입니다.</div>
 		<div>게시물 수 : ${articlesSize2}</div>
 	</div>
 		<table class="table2">
 			<colgroup>
-				<col width="100" />
+				<col width="15%" />
 				<col />
-				<col width="150" />
-				<col width="200" />
-				<col width="100" />
+				<col width="15%" />
+				<col width="15%" />
+				<col width="15%" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -204,7 +202,7 @@
 		<c:if test="${articlesSize % 10 != 0}">
 			<c:set var="fullPage" value = "${articlesSize2 / 10 + 1}" />
 		</c:if>
-		<div class="paging-box">
+		<div class="paging-box2">
 			<c:forEach var="cnt2" begin="1" end="${fullPage}">
 				<li>
 					<c:if test="${cnt2==page3}"><div class="current"><a href="?searchKeyword=${param.searchKeyword}&page1=${page1}&page2=${page2}&page3=${cnt2}" class="block">${cnt2}</a></div></c:if>

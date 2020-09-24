@@ -33,88 +33,100 @@
 }
 
 pre {
-	min-width:400px;
-	max-width: 750px;
+	width:100%;
+	min-height:300px;
 	word-wrap: break-word;      /* IE 5.5-7 */
 	white-space: pre-wrap;      /* current browsers */
+	background-color:white;
+	border:1px solid #F55139;
+	box-sizing: border-box;
+	margin:0;
+}
+
+.pre {
+	display:flex;
+	min-height:50px;
+}
+
+.reply-info {
+	display:flex;
+	justify-content:flex-end;
+}
+
+.reply-sumbit {
+	text-align:center;
+}
+
+.tag-box {
+	display:flex;
+}
+
+.tag-box > div {
+	font-weight:bold;	
+}
+
+.tag-box > a {
+	text-decoration:underline;
 }
 </style>
 <div class="con">
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
 <div class="con body-box">
-	<table border="1" class="table1">
-		<colgroup>
-			<col width="15%" />
-		</colgroup>
+	<table class="table1">
 		<tbody>
 			<tr>
-				<th>제목</th>
-				<td>${article.title}</td>
+				<td class="article-box">
+					<div>${article.title}</div>
+					<div>
+						작성자:<a href="/usr/member/memberPage?id=${article.memberId}"><strong>${article.extra.writer}</strong></a>&nbsp| 날짜:${article.regDate} | 조회수:${article.hit}
+					</div>
+				</td>
 			</tr>
-			<tr class="bodyarea">
-				<th>내용</th>
+			<tr>
 				<td><pre>${article.body}</pre></td>
 			</tr>
 			<c:set var="fileNo" value="${String.valueOf(1)}" />
 			<c:set var="file" value="${article.extra.file__common__attachment[fileNo]}" />
 			<c:if test="${file != null}">
 				<tr>
-					<th>첨부파일</th>
-					<td>
-						<div class="img-box img-box-auto">
-							<img src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}" alt="" />
-						</div>
-					</td>
+					<td><img src="/usr/file/showImg?id=${file.id}&updateDate=${file.updateDate}" /></td>
 				</tr>
 			</c:if>
 			<c:if test="${tagList.size() != 0}">
 				<tr>
-					<th>태그</th>
-					<td>
+					<td class="tag-box">
+						<div>Tag&nbsp:&nbsp</div>
 						<c:forEach items="${tagList}" var="tag">
 							<a href="allSearchResult?page1=1&page2=1&page3=1&searchKeyword=${tag.body}">#${tag.body}</a>&nbsp
 						</c:forEach>
 					</td>
 				</tr>
 			</c:if>
-			<c:if test="${board.id == 3}">
-				<tr>
-					<th>거래완료여부</th>
-					<td>
-						<c:if test="${article.sortId != 0 }">
+			<tr>
+				<c:if test="${board.id == 3}">
+					<td class="crud-box">
+				</c:if>
+				<c:if test="${board.id != 3}">
+					<td class="crud-box2">
+				</c:if>
+					<c:if test="${board.id == 3}">
+						<c:if test="${article.sortId != 0 && article.memberId == loginedMemberId}">
 							<a href="doDealComplete?articleId=${article.id}" onclick="if ( confirm('거래완료 후에는 되돌릴 수 없습니다. 정말 완료하시겠습니까?') == false ) return false;">[거래완료?]</a>
 						</c:if>
-						<c:if test="${article.sortId == 0}">
-							거래가 완료된 게시물입니다.
-						</c:if>
-					</td>
-				</tr>
-			</c:if>
+						<c:if test="${article.sortId == 0}">거래가 완료된 게시물입니다.</c:if>
+					</c:if>
+					<c:if test="${loginedMemberId == article.memberId}">
+						<div>
+							<a href="${article.getModifyLink(board.code)}">[수정]</a>
+							<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
+							<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
+						</div>
+					</c:if>
+				</td>
+			</tr>
 		</tbody>
 	</table>
-	<c:if test="${loginedMemberId == article.memberId}">
-		<div class="crud-box visible-on-md-up">
-			<div>
-				<a href="${article.getModifyLink(board.code)}">[수정]</a>
-				<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
-				<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
-			</div>
-			<div class="subTitle">
-				날짜:${article.regDate} | 작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>&nbsp| 조회수:${article.hit}
-			</div>
-		</div>
-		<div class="mobile-crud-box visible-on-sm-down">
-			<div class="subTitle">
-				날짜:${article.regDate} | 작성자:<a href="/usr/member/memberPage?id=${article.memberId}">${article.extra.writer}</a>&nbsp| 조회수:${article.hit}
-			</div>
-			<div>
-				<a href="${article.getModifyLink(board.code)}">[수정]</a>
-				<a href="${article.getDeleteLink(board.code)}" onclick="if ( confirm('정말로 삭제하시겠습니까?') == false ) return false;">[삭제]</a>
-				<a href="${board.code}-list?page=1&sortId=0">[리스트로 돌아가기]</a>
-			</div>
-		</div>
-	</c:if>
 	<script>
 		var ReplyWriteForm__submitDone = false;
 		function ReplyWriteForm__submit(form) {
@@ -205,21 +217,18 @@ pre {
 			<input type="hidden" name="memberId" value="${loginedMemberId}" />
 			<table class="table1" border="1">
 				<colgroup>
-					<col width="15%" />
+					<col />
+					<col width="10%" />
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>내용</th>
 						<td>
 							<div class="form-control-box">
 								<textarea class="reply-textarea" placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
 							</div>
 						</td>
-					</tr>
-					<tr>
-						<th>작성</th>
-						<td>
-							<button type="submit">작성</button>
+						<td class="reply-sumbit">
+							<button type="submit">등록</button>
 						</td>
 					</tr>
 				</tbody>
@@ -232,42 +241,26 @@ pre {
 		<div>댓글이 없습니다. ㅠㅠ</div>
 	</c:if>
 	<c:if test="${fullPage != 0}">
-		<table class="table2 reply-list">
+		<table border="1" class="table2 reply-list">
 			<colgroup>
-				<col width="10%" />
 				<col />
-				<col width="15%" />
-				<col width="15%" />
-				<col width="15%" />
+				<col width="10%"/>
 			</colgroup>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>내용</th>
-					<th>작성자</th>
-					<th>날짜</th>
-					<c:if test="${isLogined}">
-						<th>비고</th>
-					</c:if>
-				</tr>
-			</thead>
 			<tbody>
 				<c:forEach items="${replies}" var="reply">
 					<tr>
-						<td>${reply.id}</td>
 						<td>
 							<div class="modify-mode-off"><pre class="pre">${reply.body}</pre></div>
 							<div class="modify-mode-on">
 								<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
 									<input type="hidden" name="id" value="${reply.id}" />
 									<input type="hidden" name="articleId" value="${article.id}" />
-									<textarea name="body" placeholder="내용을 입력해주세요." maxlength="2000">${reply.body}</textarea>
+									<textarea name="body" placeholder="내용을 입력해주세요." rows="10" maxlength="2000">${reply.body}</textarea>
 									<input type="submit" value="완료" />
 								</form>
 							</div>
+							<div class="reply-info">작성자 :&nbsp<a href="/usr/member/memberPage?id=${reply.memberId}"><strong>${reply.extra.writer}</strong></a>&nbsp| 날짜 : ${reply.regDate}</div>
 						</td>
-						<td><a href="./../member/memberPage?id=${reply.memberId}">${reply.extra.writer}</a></td>
-						<td>${reply.regDate}</td>
 						<c:if test="${isLogined}">
 							<td>
 								<c:if test="${loginedMemberId == reply.memberId}">
@@ -281,7 +274,7 @@ pre {
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="paging-box">
+		<div class="paging-box2">
 			<c:forEach var="cnt" begin="1" end="${fullPage}">
 				<li class="${cnt==page ? "current" : "" }">
 					<a href="?id=${article.id}&page=${cnt}" class="block">${cnt}</a>
