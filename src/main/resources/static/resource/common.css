@@ -94,6 +94,11 @@ html>head+body:nth-child(2) .height-300 {
 	resize: none;
 }
 
+.form1 .form-control-box>.reply-textarea {
+	min-height: 70px;
+	resize: none;
+}
+
 .form1 .form-row {
 	display: flex;
 	flex-wrap: wrap;
@@ -418,12 +423,39 @@ html>head+body:nth-child(2) .height-300 {
 
 .button-box {
 	display:flex;
-	justify-content:center;
+	justify-content:space-between;
+	margin:20px 0;
 }
 
-.button-box > button {
-	margin:10px;
-	padding:10px;
+.button-box > a {
+	display:flex;
+	justify-content:space-around;
+	align-items:center;
+	border:1px solid #0F222D;
+	font-weight:bold;
+	font-size:1.4rem;
+	background-color:#EBE7D9;
+	color:#0F222D;
+	padding:0 5px;
+}
+
+.button-box > a:hover {
+	color: #F55139;
+}
+
+.button1 {
+	display:flex;
+	justify-content:space-around;
+	align-items:center;
+	border:1px solid #0F222D;
+	font-weight:bold;
+	font-size:1.4rem;
+	background-color:#EBE7D9;
+	color:#0F222D;
+}
+
+.button1:hover {
+	color: #F55139;
 }
 
 .writebutton {

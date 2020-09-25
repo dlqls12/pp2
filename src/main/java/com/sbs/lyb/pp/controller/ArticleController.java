@@ -162,16 +162,11 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/{boardCode}-modify")
-	public String showModify(@PathVariable("boardCode") String boardCode, Model model, int id, String listUrl) {
-		if (listUrl == null) {
-			listUrl = "./" + boardCode + "-list?page=1";
-		}
-		
+	public String showModify(@PathVariable("boardCode") String boardCode, Model model, int id) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
 		
 		Article article = articleService.getForPrintArticleById(id);
-		model.addAttribute("listUrl", listUrl);
 		model.addAttribute("article", article);
 
 		return "article/modify";

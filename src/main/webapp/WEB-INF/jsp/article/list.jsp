@@ -45,7 +45,7 @@ select::-ms-expand {
 	padding: 10px;
 }
 
-.button1 {
+.search-button {
 	width:20%;
 	height:100%;
 	border:1px solid #EBE7D9;
@@ -179,10 +179,10 @@ select::-ms-expand {
 			</div>
 			<div class="writebutton">
 				<c:if test="${board.id != 2}">
-					<a href="${board.code}-write">글쓰기</a>
+					<a class="button1" href="${board.code}-write">글쓰기</a>
 				</c:if>
 				<c:if test="${board.id == 2 && loginedMemberId == 1}">
-					<a href="${board.code}-write">글쓰기</a>
+					<a class="button1" href="${board.code}-write">글쓰기</a>
 				</c:if>
 			</div>
 		</div>
@@ -192,7 +192,7 @@ select::-ms-expand {
 					<input type="hidden" name="page" value="1" />
 					<input type="hidden" name="sortId" value="${param.sortId}" />
 					<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
-					<button class="button1" type="submit"><img src="/resource/img/search.png" alt="search" /></button>
+					<button class="search-button" type="submit"><img src="/resource/img/search.png" alt="search" /></button>
 				</div>
 			</form>
 		</div>

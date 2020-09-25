@@ -6,22 +6,18 @@
 .modify-mode-on {
 	display: none;
 }
-
 .modify-mode-actived .modify-mode-off {
 	display: none;
 }
-
 .modify-mode-actived .modify-mode-on {
 	display: inline-block;
 }
-
 .reply-list>tbody>tr>td>div>form>textarea {
 	width: 100%;
 	padding: 0;
 	box-sizing: border-box;
 	resize:none;
 }
-
 pre {
 	width:100%;
 	min-height:300px;
@@ -34,24 +30,19 @@ pre {
 	padding:10px;
 	text-align:left;
 }
-
 .reply-info {
 	display:flex;
 	justify-content:flex-end;
 }
-
 .reply-sumbit {
 	text-align:center;
 }
-
 .tag-box {
 	display:flex;
 }
-
 .tag-box > div {
 	font-weight:bold;	
 }
-
 .tag-box > a {
 	text-decoration:underline;
 }
@@ -116,14 +107,12 @@ pre {
 				alert('처리중입니다.');
 				return;
 			}
-
 			form.body.value = form.body.value.trim();
 			if (form.body.value.length == 0) {
 				form.body.focus();
 				alert('내용을 입력해주세요.');
 				return;
 			}
-
 			ReplyWriteForm__submitDone = true;
 			$.post('./../reply/doReplyWriteAjax', {
 				articleId : form.articleId.value,
@@ -134,37 +123,31 @@ pre {
 				if (data.msg) {
 					alert(data.msg);
 				}
-
 				if (data.resultCode.substr(0, 2) == 'S-') {
 					form.body.value = '';
 				}
 			}, 'json');
 		}
-
 		function ReplyModify__showModifyForm(el) {
 			var $tr = $(el).closest('tr');
 			$tr.addClass('modify-mode-actived');
 		}
-
 		function ReplyModify__hideModifyForm(el) {
 			var $tr = $(el).closest('tr');
 			$tr.removeClass('modify-mode-actived');
 		}
-
 		var ReplyModifyForm__submitDone = false;
 		function ReplyModifyForm__submit(form) {
 			if (ReplyWriteForm__submitDone) {
 				alert('처리중입니다.');
 				return;
 			}
-
 			form.body.value = form.body.value.trim();
 			if (form.body.value.length == 0) {
 				form.body.focus();
 				alert('내용을 입력해주세요.');
 				return;
 			}
-
 			ReplyModifyForm__submitDone = true;
 			$.post('./../reply/doReplyModifyAjax', {
 				id : form.id.value,
@@ -175,13 +158,11 @@ pre {
 				if (data.msg) {
 					alert(data.msg);
 				}
-
 				if (data.resultCode.substr(0, 2) == 'S-') {
 					form.body.value = '';
 				}
 			}, 'json');
 		}
-
 		function ReplyDelete__submit(el) {
 			$.post('./../reply/doReplyDeleteAjax', {
 				id: el

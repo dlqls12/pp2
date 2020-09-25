@@ -135,6 +135,7 @@
 						</div>
 					</td>
 				</tr>
+				<c:if test="${file != null}">
 				<tr>
 					<th>첨부파일 삭제</th>
 					<td>
@@ -145,6 +146,8 @@
 						</div>
 					</td>
 				</tr>
+				</c:if>
+				<c:if test="${board.id == 3}">
 				<tr>
 					<th>태그</th>
 					<td>
@@ -153,11 +156,11 @@
 						</div>
 					</td>
 				</tr>
+				</c:if>
 				<tr>
 					<th>작성</th>
 					<td>
-						<button type="submit">작성</button> 
-						<a href="${listUrl}">리스트</a> 
+						<button type="submit">작성</button>  
 					</td>
 				</tr>
 			</tbody>

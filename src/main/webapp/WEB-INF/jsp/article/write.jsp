@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="${board.name} 게시판 글 작성" />
 <%@ include file="../part/head.jspf"%>
-
 <script>
 	var ArticleWriteForm__submitDone = false;
 	function ArticleWriteForm__submit(form) {
@@ -111,7 +110,7 @@
 					<th>제목</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="30" />
+							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="100" />
 						</div>
 					</td>
 				</tr>
@@ -144,9 +143,9 @@
 			</tbody>
 		</table>
 		<div class="button-box">
-			<button type="submit">작성</button>
+			<a href="${listUrl}">리스트</a>
+			<button class="button1" type="submit">등록</button>
 		</div>
-		<a href="${listUrl}">[리스트]</a>
 	</form>
 </div>
 <%@ include file="../part/foot.jspf"%>
