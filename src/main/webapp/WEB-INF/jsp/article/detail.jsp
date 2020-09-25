@@ -15,19 +15,9 @@
 	display: inline-block;
 }
 
-.reply-list>tbody>tr>td>div {
-	width: 100%;
-}
-
-.reply-list>tbody>tr>td>div>form {
-	width: 100%;
-	display: flex;
-}
-
 .reply-list>tbody>tr>td>div>form>textarea {
 	width: 100%;
 	padding: 0;
-	display: block;
 	box-sizing: border-box;
 	resize:none;
 }
@@ -41,11 +31,8 @@ pre {
 	border:1px solid #F55139;
 	box-sizing: border-box;
 	margin:0;
-}
-
-.pre {
-	display:flex;
-	min-height:50px;
+	padding:10px;
+	text-align:left;
 }
 
 .reply-info {
@@ -104,12 +91,7 @@ pre {
 				</tr>
 			</c:if>
 			<tr>
-				<c:if test="${board.id == 3}">
-					<td class="crud-box">
-				</c:if>
-				<c:if test="${board.id != 3}">
-					<td class="crud-box2">
-				</c:if>
+				<td class="${board.id == 3 ? "crud-box":"crud-box2" }">
 					<c:if test="${board.id == 3}">
 						<c:if test="${article.sortId != 0 && article.memberId == loginedMemberId}">
 							<a href="doDealComplete?articleId=${article.id}" onclick="if ( confirm('거래완료 후에는 되돌릴 수 없습니다. 정말 완료하시겠습니까?') == false ) return false;">[거래완료?]</a>
@@ -224,7 +206,7 @@ pre {
 					<tr>
 						<td>
 							<div class="form-control-box">
-								<textarea class="reply-textarea" placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
+								<textarea style="min-height: 100px;" placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
 							</div>
 						</td>
 						<td class="reply-sumbit">
@@ -250,9 +232,9 @@ pre {
 				<c:forEach items="${replies}" var="reply">
 					<tr>
 						<td>
-							<div class="modify-mode-off"><pre class="pre">${reply.body}</pre></div>
-							<div class="modify-mode-on">
-								<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;">
+							<div class="modify-mode-off"><pre style="min-height:50px;">${reply.body}</pre></div>
+							<div class="modify-mode-on" style="width:100%;">
+								<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;" style="width:100%;">
 									<input type="hidden" name="id" value="${reply.id}" />
 									<input type="hidden" name="articleId" value="${article.id}" />
 									<textarea name="body" placeholder="내용을 입력해주세요." rows="10" maxlength="2000">${reply.body}</textarea>

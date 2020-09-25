@@ -139,17 +139,10 @@ a.btn-layerClose:hover {
 				</div>
 			</div>
 		</div>
-		<div class="top-bar con visible-on-sm-down">
+		<div class="top-bar">
 			<div class="menu-box-1">
 				<div class="logo">
-					<a href="/usr/home/main"><img src="/resource/img/mobile-logo.png" alt="logo" /></a>
-				</div>
-			</div>
-		</div>
-		<div class="top-bar con visible-on-md-up">
-			<div class="menu-box-1">
-				<div class="logo">
-					<a href="/usr/home/main"><img src="/resource/img/logo.png" alt="logo" /></a>
+					<a href="/usr/home/main"><img src="/resource/img/logo2.png" alt="logo" /></a>
 				</div>
 			</div>
 		</div>
@@ -191,10 +184,10 @@ a.btn-layerClose:hover {
 				</div>
 			</div>
 		</div>
-		<div class="top-bar con">
+		<div class="top-bar con visible-on-sm-down">
 			<div class="menu-box-1">
 				<div class="logo">
-					<a href="/usr/home/main"><img src="/resource/img/logo.png" alt="logo" /></a>
+					<a href="/usr/home/main"><img src="/resource/img/mobile-logo.png" alt="logo" /></a>
 				</div>
 			</div>
 		</div>

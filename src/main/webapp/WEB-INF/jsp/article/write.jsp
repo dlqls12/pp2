@@ -83,11 +83,8 @@
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
 <div class="con body-box">
-	<form method="POST" class="form1" action="${board.code}-doWrite"
-		onsubmit="ArticleWriteForm__submit(this); return false;">
-		<input type="hidden" name="fileIdsStr" /> <input type="hidden"
-			name="redirectUrl"
-			value="/usr/article/${board.code}-detail?id=#id&page=1">
+	<form method="POST" class="form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
+		<input type="hidden" name="fileIdsStr" /> <input type="hidden" name="redirectUrl" value="/usr/article/${board.code}-detail?id=#id&page=1">
 		<c:if test="${board.id != 3}">
 			<input type="hidden" name="sortId" value="0" />
 		</c:if>
@@ -114,7 +111,7 @@
 					<th>제목</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="100" />
+							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="30" />
 						</div>
 					</td>
 				</tr>

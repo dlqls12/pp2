@@ -9,7 +9,7 @@
 		<input type="hidden" name="page3" value="1" />
 		<table class="table1">
 			<colgroup>
-				<col width=10%/>
+				<col width=100/>
 				<col />
 				<col width=10% />
 			</colgroup>
@@ -38,11 +38,11 @@
 		</div>
 		<table class="table2">
 			<colgroup>
-				<col width="15%" />
+				<col width="150" />
 				<col />
-				<col width="15%" />
-				<col width="15%" />
-				<col width="15%" />
+				<col width="150" />
+				<col width="200" />
+				<col width="100" />
 			</colgroup>
 			<thead>
 				<tr>

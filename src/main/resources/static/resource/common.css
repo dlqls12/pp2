@@ -94,11 +94,6 @@ html>head+body:nth-child(2) .height-300 {
 	resize: none;
 }
 
-.form1 .form-control-box>.reply-textarea {
-	min-height: 70px;
-	resize: none;
-}
-
 .form1 .form-row {
 	display: flex;
 	flex-wrap: wrap;
