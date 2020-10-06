@@ -110,7 +110,7 @@
 					<th>제목</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="100" />
+							<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="30" />
 						</div>
 					</td>
 				</tr>

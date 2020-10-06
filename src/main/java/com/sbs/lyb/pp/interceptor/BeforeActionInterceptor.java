@@ -15,9 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sbs.lyb.pp.dto.Party;
 import com.sbs.lyb.pp.dto.Member;
-import com.sbs.lyb.pp.service.PartyService;
 import com.sbs.lyb.pp.service.MemberService;
 
 @Component("beforeActionInterceptor") // 컴포넌트 이름 설정
@@ -25,11 +23,11 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 	@Autowired
 	@Value("${custom.logoText}")
 	private String siteName;
-
+	@Value("${spring.profiles.active}")
+	private String activeProfile;
+	
 	@Autowired
 	private MemberService memberService;
-	@Autowired
-	private PartyService groupService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -90,6 +88,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 			loginedMember = memberService.getMemberById(loginedMemberId);
 		}
 
+		request.setAttribute("activeProfile", activeProfile);
 		request.setAttribute("loginedMemberId", loginedMemberId);
 		request.setAttribute("isLogined", isLogined);
 		request.setAttribute("loginedMember", loginedMember);

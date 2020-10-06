@@ -34,6 +34,7 @@
 							<c:if test="${article.boardId == 1}">free</c:if>
 							<c:if test="${article.boardId == 2}">notice</c:if>
 							<c:if test="${article.boardId == 3}">deal</c:if>
+							<c:if test="${article.boardId == 4}">suggetion</c:if>
 						</td>
 						<td class="title">
 							<c:if test="${article.sortId == 2}"><div class="buy">[삽니다]</div></c:if>

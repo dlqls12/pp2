@@ -56,7 +56,8 @@ public class ArticleController {
 			fullPage = size / itemsInAPage + 1;
 		}
 		
-		List<Article> articles = articleService.getArticlesSortByBoard(board.getId(), sortId, itemsInAPage, limitFrom, searchKeyword);
+		List<Article> articles 
+		= articleService.getArticlesSortByBoard(board.getId(), sortId, itemsInAPage, limitFrom, searchKeyword);
 		model.addAttribute("articles", articles);
 		model.addAttribute("fullPage", fullPage);
 		model.addAttribute("page", page);
@@ -66,7 +67,8 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-detail")
-	public String showDetail(Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, String listUrl, int page, HttpServletRequest req) {
+	public String showDetail(Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode,
+			String listUrl, int page, HttpServletRequest req) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
 		}
@@ -121,7 +123,9 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/{boardCode}-doWrite")
-	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode, Model model, String redirectUrl, HttpServletRequest req) {
+	public String doWrite(@RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode,
+			Model model, String redirectUrl, HttpServletRequest req) {
+		
 		Board board = articleService.getBoardByCode(boardCode);
 		int boardId = board.getId();
 		Member member = (Member) req.getAttribute("loginedMember");

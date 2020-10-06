@@ -107,6 +107,7 @@
 		INNER JOIN board AS B
 		ON A.boardId = B.id
 		WHERE A.memberId = #{memberId}
+		AND displayStatus = 1
 		ORDER BY A.id DESC;
 	</select>
 

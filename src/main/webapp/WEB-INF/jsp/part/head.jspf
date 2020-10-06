@@ -25,8 +25,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="/resource/app.css" />
-
 </head>
+
 <style>
 /* layer-popup */
 .pop-layer .pop-container {
@@ -127,7 +127,6 @@ a.btn-layerClose:hover {
 								<strong>파티</strong>는 대학 또는 그 대학의 학과 처럼 규모에 상관없이 그룹화 하기 위해 만든 기능입니다.<br>
 								사용자는 <strong>파티</strong>를 생성할 수도 가입할 수도 있고 해당 <strong>파티</strong>에 속한 사용자들이 작성한 게시물들만 따로 볼 수도 있습니다.
 								<br><br>
-								Hope to see you soon!
 							</p>
 	
 							<div class="btn-r">
@@ -136,13 +135,6 @@ a.btn-layerClose:hover {
 							<!--// content-->
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top-bar con visible-on-sm-down">
-			<div class="menu-box-1">
-				<div class="logo">
-					<a href="/usr/home/main"><img src="/resource/img/mobile-logo.png" alt="logo" /></a>
 				</div>
 			</div>
 		</div>
@@ -180,7 +172,6 @@ a.btn-layerClose:hover {
 								<strong>파티</strong>는 대학 또는 그 대학의 학과 처럼 규모에 상관없이 그룹화 하기 위해 만든 기능입니다.<br>
 								사용자는 <strong>파티</strong>를 생성할 수도 가입할 수도 있고 해당 <strong>파티</strong>에 속한 사용자들이 작성한 게시물들만 따로 볼 수도 있습니다.
 								<br><br>
-								Hope to see you soon!
 							</p>
 							<div class="btn-r">
 								<a href="#" class="btn-layerClose">닫기</a>
@@ -191,10 +182,10 @@ a.btn-layerClose:hover {
 				</div>
 			</div>
 		</div>
-		<div class="top-bar con">
+		<div class="top-bar con visible-on-sm-down">
 			<div class="menu-box-1">
 				<div class="logo">
-					<a href="/usr/home/main"><img src="/resource/img/logo.png" alt="logo" /></a>
+					<a href="/usr/home/main"><img src="/resource/img/mobile-logo.png" alt="logo" /></a>
 				</div>
 			</div>
 		</div>

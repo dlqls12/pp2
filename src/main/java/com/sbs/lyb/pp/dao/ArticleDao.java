@@ -20,7 +20,8 @@ public interface ArticleDao {
 
 	void write(Map<String, Object> param);
 
-	List<Article> getArticlesSortByBoard(@Param("id") int id, @Param("sortId") int sortId, @Param("itemsInAPage")int itemsInAPage,  @Param("limitFrom")int limitFrom, @Param("searchKeyword") String searchKeyword);
+	List<Article> getArticlesSortByBoard(@Param("id") int id, @Param("sortId") int sortId, @Param("itemsInAPage")int itemsInAPage
+			, @Param("limitFrom")int limitFrom, @Param("searchKeyword") String searchKeyword);
 
 	void delete(int id);
 
