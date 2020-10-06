@@ -3,6 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="${board.name} 게시판 글 작성" />
 <%@ include file="../part/head.jspf"%>
+<style>
+textarea.autosize { min-height: 50px; }
+</style>
+
+<script>
+function resize(obj) {
+  obj.style.height = "1px";
+  obj.style.height = (12+obj.scrollHeight)+"px";
+}
+</script>
 <script>
 	var ArticleWriteForm__submitDone = false;
 	function ArticleWriteForm__submit(form) {
@@ -118,7 +128,7 @@
 					<th>내용</th>
 					<td>
 						<div class="form-control-box">
-							<textarea placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
+							<textarea class="autosize" name="body" onkeydown="resize(this)" onkeyup="resize(this)" maxlength="2000" placeholder="내용을 입력해주세요."></textarea>
 						</div>
 					</td>
 				</tr>

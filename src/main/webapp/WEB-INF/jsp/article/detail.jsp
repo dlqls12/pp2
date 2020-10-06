@@ -3,6 +3,19 @@
 <c:set var="pageTitle" value="게시물 상세보기" />
 <%@ include file="../part/head.jspf"%>
 <style>
+textarea.autosize { min-height: 50px; }
+.autosize {
+	padding:30px;
+}
+</style>
+
+<script>
+function resize(obj) {
+  obj.style.height = "1px";
+  obj.style.height = (12+obj.scrollHeight)+"px";
+}
+</script>
+<style>
 .modify-mode-on {
 	display: none;
 }
@@ -218,7 +231,7 @@ pre {
 								<form method="POST" onsubmit="ReplyModifyForm__submit(this); return false;" style="width:100%;">
 									<input type="hidden" name="id" value="${reply.id}" />
 									<input type="hidden" name="articleId" value="${article.id}" />
-									<textarea name="body" placeholder="내용을 입력해주세요." rows="10" maxlength="2000">${reply.body}</textarea>
+									<textarea class="autosize" name="body" maxlength="2000" onkeydown="resize(this)" onkeyup="resize(this)" rows="10">${reply.body}</textarea>
 									<input type="submit" value="완료" />
 								</form>
 							</div>

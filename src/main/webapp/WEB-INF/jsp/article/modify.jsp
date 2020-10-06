@@ -5,6 +5,16 @@
 <div class="con">
 	<h1 class="page-title-box">${pageTitle}</h1>
 </div>
+<style>
+textarea.autosize { min-height: 50px; }
+</style>
+
+<script>
+function resize(obj) {
+  obj.style.height = "1px";
+  obj.style.height = (12+obj.scrollHeight)+"px";
+}
+</script>
 <script>
 	var ArticleModifyForm__submitDone = false;
 	function ArticleModifyForm__submit(form) {
@@ -110,7 +120,7 @@
 					<th>제목</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="제목을 입력해주세요." value="${article.title}" name="title" maxlength="100" />
+							<input type="text" placeholder="제목을 입력해주세요." value="${article.title}" name="title" maxlength="30" />
 						</div>
 					</td>
 				</tr>
@@ -118,7 +128,7 @@
 					<th>내용</th>
 					<td>
 						<div class="form-control-box">
-							<textarea placeholder="내용을 입력해주세요." name="body" maxlength="2000">${article.body}</textarea>
+							<textarea class="autosize" name="body" maxlength="2000" onkeydown="resize(this)" onkeyup="resize(this)">${article.body}</textarea>
 						</div>
 					</td>
 				</tr>
